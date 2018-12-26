@@ -6,8 +6,8 @@ Rate Movie Webapp - BAOT's 30 hours project
 movie-rate infrastructure skeleton was taken from 'create-react-app-light' (NOT create-react-app):
 https://github.com/yarindeoh/create-react-app-light
 
+#### Currently includes a technical stack
 
-####Currently includes a technical stack
 * React
 * babel (transpile latest javascript code to supported browser code) including support of ES6
 * webpack (build tool, bundling and packaging javascript code) 
@@ -17,7 +17,7 @@ https://github.com/yarindeoh/create-react-app-light
 * SASS (maybe will be changed in the future to plain css)
 * jest (test framework configuration is set for the future use)
 
-####Running the code
+#### Running the code
 
 1) Install all dependencies 
 
@@ -42,9 +42,9 @@ Optional script - fix eslint issues
 ```
 yarn lint-fix
 ```
+#### Configure your IDE(webstorm or others) 
 
-####Configure your IDE(webstorm or others) 
 Enable eslint and change it's path to point relatively ro node_modules/eslint
 
 
-#Backend
+## Backend
