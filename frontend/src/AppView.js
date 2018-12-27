@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import 'resources/scss/style.scss';
-import Loader from './common/components/Loader';
+import Loader from 'common/components/Loader';
 
 class AppView extends Component {
     render() {

@@ -1,11 +1,12 @@
 {
   "name": "rate-movies",
   "scripts": {
+    "script": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode=development",
     "build": "webpack --mode production",
     "test": "jest",
     "test-dev": "jest --watch",
-    "lint-fix": "eslint --fix  --ext .js src"
+    "lint-fix": "eslint --fix  --ext .js server"
   },
   "dependencies": {
     "prettier": "^1.15.3",
@@ -16,6 +17,8 @@
     "uglifyjs-webpack-plugin": "^2.0.1"
   },
   "devDependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9",
     "babel-core": "^6.24.0",
     "babel-eslint": "^8.2.1",
     "babel-jest": "^22.1.0",

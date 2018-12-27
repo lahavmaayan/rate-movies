@@ -5,18 +5,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env, argv) => {
-    let srcPath = [path.resolve(__dirname, 'src')];
+    let srcPath = [path.resolve(__dirname, 'frontend/src')];
     let modulePath = [path.resolve('.'), path.join(__dirname, 'node_modules')];
 
     let webpackConfig = {
         performance: { hints: false },
         mode: argv.mode,
-        entry: path.resolve(__dirname, 'src/index.js'),
+        entry: path.resolve(__dirname, 'frontend/src/index.js'),
         devtool: argv.mode === 'development' ? 'eval-source-map' : 'none',
         resolve: {
             modules: modulePath,
             alias: {
-                common: path.resolve(__dirname, 'src/common')
+                common: path.resolve(__dirname, 'frontend/src/common'),
+                resources: path.resolve(__dirname, 'frontend/resources')
             }
         },
         output: {
@@ -53,14 +54,17 @@ module.exports = (env, argv) => {
                             }
                         }
                     ],
-                    include: [/resources/, path.join(__dirname, 'node_modules')]
+                    include: [
+                        path.resolve(__dirname, 'frontend/resources'),
+                        path.join(__dirname, 'node_modules')
+                    ]
                 }
             ]
         },
         plugins: [
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                template: path.resolve(__dirname, 'index.html')
+                template: path.resolve(__dirname, 'frontend/index.html')
             })
         ],
         optimization: {
