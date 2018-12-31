@@ -4,7 +4,7 @@ Rate Movie Webapp - BAOT's 30 hours project
 movie-rate infrastructure skeleton was taken from 'create-react-app-light' (NOT original create-react-app):
 https://github.com/yarindeoh/create-react-app-light
 
-#### Frontend & Backend technical stack
+## Frontend & Backend technical stack
 
 * React (JavaScript library for building user interfaces)
 * babel (transpile latest javascript code to supported browser code) including support of ES6 
@@ -25,7 +25,13 @@ https://github.com/yarindeoh/create-react-app-light
 #### Configure your IDE(webstorm or others) to use code indent standard
 In settings look for eslint option: enable and change it's path to point relatively to node_modules/eslint
 
-#### Running the code in development
+#### Development mode
+In the development mode, we will have 2 servers running. The front end code will be served by the webpack dev server which helps with hot and live reloading. The server side Express code will be served by a node server using nodemon which helps in automatically restarting the server whenever server side code changes.
+
+#### Production mode (in the future)
+In the production mode, we will have only 1 server running. All the client side code will be bundled into static files using webpack and it will be served by the Node.js/Express application.
+
+## Quick start in Development mode
 1) Install all dependencies (backend + frontend)
 
 ```
@@ -36,7 +42,7 @@ OR
 npm install 
 ```
 
-***NOTE: In order to run the app, run the server and the client in parallel from 2 terminals:
+***NOTE: run the server and the client in parallel from 2 terminals
 
 
 2) Run frontend locally in dev mode using webpack-dev-server running on port 9000
