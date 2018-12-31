@@ -22,7 +22,6 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
-            publicPath: '/',
             filename: 'bundle.js'
         },
         module: {
@@ -71,9 +70,10 @@ module.exports = (env, argv) => {
             minimizer: [new UglifyJsPlugin()]
         },
         devServer: {
-            contentBase: path.join(__dirname, 'dist'),
-            compress: true,
-            port: 9000
+            port: 9000,
+            proxy: {
+                '/api': 'http://localhost:3000'
+            }
         }
     };
 
