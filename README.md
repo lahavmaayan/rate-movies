@@ -36,6 +36,9 @@ OR
 npm install 
 ```
 
+***NOTE: In order to run the app, run the server and the client in parallel from 2 terminals:
+
+
 2) Run frontend locally in dev mode using webpack-dev-server running on port 9000
 
 ```
@@ -63,3 +66,4 @@ yarn lint-fix
 ```
 
 #### Running the code in production
+In the future ...
