@@ -1,13 +1,38 @@
-// this is for testing the api till we connect to db
+const uniqid = require('uniqid');
+// For testing the api till we connect to db
 const movies = [
-    { id: 1, name: 'harry potter' },
-    { id: 2, name: 'hannibal' },
-    { id: 3, name: 'pretty woman' }
+    { id: uniqid(), name: 'harry potter' },
+    { id: uniqid(), name: 'hannibal' },
+    { id: uniqid(), name: 'pretty woman' }
 ];
 
-const GetMovieById = async movieId => {
-    const pp = movies.find(m => m.id === parseInt(movieId));
-    return pp;
+const getMovieById = async movieId => {
+    return movies.find(movie => movie.id.toString() === movieId);
 };
 
-module.exports = { GetMovieById };
+const addNewMovie = async ({ name }) => {
+    const newMovie = {
+        id: uniqid(),
+        name: name
+    };
+    movies.push(newMovie);
+    return newMovie;
+};
+
+const updateMovieName = async (movie, name) => {
+    const movieToUpdate = await getMovieById(movie.id);
+    movieToUpdate.name = name;
+};
+
+const deleteMovie = async movie => {
+    const index = movies.indexOf(movie);
+    movies.splice(index, 1);
+};
+
+module.exports = {
+    getMovieById,
+    addNewMovie,
+    updateMovieName,
+    deleteMovie,
+    movies
+};

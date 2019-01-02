@@ -72,7 +72,7 @@ module.exports = (env, argv) => {
         devServer: {
             port: 9000,
             proxy: {
-                '/api': 'http://localhost:3000'
+                '/movie': 'http://localhost:3000'
             }
         }
     };
