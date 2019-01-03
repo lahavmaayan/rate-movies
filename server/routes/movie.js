@@ -4,15 +4,15 @@ const validationSchema = require('../schemas/validation');
 const express = require('express');
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.send(movieDB.movies);
+});
+
 router.get('/:movieId', async (req, res) => {
     // a stub file I created to simulate access to db
     const movie = await movieDB.getMovieById(req.params.movieId);
-    if (!movie) res.status(404).send(validationSchema.movieNotFound);
+    if (!movie) return res.status(404).send(validationSchema.movieNotFound);
     res.send(movie);
-});
-
-router.get('/', (req, res) => {
-    res.send(movieDB.movies);
 });
 
 router.post('/', async (req, res) => {
