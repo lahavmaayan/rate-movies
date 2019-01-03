@@ -26,7 +26,7 @@ async function getMovieById(movieId) {
         dbServer => {
             const db = dbServer.db();
             var collection = db.collection('movies');
-            var query = { id: parseInt(movieId) };
+            var query = { id: movieId };
             return collection.findOne(query);
         }
     );
