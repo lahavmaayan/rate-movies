@@ -1,28 +1,26 @@
 function initDB() {
     try {
         const MongoClient = require('mongodb').MongoClient;
-        MongoClient.connect(
-            'mongodb://localhost:27017',
-            function(err, dbServer) {
-                if (err) {
-                    return console.dir(err);
-                }
-                const db = dbServer.db('exampleDb');
-                //db.dropCollection('movies').then()
-                var collection = db.collection('movies');
-                const movies = [
-                    { id: '1', name: 'harry potter' },
-                    { id: '2', name: 'hannibal' },
-                    { id: '3', name: 'pretty woman' }
-                ];
-
-                collection.insertMany(movies).then(x => console.log(x));
-            }
-        );
+        MongoClient.connect('mongodb://localhost:27017')
+        .then(db => fillDB(db));
     } catch (error) {
         console.log(error);
     }
 }
+
+function fillDB(dbServer) {
+    const db = dbServer.db('exampleDb');
+    db.dropCollection('movies')
+    .then(b => db.collection('movies').insertMany(
+        [
+            { id: '1', name: 'harry potter' },
+            { id: '2', name: 'hannibal' },
+            { id: '3', name: 'pretty woman' }
+        ])
+    );
+}
+
+function fillDB2(db) {}
 
 async function getMovieById(movieId) {
     const MongoClient = require('mongodb').MongoClient;
