@@ -6,9 +6,14 @@ const router = express.Router();
 
 router.get('/:movieId', async (req, res) => {
     // a stub file I created to simulate access to db
-    const movie = await movieDB.getMovieById(req.params.movieId);
-    if (!movie) res.status(404).send(validationSchema.movieNotFound);
-    res.send(movie);
+    try {
+        const movieRepo = require('../models/movieRepo');
+        const movie = await movieRepo.getMovieById(req.params.movieId);
+        if (!movie) res.status(404).send(validationSchema.movieNotFound);
+        res.status(200).send(movie);
+    } catch (error) {
+        res.status(500);
+    }
 });
 
 router.get('/', (req, res) => {
