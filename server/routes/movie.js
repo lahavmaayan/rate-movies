@@ -8,10 +8,14 @@ const movieRepo = require('../models/movieRepo');
 router.get('/:movieId', async (req, res) => {
     try {
         const movie = await movieRepo.getMovieById(req.params.movieId);
-        if (!movie) res.status(404).send(validationSchema.movieNotFound);
-        res.status(200).send(movie);
-    } catch (error) {
-        res.status(500);
+        if (movie) {
+            res.status(200).send(movie);
+        } else {
+            res.status(404).send(validationSchema.movieNotFound);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send();
     }
 });
 

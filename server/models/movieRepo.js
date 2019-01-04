@@ -14,8 +14,14 @@ async function initDB() {
 async function getMovieById(movieId) {
     const db = await connectToDB();
     const movies = await db.collection('movies');
-    const movie = await movies.findOne({ id: movieId });
-    return movie;
+
+    const ObjectId = require('mongodb').ObjectId;
+    if (ObjectId.isValid(movieId)) {
+        const movie = await movies.findOne({ _id: new ObjectId(movieId) });
+        return movie;
+    } else {
+        return null;
+    }
 }
 
 module.exports = { getMovieById, initDB };
