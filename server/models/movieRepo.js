@@ -5,9 +5,9 @@ async function initDB() {
     const movies = await db.collection('movies');
     await movies.deleteMany({});
     await movies.insertMany([
-        { id: '1', name: 'harry potter' },
-        { id: '2', name: 'hannibal' },
-        { id: '3', name: 'pretty woman' }
+        { name: 'harry potter' },
+        { name: 'hannibal' },
+        { name: 'pretty woman' }
     ]);
 }
 
