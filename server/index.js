@@ -13,13 +13,3 @@ app.get('/', (req, res) => {
 });
 
 app.use('/movie', movieRouter);
-
-app.get('/InitDB', async function(req, res) {
-    try {
-        const movieDB = require('./models/movieRepo');
-        await movieDB.initDB();
-        res.status(200).send('InitDB');
-    } catch (error) {
-        res.status(500).send();
-    }
-});

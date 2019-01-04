@@ -1,16 +1,5 @@
 const { connectToDB } = require('../connectToDB');
 
-async function initDB() {
-    const db = await connectToDB();
-    const movies = await db.collection('movies');
-    await movies.deleteMany({});
-    await movies.insertMany([
-        { name: 'harry potter' },
-        { name: 'hannibal' },
-        { name: 'pretty woman' }
-    ]);
-}
-
 async function getMovieById(movieId) {
     const db = await connectToDB();
     const movies = await db.collection('movies');
@@ -24,4 +13,4 @@ async function getMovieById(movieId) {
     }
 }
 
-module.exports = { getMovieById, initDB };
+module.exports = { getMovieById };

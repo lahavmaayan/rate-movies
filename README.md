@@ -21,6 +21,7 @@ https://github.com/yarindeoh/create-react-app-light
 - nodejs (latest version)
 - npm/yarn as you wish
 - IDE such as webstorm 
+- Mongo DB
 
 #### Configure your IDE(webstorm or others) to use code indent standard
 In settings look for eslint option: enable and change it's path to point relatively to node_modules/eslint
@@ -70,6 +71,8 @@ Optional script for fixing  lint issues  using eslint
 ```
 yarn lint-fix
 ```
+
+to fill the DB with some initial data run the InitDB app by: npm run initDB
 
 #### Running the code in production
 In the future ...
