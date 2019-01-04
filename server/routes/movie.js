@@ -3,11 +3,10 @@ const movieDB = require('../models/movie');
 const validationSchema = require('../schemas/validation');
 const express = require('express');
 const router = express.Router();
+const movieRepo = require('../models/movieRepo');
 
 router.get('/:movieId', async (req, res) => {
-    // a stub file I created to simulate access to db
     try {
-        const movieRepo = require('../models/movieRepo');
         const movie = await movieRepo.getMovieById(req.params.movieId);
         if (!movie) res.status(404).send(validationSchema.movieNotFound);
         res.status(200).send(movie);

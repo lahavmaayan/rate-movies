@@ -12,10 +12,10 @@ async function initDB() {
 }
 
 async function getMovieById(movieId) {
-    const dbRead = connectToDB().then(db =>
-        db.collection('movies').findOne({ id: movieId })
-    );
-    return await dbRead;
+    const db = await connectToDB();
+    const movies = await db.collection('movies');
+    const movie = await movies.findOne({ id: movieId });
+    return movie;
 }
 
 module.exports = { getMovieById, initDB };
