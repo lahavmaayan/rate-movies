@@ -1,18 +1,17 @@
+const { connectToDB } = require('../connectToDB');
+
 function initDB() {
     try {
-        const MongoClient = require('mongodb').MongoClient;
-        MongoClient.connect('mongodb://localhost:27017').then(db => fillDB(db));
+        connectToDB().then(db => fillDB(db));
     } catch (error) {
         console.log(error);
     }
 }
 
-function fillDB(dbServer) {
-    const db = dbServer.db();
+function fillDB(db) {
     db.collection('movies')
-        .deleteMany({})
-        .then(() =>
-            db.collection('movies').insertMany([
+        .deleteMany({}).then(() => 
+        db.collection('movies').insertMany([
                     { id: '1', name: 'harry potter' },
                     { id: '2', name: 'hannibal' },
                     { id: '3', name: 'pretty woman' }
@@ -21,14 +20,8 @@ function fillDB(dbServer) {
 }
 
 async function getMovieById(movieId) {
-    const MongoClient = require('mongodb').MongoClient;
-    var dbRead = MongoClient.connect('mongodb://localhost:27017').then(
-        dbServer => {
-            const db = dbServer.db();
-            var collection = db.collection('movies');
-            var query = { id: movieId };
-            return collection.findOne(query);
-        }
+    const dbRead = connectToDB().then(db =>
+        db.collection('movies').findOne({ id: movieId })
     );
     return await dbRead;
 }
