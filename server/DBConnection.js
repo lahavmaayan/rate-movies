@@ -1,13 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
 var db;
-async function connectToDB() {
-    const dbServer = await MongoClient.connect('mongodb://localhost:27017');
-    return dbServer.db('rate-movies');
-}
-function getConnection() {
-    if (db === undefined) {
-        db = connectToDB();
+var mongoClient;
+
+async function getConnection() {
+    if (mongoClient === undefined) {
+        mongoClient = await MongoClient.connect('mongodb://localhost:27017');
+        db = mongoClient.db('rate-movies');
     }
     return db;
 }
-module.exports = { getConnection };
+module.exports = { getConnection, mongoClient };

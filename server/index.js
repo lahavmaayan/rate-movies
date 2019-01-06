@@ -1,6 +1,6 @@
 const express = require('express');
 const movieRouter = require('./routes/movie');
-const { getConnection } = require('./DBConnection');
+const { getConnection, mongoClient } = require('./DBConnection');
 const endOfLine = require('os').EOL;
 
 const app = express();
@@ -24,4 +24,12 @@ app.listen(port, async () => {
         );
         process.exit(1);
     }
+});
+
+process.on('SIGINT', () => {
+    if (mongoClient !== undefined) {
+        mongoClient.close();
+        console.log('disconncted from DB');
+    }
+    process.exit();
 });
