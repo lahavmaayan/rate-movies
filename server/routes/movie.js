@@ -5,6 +5,10 @@ const express = require('express');
 const router = express.Router();
 const movieRepo = require('../models/movieRepo');
 
+router.get('/', (req, res) => {
+    res.send(movieDB.movies);
+});
+
 router.get('/:movieId', async (req, res) => {
     try {
         const movie = await movieRepo.getMovieById(req.params.movieId);
@@ -17,10 +21,6 @@ router.get('/:movieId', async (req, res) => {
         console.error(err);
         res.status(500).send();
     }
-});
-
-router.get('/', (req, res) => {
-    res.send(movieDB.movies);
 });
 
 router.post('/', async (req, res) => {
