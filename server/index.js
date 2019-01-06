@@ -1,6 +1,7 @@
 const express = require('express');
 const movieRouter = require('./routes/movie');
 const { getConnection } = require('./DBConnection');
+const endOfLine = require('os').EOL;
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,9 @@ app.listen(port, async () => {
         await getConnection();
         console.log('Connected to DB');
     } catch (err) {
-        console.error(`Failed to connect to the database. ${err.stack}`);
+        console.error(
+            `Failed to connect to the database.${endOfLine}${err.stack}`
+        );
+        process.exit(1);
     }
 });
