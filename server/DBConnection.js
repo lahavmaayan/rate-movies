@@ -4,7 +4,10 @@ var mongoClient;
 
 async function getConnection() {
     if (mongoClient === undefined) {
-        mongoClient = await MongoClient.connect('mongodb://localhost:27017');
+        mongoClient = await MongoClient.connect(
+            'mongodb://localhost:27017',
+            { useNewUrlParser: true }
+        );
         db = mongoClient.db('rate-movies');
     }
     return db;
