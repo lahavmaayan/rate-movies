@@ -72,7 +72,17 @@ Optional script for fixing  lint issues  using eslint
 yarn lint-fix
 ```
 
-to fill the DB with some initial data run the InitDB app by: npm run initDB
+run the InitDB app by: npm run initDB
+
+#### Use Mongo DB
+After installing MongoDB you can manipulate the db using the mongo shell.
+mongo shell located here: "C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe".
+the initDB app create a db called rate-movies.
+after running InitDB open mongo shell and verify you have data.
+1. type "show dbs" and verify rate-movies is in the list
+2. type "use rate-movies"
+3. type "db.movies.find()" to see all the movies in the DB ("movies" is a collection inside the db "rate-movies")
+
 
 #### Running the code in production
 In the future ...
