@@ -21,6 +21,7 @@ https://github.com/yarindeoh/create-react-app-light
 - nodejs (latest version)
 - npm/yarn as you wish
 - IDE such as webstorm 
+- Mongo DB
 
 #### Configure your IDE(webstorm or others) to use code indent standard
 In settings look for eslint option: enable and change it's path to point relatively to node_modules/eslint
@@ -70,6 +71,18 @@ Optional script for fixing  lint issues  using eslint
 ```
 yarn lint-fix
 ```
+
+run the InitDB app by: npm run initDB
+
+#### Use Mongo DB
+After installing MongoDB you can manipulate the db using the mongo shell.
+mongo shell located here: "C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe".
+the initDB app create a db called rate-movies.
+after running InitDB open mongo shell and verify you have data.
+1. type "show dbs" and verify rate-movies is in the list
+2. type "use rate-movies"
+3. type "db.movies.find()" to see all the movies in the DB ("movies" is a collection inside the db "rate-movies")
+
 
 #### Running the code in production
 In the future ...
