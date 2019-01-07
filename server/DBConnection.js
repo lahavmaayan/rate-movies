@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-var db;
+let db;
 var mongoClient;
 
 async function getConnection() {
