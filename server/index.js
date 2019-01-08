@@ -6,11 +6,11 @@ const endOfLine = require('os').EOL;
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('Hello world from Express!!');
 });
 
-app.use('/movie', movieRouter);
+app.use('/api/movie', movieRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, async () => {
@@ -29,7 +29,7 @@ app.listen(port, async () => {
 process.on('SIGINT', () => {
     if (mongoClient !== undefined) {
         mongoClient.close();
-        console.log('disconncted from DB');
+        console.log('disconnected from DB');
     }
     process.exit();
 });

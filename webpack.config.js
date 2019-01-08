@@ -70,9 +70,10 @@ module.exports = (env, argv) => {
             minimizer: [new UglifyJsPlugin()]
         },
         devServer: {
+            historyApiFallback: true,
             port: 9000,
             proxy: {
-                '/movie': 'http://localhost:3000'
+                '/api/*': 'http://localhost:3000'
             }
         }
     };
