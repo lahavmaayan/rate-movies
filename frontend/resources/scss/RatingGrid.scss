@@ -1,0 +1,19 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;    
+  }
+
+  .right-aligned{
+    position: absolute;
+    right: 0;    
+  }
+
+  .container{
+    position: relative;
+  }
+
+  .right-spaced{
+    margin-right:3em;
+  }
