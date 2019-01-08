@@ -9,12 +9,12 @@ async function main() {
 
 async function connectToDB() {
     const dbServer = await MongoClient.connect('mongodb://localhost:27017');
-    return dbServer.db('rate-movies');
+    return dbServer.db('rate-searchMovie');
 }
 
 async function initDB() {
     const db = await connectToDB();
-    const movies = await db.collection('movies');
+    const movies = await db.collection('searchMovie');
     await movies.deleteMany({});
     await movies.insertMany([
         { name: 'harry potter' },
