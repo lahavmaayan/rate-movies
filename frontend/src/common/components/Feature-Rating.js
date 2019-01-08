@@ -4,11 +4,11 @@ class FeatureRating extends Component {
     render() {
         return (
             <div>
-                <span>Funny</span>
+                <span>{this.props.feature}</span>
                 <span> </span>
-                <span>4.5</span>
+                <span>{this.props.rating}</span>
                 <span>/</span>
-                <span>5</span>
+                <span>{this.props.maxRating}</span>
             </div>
         );
     }
