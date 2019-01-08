@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import FeatureRating from './Feature-Rating';
+import FeatureRating from './FeatureRating';
 
-class Ratings extends Component {
+class RatingsGrid extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,4 +30,4 @@ class Ratings extends Component {
     }
 }
 
-export default Ratings;
+export default RatingsGrid;
