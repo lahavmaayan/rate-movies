@@ -66,11 +66,10 @@ router.put('/:movieId', async (req, res) => {
 });
 
 router.delete('/:movieId', async (req, res) => {
-    const movie = await movieRepo.getMovieById(req.params.movieId);
-    if (!movie) return res.status(404).send(validationSchema.movieNotFound);
     try {
-        await movieRepo.deleteMovie(req.params.movieId);
-        res.status(200).send(movie);
+        let deleteId = await movieRepo.deleteMovie(req.params.movieId);
+        if (!deleteId) return res.status(404).send(validationSchema.movieNotFound);
+        res.status(200).send(deleteId);
     } catch (err) {
         console.log(err);
         res.status(500).send();
