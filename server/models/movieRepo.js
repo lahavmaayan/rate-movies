@@ -4,13 +4,13 @@ const Movie = require('./movie');
 async function getMovieById(movieId) {
 
     if (mongoose.Types.ObjectId.isValid(movieId)) {
-        const movie = await Movie.findById(movieId);
+        const movie = await Movie.findById(movieId).select('-__v');
         return movie;
     }
 }
 
 async function getAllMovies() {
-    return Movie.find({});
+    return Movie.find({}).select('-__v');
 }
 
 async function createNewMovie(movie) {
