@@ -13,6 +13,7 @@ router.get('/:movieId', async (req, res) => {
             res.status(404).send(validationSchema.movieNotFound);
         }
     } catch (err) {
+        console.error(err);
         res.status(500).send();
     }
 });
@@ -22,6 +23,7 @@ router.get('/', async (req, res) => {
         const movies = await movieRepo.getAllMovies();
         res.status(200).send(movies);
     } catch (err) {
+        console.log(err);
         res.status(500).send();
     }
 });
@@ -37,6 +39,7 @@ router.post('/', async (req, res) => {
         });
         res.status(200).send(newMovie);
     } catch (err) {
+        console.log(err);
         res.status(500).send();
     }
 });
@@ -56,6 +59,7 @@ router.put('/:movieId', async (req, res) => {
         });
         res.status(200).send(req.params.movieId);
     } catch (err) {
+        console.log(err);
         res.status(500).send();
     }
 });
@@ -67,6 +71,7 @@ router.delete('/:movieId', async (req, res) => {
             return res.status(404).send(validationSchema.movieNotFound);
         res.status(200).send(deleteId);
     } catch (err) {
+        console.log(err);
         res.status(500).send();
     }
 });
