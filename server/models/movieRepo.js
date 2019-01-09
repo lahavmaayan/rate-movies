@@ -1,44 +1,29 @@
-const { getConnection } = require('../DBConnection');
-const ObjectId = require('mongodb').ObjectId;
+const mongoose = require('mongoose');
+const Movie = require('./movie');
 
 async function getMovieById(movieId) {
-    const db = await getConnection();
-    const movies = await db.collection('movies');
-    if (ObjectId.isValid(movieId)) {
-        return await movies.findOne({ _id: new ObjectId(movieId) });
-    } else {
-        return null;
+    if (mongoose.Types.ObjectId.isValid(movieId)) {
+        const movie = await Movie.findById(movieId).select('-__v');
+        return movie;
     }
 }
 
 async function getAllMovies() {
-    const db = await getConnection();
-    return await db
-        .collection('movies')
-        .find()
-        .toArray();
+    return Movie.find({}).select('-__v');
 }
 
 async function createNewMovie(movie) {
-    const db = await getConnection();
-    return await db.collection('movies').insertOne({ ...movie });
+    const newMovie = new Movie({ ...movie });
+    await newMovie.save();
+    return newMovie;
 }
 
 async function updateMovie({ movieId, name }) {
-    const db = await getConnection();
-    return await db.collection('movies').updateOne(
-        { _id: ObjectId(movieId) },
-        {
-            $set: {
-                name: name
-            }
-        }
-    );
+    return await Movie.findByIdAndUpdate(movieId, { name });
 }
 
 async function deleteMovie(movieId) {
-    const db = await getConnection();
-    return await db.collection('movies').deleteOne({ _id: ObjectId(movieId) });
+    return await Movie.findByIdAndRemove(movieId);
 }
 
 module.exports = {
