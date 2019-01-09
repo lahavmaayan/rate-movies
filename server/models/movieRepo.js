@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Movie = require('./movie');
 
 async function getMovieById(movieId) {
-
     if (mongoose.Types.ObjectId.isValid(movieId)) {
         const movie = await Movie.findById(movieId).select('-__v');
         return movie;
@@ -20,7 +19,7 @@ async function createNewMovie(movie) {
 }
 
 async function updateMovie({ movieId, name }) {
-    return await Movie.findByIdAndUpdate(movieId, { name })
+    return await Movie.findByIdAndUpdate(movieId, { name });
 }
 
 async function deleteMovie(movieId) {

@@ -5,9 +5,9 @@ require('./db')();
 const app = express();
 app.use(express.json());
 
-// app.get('/api', (req, res) => {
-//     res.send('Hello world from Express!!');
-// });
+app.get('/api', (req, res) => {
+    res.send('Hello world from Express!!');
+});
 
 app.use('/api/movie', movieRouter);
 

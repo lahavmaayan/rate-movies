@@ -10,10 +10,10 @@ async function main() {
 }
 
 async function connectToDB() {
-    mongoose.connect('mongodb://localhost/rate-movies')
+    mongoose
+        .connect('mongodb://localhost/rate-movies')
         .then(() => console.log('connected to mongo db'))
-        .catch(err => console.error("could not connect to mongo db", err));
-
+        .catch(err => console.error('could not connect to mongo db', err));
 }
 
 async function initDB() {

@@ -4,8 +4,8 @@ const movieSchema = mongoose.Schema({
     name: {
         type: String,
         unique: true,
-        required: true,
-    },
+        required: true
+    }
 });
 
 var Movie = mongoose.model('movie', movieSchema);
