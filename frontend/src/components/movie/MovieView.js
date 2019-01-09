@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loader from 'common/components/Loader';
+import RatingsGrid from './RatingsGrid';
 
 class MovieView extends Component {
     render() {
@@ -7,7 +7,7 @@ class MovieView extends Component {
             <div>
                 <div className="section loader">
                     <div className="title">movie</div>
-                    <Loader />
+                    <RatingsGrid />
                 </div>
             </div>
         );
