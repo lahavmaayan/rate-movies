@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import AppView from './AppView';
 
 function mapStateToProps() {
@@ -9,7 +11,9 @@ function mapDispatchToProps() {
     return {};
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AppView);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(AppView)
+);

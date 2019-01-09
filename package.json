@@ -3,19 +3,21 @@
   "scripts": {
     "dev-client": "webpack-dev-server --mode=development --port 9000",
     "dev-server": "nodemon ./server/index.js localhost 3000",
+    "start": "webpack-dev-server --mode=development --port 9000 & nodemon ./server/index.js localhost 3000",
     "initDB": "node ./initDB/app.js",
     "build-client": "webpack --mode production",
     "test": "jest",
     "test-dev": "jest --watch",
-    "lint-fix": "eslint --fix  --ext .js server"
+    "lint-fix": "eslint --fix  --ext .js server frontend/src"
   },
   "dependencies": {
     "joi": "^14.3.1",
-    "mongodb": "^3.1.10",
+    "mongoose": "^5.4.2",
     "prettier": "^1.15.3",
     "react": "^16.2.0",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.3.1",
     "redux": "^3.7.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "uniqid": "^5.0.3"
