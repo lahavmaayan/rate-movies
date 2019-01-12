@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import UserInfo from './UserInfo';
+import UserInfoView from './UserInfoView';
 
 class RateMovieView extends Component {
     componentDidMount() {
-        const res = api.mcccjcj();
-        const { setMovies } = this.props;
-        setMovies(res);
+        console.log('ggg' + JSON.stringify(this.props));
+        //  const { setMovies } = this.props;
+        // setMovies(res);
     }
 
     render() {
@@ -14,10 +14,10 @@ class RateMovieView extends Component {
             <div>
                 <div className="section loader">
                     <div className="title">rate-movie</div>
-                    {currentStep === 1 && <UserInfo />}
-                    {currentStep === 2 && <UserInfo />}
-                    {currentStep === 3 && <UserInfo />}
-                    {currentStep === 4 && <UserInfo />}
+                    {1 === 1 && <UserInfoView />}
+                    {currentStep === 2 && <UserInfoView />}
+                    {currentStep === 3 && <UserInfoView />}
+                    {currentStep === 4 && <UserInfoView />}
                     <button>next</button>
                     <button>prev</button>
                 </div>
