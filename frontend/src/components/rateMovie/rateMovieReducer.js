@@ -4,7 +4,7 @@ const initialState = {
     reviewerDetails: { age: 0, gender: '' }
 };
 
-function notificationsReducer(state = initialState, action) {
+function rateMovieReducer(state = initialState, action) {
     switch (action.type) {
         // case 'SET_MOVIES':
         //     return {
@@ -17,4 +17,4 @@ function notificationsReducer(state = initialState, action) {
     }
 }
 
-export default notificationsReducer;
+export default rateMovieReducer;
