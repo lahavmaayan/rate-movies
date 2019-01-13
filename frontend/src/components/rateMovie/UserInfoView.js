@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 
 class UserInfoView extends Component {
-    componentDidMount() {
-        console.log('fff' + JSON.stringify(this.props));
-        //  const { setMovies } = this.props;
-        // setMovies(res);
-    }
-    handleChange({ currentTarget: input }) {
-        console.log(JSON.stringify(this.props));
-
+    handleChange = e => {
+        console.log(e.target.name);
+        const { setReviewerDetails, reviewerDetails } = this.props;
         const details = { ...reviewerDetails };
-        details[input.name] = input.value;
+        details[e.target.name] = e.target.value;
         setReviewerDetails(details);
-    }
+    };
 
-    handleSubmit(event) {
-        console.log('A name was submitted: ' + this.state.value);
+    handleSubmit = e => {
         event.preventDefault();
-    }
+        const { reviewerDetails } = this.props;
+        console.log(reviewerDetails);
+    };
 
     render() {
-        const { setReviewerDetails, reviewerDetails } = this.props;
+        const { reviewerDetails } = this.props;
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
