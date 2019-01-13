@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Movie = require('./movie');
+const Movie = require('../models/movie');
 
 async function getMovieById(movieId) {
     if (mongoose.Types.ObjectId.isValid(movieId)) {

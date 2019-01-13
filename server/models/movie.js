@@ -8,6 +8,6 @@ const movieSchema = mongoose.Schema({
     }
 });
 
-var Movie = mongoose.model('movie', movieSchema);
+const Movie = mongoose.model('movie', movieSchema);
 
 module.exports = Movie;
