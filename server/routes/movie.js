@@ -3,7 +3,6 @@ const validationSchema = require('../validationSchema');
 const express = require('express');
 const router = express.Router();
 const movieRepo = require('../repos/movieRepo');
-const reviewRepo = require('../repos/reviewRepo');
 
 router.get('/:movieId', async (req, res) => {
     try {
@@ -79,9 +78,12 @@ router.delete('/:movieId', async (req, res) => {
 
 router.post('/:movieId/rate', async (req, res) => {
     try {
-        const newReview = await reviewRepo.postReview({
-            ...req.body
-        });
+        const newReview = await movieRepo.postReview(
+            {
+                ...req.body
+            },
+            req.params.movieId
+        );
         res.status(200).send(newReview);
     } catch (err) {
         console.log(err);
@@ -89,19 +91,19 @@ router.post('/:movieId/rate', async (req, res) => {
     }
 });
 
-router.get('/:movieId/rate', async (req, res) => {
-    try {
-        const reviews = await reviewRepo.getAllReviews();
-        if (reviews) {
-            res.status(200).send(reviews);
-        } else {
-            res.status(404).send(validationSchema.reviewsNotFound);
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
-    }
-});
+// router.get('/:movieId/rate', async (req, res) => {
+//     try {
+//         const reviews = await movieRepo.getAllReviews();
+//         if (reviews) {
+//             res.status(200).send(reviews);
+//         } else {
+//             res.status(404).send(validationSchema.reviewsNotFound);
+//         }
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send();
+//     }
+// });
 
 function validateMovieName(name) {
     return Joi.validate(name, validationSchema.movieName);

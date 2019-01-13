@@ -1,5 +1,3 @@
-//import { actionTypes } from 'shared/notifications/notificationsConstants';
-
 const initialState = {
     reviewerDetails: { age: 0, gender: '' }
 };

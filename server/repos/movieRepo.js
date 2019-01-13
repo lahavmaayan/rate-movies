@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Movie = require('../models/movie');
+const { Movie, MovieReview } = require('../models/movie');
 
 async function getMovieById(movieId) {
     if (mongoose.Types.ObjectId.isValid(movieId)) {
@@ -25,10 +25,21 @@ async function deleteMovie(movieId) {
     return await Movie.findByIdAndRemove(movieId);
 }
 
+async function postReview(data, movieId) {
+    const newReview = new MovieReview({
+        reviewerDetails: { ...data }
+    });
+    const currentMovie = await getMovieById(movieId);
+    currentMovie.rank.push(newReview);
+    await currentMovie.save();
+    return currentMovie;
+}
+
 module.exports = {
     getMovieById,
     getAllMovies,
     createNewMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    postReview
 };
