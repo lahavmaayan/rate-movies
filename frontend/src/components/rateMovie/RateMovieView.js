@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserInfo from './rateSteps/UserInfo';
+import Questions from './Questions/Questions';
 
 class RateMovieView extends Component {
     render() {

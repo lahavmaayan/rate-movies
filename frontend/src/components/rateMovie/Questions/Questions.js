@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
-import UserInfoView from '../UserInfoView';
+import QuestionsView from '../Questions/QuestionsView';
 
 const mapStateToProps = state => {
-    console.log('mapStateToProps', state);
-    return { reviewerDetails: state.rateMovie.reviewerDetails };
+    return { reviewerQuestions: state.questions.reviewerQuestions };
 };
 
 function mapDispatchToProps(dispatch) {
     return {
         setReviewerDetails: payload =>
-            dispatch({ type: 'SET_REVIEWER_DETAILS', payload })
+            dispatch({ type: 'SET_REVIEWER_QUESTIONS', payload })
     };
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(UserInfoView);
+)(QuestionsView);
