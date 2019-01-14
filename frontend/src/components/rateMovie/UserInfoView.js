@@ -34,6 +34,7 @@ class UserInfoView extends Component {
                         name="age"
                         value={reviewerDetails.age}
                         selectOptions={this.initAge(18, 120)}
+                        selectFirst={true}
                         onChange={this.handleChange}
                     />
                 </label>
