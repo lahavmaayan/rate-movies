@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
-    title: String,
     reviewerDetails: {
         age: { type: Number },
         gender: { type: String }

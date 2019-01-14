@@ -35,11 +35,17 @@ async function postReview(data, movieId) {
     return currentMovie;
 }
 
+async function getMovieReview(movieId) {
+    const currentMovie = await getMovieById(movieId);
+    return currentMovie.rank;
+}
+
 module.exports = {
     getMovieById,
     getAllMovies,
     createNewMovie,
     updateMovie,
     deleteMovie,
-    postReview
+    postReview,
+    getMovieReview
 };
