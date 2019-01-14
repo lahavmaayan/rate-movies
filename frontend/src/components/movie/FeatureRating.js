@@ -9,9 +9,11 @@ class FeatureRating extends Component {
                     {capitalizeFirstLetter(this.props.feature)}
                 </span>
                 <span className="right-aligned">
-                    <span>{this.props.rating.toFixed(1)}</span>
-                    <span>/</span>
-                    <span>{this.props.maxRating}</span>
+                    <span className="rating">
+                        {this.props.rating.toFixed(1)}
+                    </span>
+                    <span className="max-rating">/</span>
+                    <span className="max-rating">{this.props.maxRating}</span>
                 </span>
             </div>
         );
