@@ -5,6 +5,15 @@ const reviewSchema = new mongoose.Schema({
     reviewerDetails: {
         age: { type: Number },
         gender: { type: String }
+    },
+    rating: {
+        strongFemaleLead: { type: Number },
+        feminist: { type: Number },
+        violent: { type: Number },
+        fascinating: { type: Number },
+        sexual: { type: Number },
+        funny: { type: Number },
+        happyEnding: { type: Number }
     }
 });
 

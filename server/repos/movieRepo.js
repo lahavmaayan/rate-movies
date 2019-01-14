@@ -27,7 +27,7 @@ async function deleteMovie(movieId) {
 
 async function postReview(data, movieId) {
     const newReview = new MovieReview({
-        reviewerDetails: { ...data }
+        ...data
     });
     const currentMovie = await getMovieById(movieId);
     currentMovie.rank.push(newReview);
