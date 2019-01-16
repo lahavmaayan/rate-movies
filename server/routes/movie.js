@@ -91,19 +91,15 @@ router.post('/:movieId/rate', async (req, res) => {
     }
 });
 
-// router.get('/:movieId/rate', async (req, res) => {
-//     try {
-//         const reviews = await movieRepo.getAllReviews();
-//         if (reviews) {
-//             res.status(200).send(reviews);
-//         } else {
-//             res.status(404).send(validationSchema.reviewsNotFound);
-//         }
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send();
-//     }
-// });
+router.get('/:movieId/rate', async (req, res) => {
+    try {
+        const movieReview = await movieRepo.getMovieReview(req.params.movieId);
+        res.status(200).send(movieReview);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
 
 function validateMovieName(name) {
     return Joi.validate(name, validationSchema.movieName);

@@ -27,12 +27,17 @@ async function deleteMovie(movieId) {
 
 async function postReview(data, movieId) {
     const newReview = new MovieReview({
-        reviewerDetails: { ...data }
+        ...data
     });
     const currentMovie = await getMovieById(movieId);
     currentMovie.rank.push(newReview);
     await currentMovie.save();
     return currentMovie;
+}
+
+async function getMovieReview(movieId) {
+    const currentMovie = await getMovieById(movieId);
+    return currentMovie.rank;
 }
 
 module.exports = {
@@ -41,5 +46,6 @@ module.exports = {
     createNewMovie,
     updateMovie,
     deleteMovie,
-    postReview
+    postReview,
+    getMovieReview
 };

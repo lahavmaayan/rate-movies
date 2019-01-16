@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import rateMovieReducer from '../components/rateMovie/rateMovieReducer';
+import questionsReducer from './../components/rateMovie/Questions/questionsReducer';
 export default combineReducers({
-    rateMovieReducer
+    rateMovie: rateMovieReducer,
+    questions: questionsReducer
 });
