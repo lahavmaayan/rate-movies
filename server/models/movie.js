@@ -16,6 +16,37 @@ const reviewSchema = new mongoose.Schema({
     }
 });
 
+const movieTagsSchema = new mongoose.Schema({
+    strongFemaleLead: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    },
+    feminist: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    },
+    violent: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    },
+    fascinating: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    },
+    sexual: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    },
+    funny: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    },
+    happyEnding: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
+    }
+});
+
 const MovieReview = mongoose.model('MovieReview', reviewSchema);
 
 const movieSchema = new mongoose.Schema({
@@ -24,7 +55,8 @@ const movieSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    rank: [reviewSchema]
+    reviews: [reviewSchema],
+    tags: movieTagsSchema
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

@@ -12,7 +12,7 @@ async function getAllMovies() {
 }
 
 async function createNewMovie(movie) {
-    const newMovie = new Movie({ ...movie });
+    const newMovie = new Movie({ ...movie, tags: {} });
     await newMovie.save();
     return newMovie;
 }
@@ -30,14 +30,33 @@ async function postReview(data, movieId) {
         ...data
     });
     const currentMovie = await getMovieById(movieId);
-    currentMovie.rank.push(newReview);
+    currentMovie.reviews.push(newReview);
     await currentMovie.save();
+    await updateTags(data, movieId);
     return currentMovie;
 }
 
-async function getMovieReview(movieId) {
+async function updateTags(data, movieId) {
     const currentMovie = await getMovieById(movieId);
-    return currentMovie.rank;
+    const newReview = data.rating;
+    Object.keys(newReview).map(key => {
+        const oldAvg = currentMovie.tags[key].avg;
+        const count = currentMovie.tags[key].count;
+        currentMovie.tags[key].avg =
+            (oldAvg * count + parseFloat(newReview[key])) / (count + 1);
+        currentMovie.tags[key].count++;
+    });
+    currentMovie.save();
+}
+
+async function getMovieTags(movieId) {
+    const currentMovie = await getMovieById(movieId);
+    return currentMovie.tags;
+}
+
+async function getMovieReviews(movieId) {
+    const currentMovie = await getMovieById(movieId);
+    return currentMovie.reviews;
 }
 
 module.exports = {
@@ -47,5 +66,6 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieReview
+    getMovieReviews,
+    getMovieTags
 };
