@@ -2,23 +2,17 @@ import React, { Component } from 'react';
 import RadioGroup from './../../../common/components/RadioGroup';
 
 class QuestionsView extends Component {
-    handleChange = ({ target }) => {
-        const { setReviewerDetails, reviewerDetails } = this.props;
-        const details = { ...reviewerDetails };
-        details[target.name] = target.value;
-        setReviewerDetails(details);
+    handleQuestionChanged = ({ target }) => {
+        const { reviewerQuestions, setReviewerQuestions } = this.props;
+        const questions = { ...reviewerQuestions };
+        questions[target.name] = target.value;
+        setReviewerQuestions(questions);
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        const { reviewerDetails } = this.props;
-        console.log(reviewerDetails);
-    };
-
-    initAge = (start, end) => {
-        return Array.apply(null, {
-            length: end - start + 1
-        }).map((item, index) => start + index);
+        const { reviewerQuestions } = this.props;
+        console.log(reviewerQuestions);
     };
 
     render() {
@@ -29,10 +23,40 @@ class QuestionsView extends Component {
                     For how long did you watched the movie?
                     <RadioGroup
                         options={[
-                            { label: 'A', value: 'a' },
-                            { label: 'B', value: 'b' },
-                            { label: 'C', value: 'c' }
+                            {
+                                label: 'I watched the entire movie',
+                                value: 'allMovie'
+                            },
+                            {
+                                label:
+                                    'I changed a channel right after the opening',
+                                value: 'onOpening'
+                            },
+                            {
+                                label:
+                                    'In the middle I realized this movie is not for me',
+                                value: 'onMiddle'
+                            },
+                            {
+                                label: 'I fell asleep near the end',
+                                value: 'onEnd'
+                            }
                         ]}
+                        currentPick={reviewerQuestions.movieLong}
+                        handlePick={this.handleQuestionChanged}
+                        name="movieLong"
+                    />
+                </label>
+                <label>
+                    Did the movie contained a women as role lead?
+                    <RadioGroup
+                        options={[
+                            { label: 'Yes', value: true },
+                            { label: 'No', value: false }
+                        ]}
+                        currentPick={reviewerQuestions.movieLong}
+                        handlePick={this.handleQuestionChanged}
+                        name="womenLeadRole.isTrue"
                     />
                 </label>
 

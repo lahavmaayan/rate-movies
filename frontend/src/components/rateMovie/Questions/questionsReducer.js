@@ -1,4 +1,11 @@
-function questionsReducer(state = [], action) {
+const initialState = {
+    reviewerQuestions: {
+        movieLong: '',
+        womenLeadRole: { isTrue: false, ifTrueCharacter: '' }
+    }
+};
+
+function questionsReducer(state = initialState, action) {
     switch (action.type) {
         // case 'SET_MOVIES':
         //     return {

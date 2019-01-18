@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import Radio from './Radio';
 
 class RadioGroup extends Component {
-    state = {
-        currentPick: ''
-    };
-
-    handleChange = ({ target }) => {
-        console.log(target);
-        this.setState({ currentPick: target.value });
-    };
-
     render() {
+        const { currentPick, handlePick, options, name } = this.props;
         return (
             <div>
-                {this.props.options.map(option => (
+                {options.map(option => (
                     <Radio
                         key={option.value}
                         label={option.label}
                         value={option.value}
-                        checked={option.value === this.state.currentPick}
-                        handlePick={this.handleChange}
+                        checked={option.value === currentPick}
+                        handlePick={handlePick}
+                        name={name}
                     />
                 ))}
             </div>

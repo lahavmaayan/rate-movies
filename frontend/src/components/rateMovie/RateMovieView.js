@@ -9,7 +9,7 @@ class RateMovieView extends Component {
             <div>
                 <div className="section loader">
                     <div className="title">rate-movie</div>
-                    {1 === 1 && <UserInfo />}
+                    {1 === 1 && <Questions />}
                     {currentStep === 2 && <UserInfo />}
                     {currentStep === 3 && <UserInfo />}
                     {currentStep === 4 && <UserInfo />}

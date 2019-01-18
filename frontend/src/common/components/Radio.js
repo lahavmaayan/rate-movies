@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Radio = ({ label, className, value, checked, handlePick }) => {
+const Radio = ({ label, className, value, checked, name, handlePick }) => {
     return (
         <div className={className}>
             <label>
@@ -9,6 +9,7 @@ const Radio = ({ label, className, value, checked, handlePick }) => {
                     value={value}
                     checked={checked}
                     onChange={handlePick}
+                    name={name}
                 />
                 {label}
             </label>

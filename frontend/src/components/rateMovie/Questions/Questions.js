@@ -7,7 +7,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setReviewerDetails: payload =>
+        setReviewerQuestions: payload =>
             dispatch({ type: 'SET_REVIEWER_QUESTIONS', payload })
     };
 }
