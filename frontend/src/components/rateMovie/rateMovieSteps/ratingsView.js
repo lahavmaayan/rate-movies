@@ -3,23 +3,23 @@ import Rate from 'rc-rate';
 import 'rc-rate/assets/index.css';
 
 class RatingsView extends Component {
-    handleRatingsChanged = (event, propName) => {
-        const { reviewerRating, setReviewerRating } = this.props;
-        const ratings = { ...reviewerRating };
-        ratings[propName] = event;
-        setReviewerRating(ratings);
-    };
+    // handleRatingsChanged = (event, propName) => {
+    //     const { reviewerRating, setReviewerRating } = this.props;
+    //     const ratings = { ...reviewerRating };
+    //     ratings[propName] = event;
+    //     setReviewerRating(ratings);
+    // };
 
-    handleSubmit = event => {
-        event.preventDefault();
-        const { reviewerRating } = this.props;
-        console.log(reviewerRating);
-    };
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     const { reviewerRating } = this.props;
+    //     console.log(reviewerRating);
+    // };
 
     render() {
-        const { reviewerRating } = this.props;
+        const { reviewerRating, handleChange } = this.props;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <div>
                 <label>
                     From 1-5 would you rate this movie as:
                     <br />
@@ -27,9 +27,7 @@ class RatingsView extends Component {
                         Funny:
                         <Rate
                             defaultValue={2.5}
-                            onChange={e =>
-                                this.handleRatingsChanged(e, 'funnyRate')
-                            }
+                            onChange={e => handleChange(e, 'funnyRate')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
@@ -41,9 +39,7 @@ class RatingsView extends Component {
                         Feminist:
                         <Rate
                             defaultValue={2.5}
-                            onChange={e =>
-                                this.handleRatingsChanged(e, 'feminismRate')
-                            }
+                            onChange={e => handleChange(e, 'feminismRate')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
@@ -55,9 +51,7 @@ class RatingsView extends Component {
                         Violence:
                         <Rate
                             defaultValue={2.5}
-                            onChange={e =>
-                                this.handleRatingsChanged(e, 'violenceRate')
-                            }
+                            onChange={e => handleChange(e, 'violenceRate')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
@@ -69,9 +63,7 @@ class RatingsView extends Component {
                         Sexual:
                         <Rate
                             defaultValue={2.5}
-                            onChange={e =>
-                                this.handleRatingsChanged(e, 'sexualityRate')
-                            }
+                            onChange={e => handleChange(e, 'sexualityRate')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
@@ -83,9 +75,7 @@ class RatingsView extends Component {
                         Fascinating:
                         <Rate
                             defaultValue={2.5}
-                            onChange={e =>
-                                this.handleRatingsChanged(e, 'fascinateRate')
-                            }
+                            onChange={e => handleChange(e, 'fascinateRate')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
@@ -94,9 +84,7 @@ class RatingsView extends Component {
                     </label>
                     <br />
                 </label>
-
-                <input type="submit" value="Submit" />
-            </form>
+            </div>
         );
     }
 }

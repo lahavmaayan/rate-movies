@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import Input from 'common/components/Input';
 
 class UserInfoView extends Component {
-    handleChange = ({ target }) => {
-        const { setReviewerDetails, reviewerDetails } = this.props;
-        const details = { ...reviewerDetails };
-        details[target.name] = target.value;
-        setReviewerDetails(details);
-    };
+    // handleChange = ({ target }) => {
+    //     const { setReviewerDetails, reviewerDetails } = this.props;
+    //     const details = { ...reviewerDetails };
+    //     details[target.name] = target.value;
+    //     setReviewerDetails(details);
+    // };
 
-    handleSubmit = event => {
-        event.preventDefault();
-        const { reviewerDetails } = this.props;
-        console.log(reviewerDetails);
-    };
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     const { reviewerDetails } = this.props;
+    //     console.log(reviewerDetails);
+    // };
 
     initAge = (start, end) => {
         return Array.apply(null, {
@@ -22,9 +22,9 @@ class UserInfoView extends Component {
     };
 
     render() {
-        const { reviewerDetails } = this.props;
+        const { reviewerDetails, handleChange } = this.props;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <div>
                 <label>
                     age:
                     <Input
@@ -32,10 +32,10 @@ class UserInfoView extends Component {
                         isRequired={true}
                         type="select"
                         name="age"
-                        value={reviewerDetails.age}
+                        value={reviewerDetails['age']}
                         selectOptions={this.initAge(18, 120)}
                         selectFirst={true}
-                        onChange={this.handleChange}
+                        onChange={handleChange}
                     />
                 </label>
                 <label>
@@ -45,13 +45,12 @@ class UserInfoView extends Component {
                         type="select"
                         name="gender"
                         selectOptions={['FEMALE', 'MALE', 'OTHER']}
-                        value={reviewerDetails.gender}
+                        value={reviewerDetails['gender']}
                         selectFirst={true}
-                        onChange={this.handleChange}
+                        onChange={handleChange}
                     />
                 </label>
-                <input type="submit" value="Submit" />
-            </form>
+            </div>
         );
     }
 }

@@ -1,22 +1,71 @@
 import React, { Component } from 'react';
-import UserInfo from './userInfo/UserInfo';
-import Questions from './Questions/Questions';
-import Ratings from './ratings/ratings';
+import UserInfoView from './rateMovieSteps/UserInfoView';
+import QuestionsView from './rateMovieSteps/QuestionsView';
+import RatingsView from './rateMovieSteps/ratingsView';
 
 class RateMovieView extends Component {
+    handleUserInfoChange = ({ target }) => {
+        const { setReviewerDetails, reviewerDetails } = this.props;
+        const details = { ...reviewerDetails };
+        details[target.name] = target.value;
+        setReviewerDetails(details);
+    };
+
+    handleRatingsChanged = (event, propName) => {
+        const { reviewerRating, setReviewerRating } = this.props;
+        const ratings = { ...reviewerRating };
+
+        ratings[propName] = event;
+        setReviewerRating(ratings);
+    };
+    handleQuestionChanged = ({ target }) => {
+        const { reviewerQuestions, setReviewerQuestions } = this.props;
+        const questions = { ...reviewerQuestions };
+
+        //let props = target.name.split('.');
+        questions[target.name] = target.value;
+        setReviewerQuestions(questions);
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        const { overallRating } = this.props;
+        console.log(overallRating);
+    };
     render() {
-        const { currentStep } = this.props;
+        const {
+            currentStep,
+            reviewerDetails,
+            reviewerRating,
+            reviewerQuestions
+        } = this.props;
         return (
             <div>
-                <div className="section loader">
+                <form onSubmit={this.handleSubmit}>
                     <div className="title">rate-movie</div>
-                    {1 === 1 && <UserInfo />}
-                    {currentStep === 2 && <UserInfo />}
-                    {currentStep === 3 && <UserInfo />}
+                    {2 === 1 && (
+                        <UserInfoView
+                            reviewerDetails={reviewerDetails}
+                            handleChange={this.handleUserInfoChange}
+                        />
+                    )}
+                    {21 === 2 && (
+                        <RatingsView
+                            handleChange={this.handleRatingsChanged}
+                            reviewerRating={reviewerRating}
+                        />
+                    )}
+                    {3 === 3 && (
+                        <QuestionsView
+                            handleChange={this.handleQuestionChanged}
+                            reviewerQuestions={reviewerQuestions}
+                        />
+                    )}
                     {currentStep === 4 && <UserInfo />}
                     <button>next</button>
                     <button>prev</button>
-                </div>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         );
     }

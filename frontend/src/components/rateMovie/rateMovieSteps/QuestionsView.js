@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import RadioGroup from './../../../common/components/RadioGroup';
+import RadioGroup from '../../../common/components/RadioGroup';
 
 class QuestionsView extends Component {
-    handleQuestionChanged = ({ target }) => {
-        const { reviewerQuestions, setReviewerQuestions } = this.props;
-        const questions = { ...reviewerQuestions };
-        questions[target.name] = target.value;
-        setReviewerQuestions(questions);
-    };
+    // handleQuestionChanged = ({ target }) => {
+    //     const { reviewerQuestions, setReviewerQuestions } = this.props;
+    //     const questions = { ...reviewerQuestions };
+    //     questions[target.name] = target.value;
+    //     setReviewerQuestions(questions);
+    // };
 
-    handleSubmit = event => {
-        event.preventDefault();
-        const { reviewerQuestions } = this.props;
-        console.log(reviewerQuestions);
-    };
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     const { reviewerQuestions } = this.props;
+    //     console.log(reviewerQuestions);
+    // };
 
     render() {
-        const { reviewerQuestions } = this.props;
+        const { reviewerQuestions, handleChange } = this.props;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <div>
                 <label>
                     For how long did you watched the movie?
                     <RadioGroup
@@ -43,7 +43,7 @@ class QuestionsView extends Component {
                             }
                         ]}
                         currentPick={reviewerQuestions.movieLong}
-                        handlePick={this.handleQuestionChanged}
+                        handlePick={handleChange}
                         name="movieLong"
                     />
                 </label>
@@ -55,13 +55,11 @@ class QuestionsView extends Component {
                             { label: 'No', value: false }
                         ]}
                         currentPick={reviewerQuestions.movieLong}
-                        handlePick={this.handleQuestionChanged}
+                        handlePick={handleChange}
                         name="womenLeadRole.isTrue"
                     />
                 </label>
-
-                <input type="submit" value="Submit" />
-            </form>
+            </div>
         );
     }
 }
