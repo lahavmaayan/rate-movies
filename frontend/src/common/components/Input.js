@@ -31,11 +31,11 @@ const Input = ({
                 <select
                     onChange={onChange}
                     name={name}
+                    value={value}
                     className={!isRequired ? 'require-align' : ''}
                 >
                     {selectFirst && (
                         <option
-                            selected
                             disabled
                             hidden
                             key="firstOption"

@@ -19,7 +19,9 @@ function mapDispatchToProps(dispatch) {
         setReviewerRating: payload =>
             dispatch({ type: 'SET_REVIEWER_RATINGS', payload }),
         setReviewerQuestions: payload =>
-            dispatch({ type: 'SET_REVIEWER_QUESTIONS', payload })
+            dispatch({ type: 'SET_REVIEWER_QUESTIONS', payload }),
+        setCurrentStep: payload =>
+            dispatch({ type: 'SET_CURRENT_STEP', payload })
     };
 }
 

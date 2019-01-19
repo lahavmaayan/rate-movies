@@ -54,7 +54,7 @@ class QuestionsView extends Component {
                             { label: 'Yes', value: true },
                             { label: 'No', value: false }
                         ]}
-                        currentPick={reviewerQuestions.movieLong}
+                        currentPick={reviewerQuestions.womenLeadRole.isTrue}
                         handlePick={handleChange}
                         name="womenLeadRole.isTrue"
                     />

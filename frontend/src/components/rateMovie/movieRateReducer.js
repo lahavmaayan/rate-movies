@@ -26,6 +26,7 @@ function movieRateReducer(state = initialState, action) {
             return {
                 ...state,
                 ratings: {
+                    ...state.ratings,
                     reviewerDetails: action.payload
                 }
             };
@@ -33,6 +34,7 @@ function movieRateReducer(state = initialState, action) {
             return {
                 ...state,
                 ratings: {
+                    ...state.ratings,
                     reviewerRating: action.payload
                 }
             };
@@ -40,11 +42,12 @@ function movieRateReducer(state = initialState, action) {
             return {
                 ...state,
                 ratings: {
+                    ...state.ratings,
                     reviewerQuestions: action.payload
                 }
             };
         case 'SET_CURRENT_STEP':
-            return { currentStep: action.payload };
+            return { ...state, currentStep: action.payload };
 
         default:
             return state;

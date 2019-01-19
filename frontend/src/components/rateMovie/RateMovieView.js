@@ -22,9 +22,27 @@ class RateMovieView extends Component {
         const { reviewerQuestions, setReviewerQuestions } = this.props;
         const questions = { ...reviewerQuestions };
 
-        //let props = target.name.split('.');
+        let props = target.name.split('.');
         questions[target.name] = target.value;
         setReviewerQuestions(questions);
+    };
+
+    handelNext = () => {
+        event.preventDefault();
+        const maxSteps = 3;
+        const { currentStep, setCurrentStep } = this.props;
+        if (currentStep < maxSteps) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+
+    handelPrevious = () => {
+        event.preventDefault();
+        const { currentStep, setCurrentStep } = this.props;
+        let step = currentStep;
+        if (step !== 1) {
+            setCurrentStep(currentStep - 1);
+        }
     };
 
     handleSubmit = event => {
@@ -39,32 +57,41 @@ class RateMovieView extends Component {
             reviewerRating,
             reviewerQuestions
         } = this.props;
+        const maxSteps = 3;
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="title">rate-movie</div>
-                    {2 === 1 && (
+                    {currentStep === 1 && (
                         <UserInfoView
                             reviewerDetails={reviewerDetails}
                             handleChange={this.handleUserInfoChange}
                         />
                     )}
-                    {21 === 2 && (
+                    {currentStep === 2 && (
                         <RatingsView
                             handleChange={this.handleRatingsChanged}
                             reviewerRating={reviewerRating}
                         />
                     )}
-                    {3 === 3 && (
+                    {currentStep === 3 && (
                         <QuestionsView
                             handleChange={this.handleQuestionChanged}
                             reviewerQuestions={reviewerQuestions}
                         />
                     )}
                     {currentStep === 4 && <UserInfo />}
-                    <button>next</button>
-                    <button>prev</button>
-                    <input type="submit" value="Submit" />
+                    {currentStep > 1 && (
+                        <button onClick={this.handelPrevious}>prev</button>
+                    )}
+                    {currentStep < maxSteps && (
+                        <button onClick={this.handelNext}>next</button>
+                    )}
+
+                    {currentStep === maxSteps && (
+                        <input type="submit" value="Submit" />
+                    )}
                 </form>
             </div>
         );
