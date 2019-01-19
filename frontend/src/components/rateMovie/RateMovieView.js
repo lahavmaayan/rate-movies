@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserInfo from './rateSteps/UserInfo';
 import Questions from './Questions/Questions';
+import Ratings from './ratings/ratings';
 
 class RateMovieView extends Component {
     render() {
@@ -9,7 +10,7 @@ class RateMovieView extends Component {
             <div>
                 <div className="section loader">
                     <div className="title">rate-movie</div>
-                    {1 === 1 && <Questions />}
+                    {1 === 1 && <Ratings />}
                     {currentStep === 2 && <UserInfo />}
                     {currentStep === 3 && <UserInfo />}
                     {currentStep === 4 && <UserInfo />}

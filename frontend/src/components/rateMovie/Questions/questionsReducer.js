@@ -1,7 +1,7 @@
 const initialState = {
     reviewerQuestions: {
         movieLong: '',
-        womenLeadRole: { isTrue: false, ifTrueCharacter: '' }
+        womenLeadRole: { isTrue: false, ifTrueCharacterName: '' }
     }
 };
 
