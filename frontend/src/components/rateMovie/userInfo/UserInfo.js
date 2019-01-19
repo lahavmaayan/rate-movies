@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import UserInfoView from '../UserInfoView';
+import UserInfoView from './UserInfoView';
 
 const mapStateToProps = state => {
     console.log('mapStateToProps', state);
-    return { reviewerDetails: state.rateMovie.reviewerDetails };
+    return { reviewerDetails: state.userInfo.reviewerDetails };
 };
 
 function mapDispatchToProps(dispatch) {

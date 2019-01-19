@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import rateMovieReducer from '../components/rateMovie/rateMovieReducer';
 import questionsReducer from './../components/rateMovie/Questions/questionsReducer';
 import ratingsReducer from './../components/rateMovie/ratings/ratingsReducer';
+import userInfoReducer from './../components/rateMovie/userInfo/userInfoReducer';
 export default combineReducers({
-    rateMovie: rateMovieReducer,
+    userInfo: userInfoReducer,
     questions: questionsReducer,
     ratings: ratingsReducer
 });
