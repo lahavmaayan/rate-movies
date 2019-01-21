@@ -3,19 +3,6 @@ import Rate from 'rc-rate';
 import 'rc-rate/assets/index.css';
 
 class RatingsView extends Component {
-    // handleRatingsChanged = (event, propName) => {
-    //     const { reviewerRating, setReviewerRating } = this.props;
-    //     const ratings = { ...reviewerRating };
-    //     ratings[propName] = event;
-    //     setReviewerRating(ratings);
-    // };
-
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     const { reviewerRating } = this.props;
-    //     console.log(reviewerRating);
-    // };
-
     render() {
         const { reviewerRating, handleChange } = this.props;
         return (

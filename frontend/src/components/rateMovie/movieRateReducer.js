@@ -3,8 +3,8 @@ const initialState = {
     ratings: {
         reviewerDetails: { age: 0, gender: '' },
         reviewerQuestions: {
-            movieLong: '',
-            womenLeadRole: { isTrue: false, ifTrueCharacterName: '' }
+            movieLong: 'allMovie',
+            womenLeadRole: { isTrue: 'false', ifTrueCharacterName: '' }
         },
         reviewerRating: {
             funnyRate: 0,
@@ -18,10 +18,6 @@ const initialState = {
 
 function movieRateReducer(state = initialState, action) {
     switch (action.type) {
-        // case 'SET_MOVIES':
-        //     return {
-        //         movies: action.payload
-        //     };
         case 'SET_REVIEWER_DETAILS':
             return {
                 ...state,

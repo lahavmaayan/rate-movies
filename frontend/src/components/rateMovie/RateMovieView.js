@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
+import _ from 'lodash';
 
 class RateMovieView extends Component {
     handleUserInfoChange = ({ target }) => {
@@ -20,10 +21,9 @@ class RateMovieView extends Component {
     };
     handleQuestionChanged = ({ target }) => {
         const { reviewerQuestions, setReviewerQuestions } = this.props;
-        const questions = { ...reviewerQuestions };
+        let questions = { ...reviewerQuestions };
+        _.set(questions, target.name, target.value);
 
-        let props = target.name.split('.');
-        questions[target.name] = target.value;
         setReviewerQuestions(questions);
     };
 
@@ -48,7 +48,7 @@ class RateMovieView extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const { overallRating } = this.props;
-        console.log(overallRating);
+        console.log(JSON.stringify(overallRating));
     };
     render() {
         const {
@@ -70,15 +70,15 @@ class RateMovieView extends Component {
                         />
                     )}
                     {currentStep === 2 && (
-                        <RatingsView
-                            handleChange={this.handleRatingsChanged}
-                            reviewerRating={reviewerRating}
-                        />
-                    )}
-                    {currentStep === 3 && (
                         <QuestionsView
                             handleChange={this.handleQuestionChanged}
                             reviewerQuestions={reviewerQuestions}
+                        />
+                    )}
+                    {currentStep === 3 && (
+                        <RatingsView
+                            handleChange={this.handleRatingsChanged}
+                            reviewerRating={reviewerRating}
                         />
                     )}
                     {currentStep === 4 && <UserInfo />}

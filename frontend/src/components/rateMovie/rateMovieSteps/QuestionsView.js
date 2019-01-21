@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import RadioGroup from '../../../common/components/RadioGroup';
+import Input from 'common/components/Input';
+import PropTypes from 'prop-types';
 
 class QuestionsView extends Component {
-    // handleQuestionChanged = ({ target }) => {
-    //     const { reviewerQuestions, setReviewerQuestions } = this.props;
-    //     const questions = { ...reviewerQuestions };
-    //     questions[target.name] = target.value;
-    //     setReviewerQuestions(questions);
-    // };
-
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     const { reviewerQuestions } = this.props;
-    //     console.log(reviewerQuestions);
-    // };
-
     render() {
         const { reviewerQuestions, handleChange } = this.props;
         return (
@@ -51,17 +40,35 @@ class QuestionsView extends Component {
                     Did the movie contained a women as role lead?
                     <RadioGroup
                         options={[
-                            { label: 'Yes', value: true },
-                            { label: 'No', value: false }
+                            { label: 'Yes', value: 'true' },
+                            { label: 'No', value: 'false' }
                         ]}
                         currentPick={reviewerQuestions.womenLeadRole.isTrue}
                         handlePick={handleChange}
                         name="womenLeadRole.isTrue"
                     />
                 </label>
+                {reviewerQuestions.womenLeadRole.isTrue === 'true' && (
+                    <label>
+                        What is the Character Name?
+                        <Input
+                            label="CharacterName"
+                            type="text"
+                            name="womenLeadRole.ifTrueCharacterName"
+                            value={
+                                reviewerQuestions.womenLeadRole
+                                    .ifTrueCharacterName
+                            }
+                            onChange={handleChange}
+                        />
+                    </label>
+                )}
             </div>
         );
     }
 }
 
+QuestionsView.propTypes = {
+    currentPick: PropTypes.bool
+};
 export default QuestionsView;

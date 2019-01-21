@@ -2,19 +2,6 @@ import React, { Component } from 'react';
 import Input from 'common/components/Input';
 
 class UserInfoView extends Component {
-    // handleChange = ({ target }) => {
-    //     const { setReviewerDetails, reviewerDetails } = this.props;
-    //     const details = { ...reviewerDetails };
-    //     details[target.name] = target.value;
-    //     setReviewerDetails(details);
-    // };
-
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     const { reviewerDetails } = this.props;
-    //     console.log(reviewerDetails);
-    // };
-
     initAge = (start, end) => {
         return Array.apply(null, {
             length: end - start + 1
