@@ -57,6 +57,15 @@ module.exports = (env, argv) => {
                         path.resolve(__dirname, 'frontend/resources'),
                         path.join(__dirname, 'node_modules')
                     ]
+                },
+                {
+                    test: /\.(jpg|png|gif|svg|ico|ttf|woff|woff2)(\?.*)?$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {}
+                        }
+                    ]
                 }
             ]
         },

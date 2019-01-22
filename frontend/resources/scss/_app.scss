@@ -1,48 +1,44 @@
 .app {
+  .logo {
+    float: left
+  }
   .title {
-    font-size: 30px;
+    font-size: $heading-font-1;
     padding: 10px;
     text-align: center;
   }
 
-  #nav-wrap {
-    font: 12px 'opensans-bold', sans-serif;
+  .nav-wrap {
+    font: $body-font-1 'opensans-bold', sans-serif;
     width: 100%;
     text-transform: uppercase;
     letter-spacing: 2.5px;
-    margin: 0 auto;
     z-index: 100;
     position: fixed;
     left: 0;
     top: 0;
-    background-color: black;
+    background-color: $black;
   }
 
-  ul#nav {
+  ul.nav {
     min-height: 48px;
     width: auto;
     text-align: center;
+    margin: 10px 30px 0;
   }
 
-  #nav-wrap ul, #nav-wrap li, #nav-wrap a {
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-  }
-
-  ul#nav li {
+  ul.nav li {
     position: relative;
-    list-style: none;
-    height: 48px;
+    height: 42px;
     display: inline-block;
+    top: 18px;
+    float: right;
   }
 
-  #nav-wrap ul, #nav-wrap li, #nav-wrap a {
-    margin: 16px 30px 0;
-    color: white;
-    padding: 0;
-    border: none;
-    outline: none;
+  .nav-wrap li a{
+    color: $white;
+    padding: 0 40px 0 40px;
+    text-decoration: none;
+    cursor: pointer;
   }
 }
