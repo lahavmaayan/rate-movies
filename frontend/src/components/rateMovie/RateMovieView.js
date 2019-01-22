@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
-import StepProgressBar from './../../common/components/stepProgressBar';
+import WizardForm from './../../common/components/wizardForm';
 import _ from 'lodash';
 
 class RateMovieView extends Component {
@@ -28,24 +28,6 @@ class RateMovieView extends Component {
         setReviewerQuestions(questions);
     };
 
-    handelNext = () => {
-        event.preventDefault();
-        const maxSteps = 3;
-        const { currentStep, setCurrentStep } = this.props;
-        if (currentStep < maxSteps) {
-            setCurrentStep(currentStep + 1);
-        }
-    };
-
-    handelPrevious = () => {
-        event.preventDefault();
-        const { currentStep, setCurrentStep } = this.props;
-        let step = currentStep;
-        if (step !== 1) {
-            setCurrentStep(currentStep - 1);
-        }
-    };
-
     handleSubmit = event => {
         event.preventDefault();
         const { overallRating } = this.props;
@@ -56,48 +38,47 @@ class RateMovieView extends Component {
             currentStep,
             reviewerDetails,
             reviewerRating,
-            reviewerQuestions
+            reviewerQuestions,
+            setCurrentStep
         } = this.props;
-        const maxSteps = 3;
+        const steps = [
+            {
+                name: 'UserInfoView',
+                component: (
+                    <UserInfoView
+                        reviewerDetails={reviewerDetails}
+                        handleChange={this.handleUserInfoChange}
+                    />
+                )
+            },
+            {
+                name: 'QuestionsView',
+                component: (
+                    <QuestionsView
+                        handleChange={this.handleQuestionChanged}
+                        reviewerQuestions={reviewerQuestions}
+                    />
+                )
+            },
+            {
+                name: 'RatingsView',
+                component: (
+                    <RatingsView
+                        handleChange={this.handleRatingsChanged}
+                        reviewerRating={reviewerRating}
+                    />
+                )
+            }
+        ];
 
         return (
             <div>
-                <StepProgressBar
-                    stepsCount={maxSteps}
+                <WizardForm
                     currentStep={currentStep}
+                    steps={steps}
+                    onSubmit={this.handleSubmit}
+                    onStepChanged={setCurrentStep}
                 />
-                <form onSubmit={this.handleSubmit}>
-                    <div className="title">rate-movie</div>
-                    {currentStep === 1 && (
-                        <UserInfoView
-                            reviewerDetails={reviewerDetails}
-                            handleChange={this.handleUserInfoChange}
-                        />
-                    )}
-                    {currentStep === 2 && (
-                        <QuestionsView
-                            handleChange={this.handleQuestionChanged}
-                            reviewerQuestions={reviewerQuestions}
-                        />
-                    )}
-                    {currentStep === 3 && (
-                        <RatingsView
-                            handleChange={this.handleRatingsChanged}
-                            reviewerRating={reviewerRating}
-                        />
-                    )}
-                    {currentStep === 4 && <UserInfo />}
-                    {currentStep > 1 && (
-                        <button onClick={this.handelPrevious}>prev</button>
-                    )}
-                    {currentStep < maxSteps && (
-                        <button onClick={this.handelNext}>next</button>
-                    )}
-
-                    {currentStep === maxSteps && (
-                        <input type="submit" value="Submit" />
-                    )}
-                </form>
             </div>
         );
     }
