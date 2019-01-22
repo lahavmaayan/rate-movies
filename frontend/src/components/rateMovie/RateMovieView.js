@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
+import StepProgressBar from './../../common/components/stepProgressBar';
 import _ from 'lodash';
 
 class RateMovieView extends Component {
@@ -61,6 +62,10 @@ class RateMovieView extends Component {
 
         return (
             <div>
+                <StepProgressBar
+                    stepsCount={maxSteps}
+                    currentStep={currentStep}
+                />
                 <form onSubmit={this.handleSubmit}>
                     <div className="title">rate-movie</div>
                     {currentStep === 1 && (

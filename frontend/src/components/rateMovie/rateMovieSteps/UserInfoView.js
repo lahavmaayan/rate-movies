@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import Input from 'common/components/Input';
+import _ from 'lodash';
 
 class UserInfoView extends Component {
-    initAge = (start, end) => {
-        return Array.apply(null, {
-            length: end - start + 1
-        }).map((item, index) => start + index);
-    };
-
     render() {
         const { reviewerDetails, handleChange } = this.props;
         return (
@@ -20,7 +15,7 @@ class UserInfoView extends Component {
                         type="select"
                         name="age"
                         value={reviewerDetails['age']}
-                        selectOptions={this.initAge(18, 120)}
+                        selectOptions={_.range(18, 121)}
                         selectFirst={false}
                         onChange={handleChange}
                     />
