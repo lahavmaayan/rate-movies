@@ -2,15 +2,12 @@ import React from 'react';
 import StepProgressBar from './stepProgressBar';
 const WizardForm = ({ currentStep, onStepChanged, onSubmit, steps }) => {
     const handelNext = () => {
-        event.preventDefault();
-
         if (currentStep < steps.length) {
             onStepChanged(currentStep + 1);
         }
     };
 
     const handelPrevious = () => {
-        event.preventDefault();
         let step = currentStep;
         if (step !== 1) {
             onStepChanged(currentStep - 1);

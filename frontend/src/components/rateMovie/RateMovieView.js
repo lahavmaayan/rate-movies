@@ -4,7 +4,7 @@ import _ from 'lodash';
 import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
-import WizardForm from './../../common/components/wizardForm';
+import WizardForm from 'common/components/WizardForm';
 import { post } from '../../services/restMethods';
 
 class RateMovieView extends Component {

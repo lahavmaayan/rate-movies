@@ -1,5 +1,11 @@
 import { connect } from 'react-redux';
 import RateMovieView from './RateMovieView';
+import {
+    SET_REVIEWER_DETAILS,
+    SET_REVIEWER_QUESTIONS,
+    SET_REVIEWER_RATINGS,
+    SET_CURRENT_STEP
+} from './rateMovieConstants';
 
 const mapStateToProps = state => {
     return {
@@ -13,15 +19,13 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setMovies: payload => dispatch({ type: 'SET_MOVIES', payload }),
         setReviewerDetails: payload =>
-            dispatch({ type: 'SET_REVIEWER_DETAILS', payload }),
+            dispatch({ type: SET_REVIEWER_DETAILS, payload }),
         setReviewerRating: payload =>
-            dispatch({ type: 'SET_REVIEWER_RATINGS', payload }),
+            dispatch({ type: SET_REVIEWER_RATINGS, payload }),
         setReviewerQuestions: payload =>
-            dispatch({ type: 'SET_REVIEWER_QUESTIONS', payload }),
-        setCurrentStep: payload =>
-            dispatch({ type: 'SET_CURRENT_STEP', payload })
+            dispatch({ type: SET_REVIEWER_QUESTIONS, payload }),
+        setCurrentStep: payload => dispatch({ type: SET_CURRENT_STEP, payload })
     };
 }
 

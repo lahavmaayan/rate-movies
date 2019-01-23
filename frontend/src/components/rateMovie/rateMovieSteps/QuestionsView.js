@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RadioGroup from '../../../common/components/RadioGroup';
+import RadioGroup from 'common/components/RadioGroup';
 import Input from 'common/components/Input';
 import PropTypes from 'prop-types';
 

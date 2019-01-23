@@ -1,7 +1,7 @@
 const initialState = {
     currentStep: 1,
     ratings: {
-        reviewerDetails: { age: 0, gender: '' },
+        reviewerDetails: { age: 18, gender: 'FEMALE' },
         reviewerQuestions: {
             movieLong: 'allMovie',
             womenLeadRole: { isTrue: 'false', ifTrueCharacterName: '' }
@@ -18,7 +18,7 @@ const initialState = {
 
 function movieRateReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SET_REVIEWER_DETAILS':
+        case 'rateMovie/SET_REVIEWER_DETAILS':
             return {
                 ...state,
                 ratings: {
@@ -26,7 +26,7 @@ function movieRateReducer(state = initialState, action) {
                     reviewerDetails: action.payload
                 }
             };
-        case 'SET_REVIEWER_RATINGS':
+        case 'rateMovie/SET_REVIEWER_RATINGS':
             return {
                 ...state,
                 ratings: {
@@ -34,7 +34,7 @@ function movieRateReducer(state = initialState, action) {
                     reviewerRating: action.payload
                 }
             };
-        case 'SET_REVIEWER_QUESTIONS':
+        case 'rateMovie/SET_REVIEWER_QUESTIONS':
             return {
                 ...state,
                 ratings: {
@@ -42,7 +42,7 @@ function movieRateReducer(state = initialState, action) {
                     reviewerQuestions: action.payload
                 }
             };
-        case 'SET_CURRENT_STEP':
+        case 'rateMovie/SET_CURRENT_STEP':
             return { ...state, currentStep: action.payload };
 
         default:
