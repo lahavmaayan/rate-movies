@@ -3,8 +3,7 @@ const Movie = require('./movie');
 
 async function getMovieById(movieId) {
     if (mongoose.Types.ObjectId.isValid(movieId)) {
-        const movie = await Movie.findById(movieId).select('-__v');
-        return movie;
+        return await Movie.findById(movieId).select('-__v');
     }
 }
 
