@@ -72,7 +72,7 @@ Optional script for fixing  lint issues  using eslint
 yarn lint-fix
 ```
 
-run the InitDB app by: npm run initDB
+run the InitDB app by: npm run init-db
 
 #### Use Mongo DB
 After installing MongoDB you can manipulate the db using the mongo shell.
