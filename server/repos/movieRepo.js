@@ -3,7 +3,7 @@ const { Movie, MovieReview } = require('../models/movie');
 
 async function getMovieById(movieId) {
     if (mongoose.Types.ObjectId.isValid(movieId)) {
-        return await Movie.findById(movieId).select('-__v');
+        return await Movie.findById(movieId);
     }
 }
 
@@ -38,7 +38,8 @@ async function postReview(data, movieId) {
 
 async function updateTags(data, movieId) {
     const currentMovie = await getMovieById(movieId);
-    const newReview = data.rating;
+    const newReview = data.reviewerRating;
+    console.log(currentMovie);
     Object.keys(newReview).map(key => {
         const oldAvg = currentMovie.tags[key].avg;
         const count = currentMovie.tags[key].count;

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
+
 import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
 import WizardForm from './../../common/components/wizardForm';
-import _ from 'lodash';
+import { post } from '../../services/restMethods';
 
 class RateMovieView extends Component {
     handleUserInfoChange = ({ target }) => {
@@ -28,11 +30,20 @@ class RateMovieView extends Component {
         setReviewerQuestions(questions);
     };
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
-        const { overallRating } = this.props;
-        console.log(JSON.stringify(overallRating));
+        const {
+            reviewerDetails,
+            reviewerRating,
+            reviewerQuestions
+        } = this.props;
+        await post('api/movie/5c48796d2e03c420f6a22736/rate', {
+            reviewerDetails,
+            reviewerRating,
+            reviewerQuestions
+        });
     };
+
     render() {
         const {
             currentStep,

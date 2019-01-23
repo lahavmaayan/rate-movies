@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const movieRepo = require('../repos/movieRepo');
 
-router.get('/:movieId', async (req, res) => {
+router.get('/:movieId', async (req, res, next) => {
     try {
         const movie = await movieRepo.getMovieById(req.params.movieId);
         if (movie) {
@@ -13,22 +13,20 @@ router.get('/:movieId', async (req, res) => {
             res.status(404).send(validationSchema.movieNotFound);
         }
     } catch (err) {
-        console.error(err);
-        res.status(500).send();
+        next(err);
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
         const movies = await movieRepo.getAllMovies();
         res.status(200).send(movies);
     } catch (err) {
-        console.log(err);
-        res.status(500).send();
+        next(err);
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
     const { error } = validateMovieName(req.body.name);
     if (error) {
         return res.status(400).send(error.details[0].message);
@@ -39,12 +37,11 @@ router.post('/', async (req, res) => {
         });
         res.status(200).send(newMovie);
     } catch (err) {
-        console.log(err);
-        res.status(500).send();
+        next(err);
     }
 });
 
-router.put('/:movieId', async (req, res) => {
+router.put('/:movieId', async (req, res, next) => {
     const movie = await movieRepo.getMovieById(req.params.movieId);
     if (!movie) return res.status(404).send(validationSchema.movieNotFound);
 
@@ -59,45 +56,39 @@ router.put('/:movieId', async (req, res) => {
         });
         res.status(200).send(req.params.movieId);
     } catch (err) {
-        console.log(err);
-        res.status(500).send();
+        next(err);
     }
 });
 
-router.delete('/:movieId', async (req, res) => {
+router.delete('/:movieId', async (req, res, next) => {
     try {
         let deleteId = await movieRepo.deleteMovie(req.params.movieId);
         if (!deleteId)
             return res.status(404).send(validationSchema.movieNotFound);
         res.status(200).send(deleteId);
     } catch (err) {
-        console.log(err);
-        res.status(500).send();
+        next(err);
     }
 });
 
-router.post('/:movieId/rate', async (req, res) => {
+router.post('/:movieId/rate', async (req, res, next) => {
     try {
         const newReview = await movieRepo.postReview(
-            {
-                ...req.body
-            },
+            req.body,
             req.params.movieId
         );
         res.status(200).send(newReview);
     } catch (err) {
-        console.log(err);
-        res.status(500).send();
+        next(err);
     }
 });
 
-router.get('/:movieId/rate', async (req, res) => {
+router.get('/:movieId/rate', async (req, res, next) => {
     try {
         const movieTags = await movieRepo.getMovieTags(req.params.movieId);
         res.status(200).send(movieTags);
     } catch (err) {
-        console.log(err);
-        res.status(500).send();
+        next(err);
     }
 });
 

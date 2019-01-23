@@ -5,43 +5,40 @@ const reviewSchema = new mongoose.Schema({
         age: { type: Number },
         gender: { type: String }
     },
-    rating: {
-        strongFemaleLead: { type: Number },
-        feminist: { type: Number },
-        violent: { type: Number },
-        fascinating: { type: Number },
-        sexual: { type: Number },
-        funny: { type: Number },
-        happyEnding: { type: Number }
+    reviewerQuestions: {
+        movieLong: { type: String },
+        womenLeadRole: {
+            isTrue: { type: String },
+            ifTrueCharacterName: { type: String }
+        }
+    },
+    reviewerRating: {
+        funnyRate: { type: Number },
+        feminismRate: { type: Number },
+        violenceRate: { type: Number },
+        sexualityRate: { type: Number },
+        fascinateRate: { type: Number }
     }
 });
 
 const movieTagsSchema = new mongoose.Schema({
-    strongFemaleLead: {
+    funnyRate: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
     },
-    feminist: {
+    feminismRate: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
     },
-    violent: {
+    violenceRate: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
     },
-    fascinating: {
+    sexualityRate: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
     },
-    sexual: {
-        avg: { type: Number, default: 0 },
-        count: { type: Number, default: 0 }
-    },
-    funny: {
-        avg: { type: Number, default: 0 },
-        count: { type: Number, default: 0 }
-    },
-    happyEnding: {
+    fascinateRate: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
     }

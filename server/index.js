@@ -10,8 +10,14 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/movie', movieRouter);
+app.use(clientErrorHandler);
 
 const port = process.env.PORT || 3000;
 app.listen(port, async () => {
     console.log(`listening on port ${port}....`);
 });
+
+function clientErrorHandler(err, req, res, next) {
+    res.status(500).json({ error: err });
+    next(err);
+}

@@ -23,7 +23,7 @@ const WizardForm = ({ currentStep, onStepChanged, onSubmit, steps }) => {
                 currentStep={currentStep}
             />
             <form onSubmit={onSubmit}>
-                <div className="title">rate-movie111</div>
+                <div className="title">rate-movie</div>
                 {currentStep === 1 && steps[currentStep - 1].component}
                 {currentStep === 2 && steps[currentStep - 1].component}
                 {currentStep === 3 && steps[currentStep - 1].component}

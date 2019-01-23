@@ -1,30 +1,31 @@
 import 'isomorphic-fetch';
 
-// Fetches an API response
-export function post(url, data, headers = {}) {
+export function post(url, data) {
     const options = {
+        method: 'POST',
+        body: JSON.stringify(data),
         headers: {
-            ...headers
-        },
-        mode: 'no-cors',
-        method: 'POST'
+            'Content-Type': 'application/json'
+        }
     };
-    return fetch(url, options).then(response => console.log(response));
+
+    return fetch(url, options)
+        .then(response => response.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
 }
 
 export function get(url) {
     const options = {
+        method: 'GET',
         headers: {
-            Accept: 'application/json',
             'Content-Type': 'application/json'
-        },
-        method: 'GET'
+        }
     };
     return fetch(url, options)
         .then(function(response) {
             return response.json();
         })
-        .then(function(data) {
-            return data;
-        });
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
 }
