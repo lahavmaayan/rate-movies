@@ -83,7 +83,7 @@ class RateMovieView extends Component {
         ];
 
         return (
-            <div>
+            <div className="rate-movie">
                 <WizardForm
                     currentStep={currentStep}
                     steps={steps}
