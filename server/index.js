@@ -11,6 +11,14 @@ app.get('/api', (req, res) => {
 
 app.use('/api/movie', movieRouter);
 
+app.get('/api/search', (req, res) => {
+    res.json({movies:[
+        {id: 0, name: "Titanic", director: "Yama Anin"},
+        {id: 1, name: "Shalom", director: "Another Name"}
+    ]})
+});
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, async () => {
     console.log(`listening on port ${port}....`);
