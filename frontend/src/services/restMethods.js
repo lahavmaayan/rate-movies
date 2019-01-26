@@ -22,9 +22,6 @@ export function get(url) {
         }
     };
     return fetch(url, options)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        .then(response => response.json())
         .catch(error => console.error('Error:', error));
 }
