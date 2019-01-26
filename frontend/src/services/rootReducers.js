@@ -4,5 +4,5 @@ import objectiveMovieReducer from '../components/ObjectiveMovie/reducer';
 
 export default combineReducers({
     movieRate: movieRateReducer,
-    objectiveMovie: objectiveMovieReducer,
+    objectiveMovie: objectiveMovieReducer
 });
