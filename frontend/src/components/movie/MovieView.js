@@ -6,15 +6,13 @@ import RateMovie from '../rateMovie/RateMovie';
 class MovieView extends Component {
     constructor(props) {
         super(props);
+        const emptyMovie = {
+            name: '',
+            ratings: []
+        };
         this.state = {
-            ratings: [
-                { feature: 'funny', rating: 4, maxRating: 5 },
-                { feature: 'interesting', rating: 3, maxRating: 5 },
-                { feature: 'female lead', rating: 3, maxRating: 5 },
-                { feature: 'happy ending', rating: 3, maxRating: 5 },
-                { feature: 'make you think', rating: 3, maxRating: 5 },
-                { feature: 'interesting2', rating: 3, maxRating: 5 }
-            ],
+            movieId: '5c4c39eb7555a317d4f816bf', //tmp until recieved from outside
+            movie: emptyMovie,
             show: false
         };
     }
@@ -27,12 +25,36 @@ class MovieView extends Component {
         this.setState({ show: false });
     };
 
+    tmpConvertMovieData(serverMovieData) {
+        let ratings = [];
+        for (var prop in serverMovieData.tags) {
+            if (prop == '_id') continue;
+            ratings.push({
+                feature: prop,
+                rating: serverMovieData.tags[prop].avg,
+                maxRating: 5
+            });
+        }
+        return {
+            name: serverMovieData.name,
+            ratings: ratings
+        };
+    }
+
+    componentDidMount() {
+        fetch('api/movie/' + this.state.movieId)
+            .then(response => response.json())
+            .then(data =>
+                this.setState({ movie: this.tmpConvertMovieData(data) })
+            );
+    }
+
     render() {
         const { show } = this.state;
         return (
             <div>
-                <div className="title">movie</div>
-                <RatingsGrid ratings={this.state.ratings} />
+                <div className="title">{this.state.movie.name}</div>
+                <RatingsGrid ratings={this.state.movie.ratings} />
                 <button onClick={this.openModal}>clickkkk</button>
                 <Modal open={show} onClose={this.closeModal}>
                     <RateMovie />
