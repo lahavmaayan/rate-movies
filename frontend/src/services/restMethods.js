@@ -11,7 +11,6 @@ export function post(url, data) {
 
     return fetch(url, options)
         .then(response => response.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
         .catch(error => console.error('Error:', error));
 }
 
