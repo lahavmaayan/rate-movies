@@ -24,6 +24,7 @@
     "react-responsive-modal": "^3.5.1",
     "react-router-dom": "^4.3.1",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.3.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "uniqid": "^5.0.3"
   },

@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import RatingsGrid from './RatingsGrid';
 import Modal from 'react-responsive-modal';
 import RateMovie from '../rateMovie/RateMovie';
+import { connect } from 'react-redux';
+import { getLoadFunc } from './MovieReducer';
 
 class MovieView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ratings: [
-                { feature: 'funny', rating: 4, maxRating: 5 },
-                { feature: 'interesting', rating: 3, maxRating: 5 },
-                { feature: 'female lead', rating: 3, maxRating: 5 },
-                { feature: 'happy ending', rating: 3, maxRating: 5 },
-                { feature: 'make you think', rating: 3, maxRating: 5 },
-                { feature: 'interesting2', rating: 3, maxRating: 5 }
-            ],
             show: false
         };
     }
@@ -27,12 +21,16 @@ class MovieView extends Component {
         this.setState({ show: false });
     };
 
+    componentDidMount() {
+        this.props.dispatch(getLoadFunc());
+    }
+
     render() {
         const { show } = this.state;
         return (
             <div>
-                <div className="title">movie</div>
-                <RatingsGrid ratings={this.state.ratings} />
+                <div className="title">{this.props.movie.name}</div>
+                <RatingsGrid ratings={this.props.movie.ratings} />
                 <button onClick={this.openModal}>clickkkk</button>
                 <Modal open={show} onClose={this.closeModal}>
                     <RateMovie />
@@ -42,4 +40,8 @@ class MovieView extends Component {
     }
 }
 
-export default MovieView;
+const mapStateToProps = state => ({
+    movie: state.currentMovie
+});
+
+export default connect(mapStateToProps)(MovieView);
