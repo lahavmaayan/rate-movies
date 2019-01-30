@@ -1,0 +1,88 @@
+// .rate-movie {
+//   color: $black;
+//   .step-progress {
+//     width: 300px;
+//     .steps {
+//       display: flex;
+//       justify-content: space-evenly;
+//       position: relative;
+//       .step {
+//         color: white;
+//         flex: 1;
+//         position: relative;
+
+//         &:after {
+//           content: "";
+//           background: red;
+//           height: 5px;
+//           width: 100px;
+//           position: absolute;
+
+//           top: 5px;
+//           left: 12px;
+//           z-index: -1;
+//         }
+
+//         &:before {
+//           display: block;
+//         }
+//         &:last-child {
+//           &:after {
+//             content: none;
+//           }
+//         }
+
+//       }
+//     }
+//   }
+// }
+
+.rate-movie {
+  color: $black;
+  .step-progress {
+    width: 100%;
+    .steps {
+      display: flex;
+      justify-content: space-evenly;
+      position: relative;
+      .wrapper {
+        color: $light-color;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        position: relative;
+
+        .title {
+          margin-left: -9px;
+          color: $main-color;
+        }
+        .active {
+          color: $main-color;
+        }
+
+        &:after {
+          content: "";
+          background: $light-color;
+          height: 5px;
+          width: 100%;
+          position: absolute;
+
+          top: 5px;
+          left: 12px;
+          z-index: -1;
+        }
+
+        &:before {
+          display: block;
+        }
+        &:last-child {
+          &:after {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+}
