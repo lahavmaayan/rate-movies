@@ -84,9 +84,6 @@
           z-index: -1;
         }
 
-        &:before {
-          display: block;
-        }
         &:last-child {
           &:after {
             content: none;
