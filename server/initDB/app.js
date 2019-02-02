@@ -5,7 +5,7 @@ main();
 async function main() {
     console.log('initDB started');
     await initDB();
-    console.log('initDB fininshed');
+    console.log('initDB finished');
     process.exit();
 }
 

@@ -3,22 +3,13 @@ import { get } from "../../services/restMethods";
 
 
 class SearchMovieView extends Component {
-    state = {
-        query: "",
-        movies: [],
-    }
-
-    handleInputChange = () => {
-        this.setState({
-            query: this.search.value
-        })
-    }
-
     handleClick = () => {
-        get(`/api/search?search_text=${this.state.query}`)
-            .then(data => this.setState({
-                movies: data.movies
-        })).catch(e => console.log(e))
+        const searchQuery = this.search.value
+        const { setQuery, setMovies } = this.props
+        setQuery(searchQuery)
+        get(`/api/search?search_text=${searchQuery}`)
+            .then(data => setMovies(data.movies))
+        .catch(e => console.log(e))
     }
 
     getItemContent = (item) => {
@@ -37,8 +28,9 @@ class SearchMovieView extends Component {
     }
 
     getItmes = () => {
+        const { resultMovies } = this.props
         return (
-            this.state.movies.map((item) => this.getItemContent(item)
+            resultMovies.map((item) => this.getItemContent(item)
             )
         )
     }
@@ -49,7 +41,6 @@ class SearchMovieView extends Component {
                     <input
                         placeholder="Search for..."
                         ref={input=>this.search=input}
-                        onChange={this.handleInputChange}
                     />
                     <button type="button" onClick={this.handleClick}>Search</button>
                     <div>
