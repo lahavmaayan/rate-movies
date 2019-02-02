@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, compose } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import rootReducers from './services/rootReducers';
+import 'font-awesome/css/font-awesome.css';
 
 import App from './App';
 
