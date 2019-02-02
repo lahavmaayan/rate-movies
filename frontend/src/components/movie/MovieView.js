@@ -23,7 +23,10 @@ class MovieView extends Component {
 
     async loadMovieData(movieId) {
         const movieDataServer = await this.load('api/movie/' + movieId);
-        return this.tmpConvertMovieData(movieDataServer);
+        let movieData = movieDataServer;
+        //RatingsGrid assume input is Dictionary
+        movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
+        return movieData;
     }
 
     async load(url) {
@@ -34,20 +37,17 @@ class MovieView extends Component {
         return await resp.json();
     }
 
-    tmpConvertMovieData(serverMovieData) {
-        let ratings = [];
-        for (var prop in serverMovieData.tags) {
+    convertObjToDictionary(obj) {
+        let dict = [];
+        for (var prop in obj) {
             if (prop == '_id') continue;
-            ratings.push({
+            dict.push({
                 feature: prop,
-                rating: serverMovieData.tags[prop].avg,
+                rating: obj[prop].avg,
                 maxRating: 5
             });
         }
-        return {
-            name: serverMovieData.name,
-            ratings: ratings
-        };
+        return dict;
     }
 
     componentDidMount() {
