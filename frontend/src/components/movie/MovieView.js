@@ -3,7 +3,7 @@ import RatingsGrid from './RatingsGrid';
 import Modal from 'react-responsive-modal';
 import RateMovie from '../rateMovie/RateMovie';
 import { connect } from 'react-redux';
-import { getLoadFunc } from './MovieReducer';
+import { FETCH_SUCCESS } from './MovieReducer';
 
 class MovieView extends Component {
     constructor(props) {
@@ -21,8 +21,45 @@ class MovieView extends Component {
         this.setState({ show: false });
     };
 
+    async loadMovieData(movieId) {
+        const movieDataServer = await this.load('api/movie/' + movieId);
+        return this.tmpConvertMovieData(movieDataServer);
+    }
+
+    async load(url) {
+        const resp = await fetch(url);
+        if (!resp.ok) {
+            throw Error(resp.statusText);
+        }
+        return await resp.json();
+    }
+
+    tmpConvertMovieData(serverMovieData) {
+        let ratings = [];
+        for (var prop in serverMovieData.tags) {
+            if (prop == '_id') continue;
+            ratings.push({
+                feature: prop,
+                rating: serverMovieData.tags[prop].avg,
+                maxRating: 5
+            });
+        }
+        return {
+            name: serverMovieData.name,
+            ratings: ratings
+        };
+    }
+
     componentDidMount() {
-        this.props.dispatch(getLoadFunc());
+        const movieId = '5c4c39eb7555a317d4f816bf'; //tmp until recieved from outside
+        this.loadMovieData(movieId)
+            .then(movieData =>
+                this.props.dispatch({
+                    type: FETCH_SUCCESS,
+                    payload: { movieData: movieData }
+                })
+            )
+            .catch(exception => console.error(exception));
     }
 
     render() {
@@ -43,5 +80,4 @@ class MovieView extends Component {
 const mapStateToProps = state => ({
     movie: state.currentMovie
 });
-
 export default connect(mapStateToProps)(MovieView);
