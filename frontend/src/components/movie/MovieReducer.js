@@ -1,13 +1,16 @@
-const initialState = {
+const emptyState = {
     name: '',
     ratings: []
 };
-export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const LOAD_START = 'LOAD_START';
+export const LOAD_SUCCESS = 'LOAD_SUCCESS';
 
-function movieReducer(state = initialState, action) {
+function movieReducer(state = emptyState, action) {
     switch (action.type) {
-        case FETCH_SUCCESS:
+        case LOAD_SUCCESS:
             return action.payload.movieData;
+        case LOAD_START:
+            return emptyState;
         default:
             return state;
     }

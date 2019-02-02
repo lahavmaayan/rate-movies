@@ -3,7 +3,7 @@ import RatingsGrid from './RatingsGrid';
 import Modal from 'react-responsive-modal';
 import RateMovie from '../rateMovie/RateMovie';
 import { connect } from 'react-redux';
-import { FETCH_SUCCESS } from './MovieReducer';
+import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
 
 class MovieView extends Component {
     constructor(props) {
@@ -11,6 +11,35 @@ class MovieView extends Component {
         this.state = {
             show: false
         };
+    }
+
+    componentDidMount() {
+        this.props.dispatch({ type: LOAD_START });
+        const movieId = '5c4c39eb7555a317d4f816bf'; //tmp until recieved from outside
+        this.loadMovieData(movieId)
+            .then(movieData =>
+                this.props.dispatch({
+                    type: LOAD_SUCCESS,
+                    payload: { movieData: movieData }
+                })
+            )
+            .catch(exception => {
+                console.error(exception);
+            });
+    }
+
+    render() {
+        const { show } = this.state;
+        return (
+            <div>
+                <div className="title">{this.props.movie.name}</div>
+                <RatingsGrid ratings={this.props.movie.ratings} />
+                <button onClick={this.openModal}>clickkkk</button>
+                <Modal open={show} onClose={this.closeModal}>
+                    <RateMovie />
+                </Modal>
+            </div>
+        );
     }
 
     openModal = () => {
@@ -48,32 +77,6 @@ class MovieView extends Component {
             });
         }
         return dict;
-    }
-
-    componentDidMount() {
-        const movieId = '5c4c39eb7555a317d4f816bf'; //tmp until recieved from outside
-        this.loadMovieData(movieId)
-            .then(movieData =>
-                this.props.dispatch({
-                    type: FETCH_SUCCESS,
-                    payload: { movieData: movieData }
-                })
-            )
-            .catch(exception => console.error(exception));
-    }
-
-    render() {
-        const { show } = this.state;
-        return (
-            <div>
-                <div className="title">{this.props.movie.name}</div>
-                <RatingsGrid ratings={this.props.movie.ratings} />
-                <button onClick={this.openModal}>clickkkk</button>
-                <Modal open={show} onClose={this.closeModal}>
-                    <RateMovie />
-                </Modal>
-            </div>
-        );
     }
 }
 
