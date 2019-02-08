@@ -1,3 +1,5 @@
+import { SET_QUERY, SET_MOVIES } from './searchMovieConstants';
+
 const initialState = {
     query: "",
     movies: []
@@ -5,12 +7,12 @@ const initialState = {
 
 function movieSearchReducer(state = initialState, action) {
     switch (action.type) {
-        case 'searchMovie/SET_QUERY':
+        case SET_QUERY:
             return {
                 ...state,
                 query: action.payload
             };
-        case 'searchMovie/SET_MOVIES':
+        case SET_MOVIES:
             return {
                 ...state,
                 movies: action.payload

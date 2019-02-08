@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { get } from "../../services/restMethods";
+import { get } from 'services/restMethods';
 
 
 class SearchMovieView extends Component {
