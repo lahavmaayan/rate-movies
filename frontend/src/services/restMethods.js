@@ -26,6 +26,9 @@ export function get(url) {
         .then(function(response) {
             return response.json();
         })
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        .then(jsonObj => {
+            console.log('Success:', JSON.stringify(jsonObj))
+            return jsonObj
+        })
         .catch(error => console.error('Error:', error));
 }
