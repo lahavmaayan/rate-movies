@@ -17,7 +17,8 @@ module.exports = (env, argv) => {
             modules: modulePath,
             alias: {
                 common: path.resolve(__dirname, 'frontend/src/common'),
-                resources: path.resolve(__dirname, 'frontend/resources')
+                resources: path.resolve(__dirname, 'frontend/resources'),
+                services: path.resolve(__dirname, 'frontend/src/services')
             }
         },
         output: {
