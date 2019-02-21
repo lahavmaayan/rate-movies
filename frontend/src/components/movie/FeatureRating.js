@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { capitalizeFirstLetter } from '../../common/utils/capitalizeFirstLetter';
+import { capitalizeFirstLetter } from 'common/utils/capitalizeFirstLetter';
 
 class FeatureRating extends Component {
     render() {
