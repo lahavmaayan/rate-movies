@@ -37,10 +37,11 @@ class AppView extends Component {
                     <Route path="/" exact component={SearchMovie} />
                     <Route path="/rate" exact component={RateMovie} />
                     <Route path="/movie" exact component={MovieView} />
-                    <Route
+                    {/* not working */}
+                    {/* <Route
                         path="/movie/:movieId"
                         component={ObjectiveMovieView}
-                    />
+                    /> */}
                 </Switch>
             </div>
         );
