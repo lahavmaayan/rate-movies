@@ -15,7 +15,7 @@ class MovieView extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: LOAD_START });
-        const movieId = '5c4c39eb7555a317d4f816bf'; //tmp until recieved from outside
+        const movieId = this.props.match.params.movieId;
         this.loadMovieData(movieId)
             .then(movieData =>
                 this.props.dispatch({

@@ -18,7 +18,7 @@ const Header = () => {
                     <Link to="/rate">Rate a Movie</Link>
                 </li>
                 <li>
-                    <Link to="/movie">Movie</Link>
+                    <Link to="/movie/5c4c39eb7555a317d4f816bf">Movie</Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>
@@ -36,7 +36,7 @@ class AppView extends Component {
                 <Switch>
                     <Route path="/" exact component={SearchMovie} />
                     <Route path="/rate" exact component={RateMovie} />
-                    <Route path="/movie" exact component={MovieView} />
+                    <Route path="/movie/:movieId" exact component={MovieView} />
                     {/* not working */}
                     {/* <Route
                         path="/movie/:movieId"
