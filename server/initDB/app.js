@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Movie = require('../models/movie');
+const { Movie } = require('../models/movie');
 
 main();
 async function main() {
@@ -51,4 +51,7 @@ async function initDB() {
             duration: '119 minutes'
         }
     ]);
+    const rates = { funnyRate: { avg: 3, count: 10 } };
+    const newMovie = new Movie({ name: 'starTreck', reviews: [], tags: rates });
+    await newMovie.save();
 }

@@ -17,7 +17,8 @@ module.exports = (env, argv) => {
             modules: modulePath,
             alias: {
                 common: path.resolve(__dirname, 'frontend/src/common'),
-                resources: path.resolve(__dirname, 'frontend/resources')
+                resources: path.resolve(__dirname, 'frontend/resources'),
+                services: path.resolve(__dirname, 'frontend/src/services')
             }
         },
         output: {
@@ -59,7 +60,7 @@ module.exports = (env, argv) => {
                     ]
                 },
                 {
-                    test: /\.(jpg|png|gif|svg|ico|ttf|woff|woff2)(\?.*)?$/,
+                    test: /\.(jpg|png|gif|svg|ico|ttf|woff|woff2|eot|ico)(\?.*)?$/,
                     use: [
                         {
                             loader: 'file-loader',

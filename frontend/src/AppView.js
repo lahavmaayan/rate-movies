@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
-import SearchMovieView from './components/searchMovie/SearchMovieView';
+import SearchMovie from './components/searchMovie/SearchMovie';
 import RateMovie from './components/rateMovie/RateMovie';
 import MovieView from './components/movie/MovieView';
 import logo from 'resources/images/logo.png';
@@ -34,7 +34,7 @@ class AppView extends Component {
             <div className="app">
                 <Header />
                 <Switch>
-                    <Route path="/" exact component={SearchMovieView} />
+                    <Route path="/" exact component={SearchMovie} />
                     <Route path="/rate" exact component={RateMovie} />
                     <Route path="/movie" exact component={MovieView} />
                     <Route
