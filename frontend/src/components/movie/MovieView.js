@@ -51,7 +51,7 @@ class MovieView extends Component {
     };
 
     async loadMovieData(movieId) {
-        const movieDataServer = await this.load('api/movie/' + movieId);
+        const movieDataServer = await this.load(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
         //RatingsGrid assume input is Dictionary
         movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
