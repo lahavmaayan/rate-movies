@@ -5,6 +5,8 @@ import SearchMovie from './components/searchMovie/SearchMovie';
 import RateMovie from './components/rateMovie/RateMovie';
 import MovieView from './components/movie/MovieView';
 import logo from 'resources/images/logo.png';
+import ObjectiveMovieView from './components/ObjectiveMovie/ObjectiveMovie';
+
 import 'resources/scss/style.scss';
 
 const Header = () => {
@@ -35,6 +37,11 @@ class AppView extends Component {
                     <Route path="/" exact component={SearchMovie} />
                     <Route path="/rate" exact component={RateMovie} />
                     <Route path="/movie" exact component={MovieView} />
+                    {/* not working */}
+                    {/* <Route
+                        path="/movie/:movieId"
+                        component={ObjectiveMovieView}
+                    /> */}
                 </Switch>
             </div>
         );

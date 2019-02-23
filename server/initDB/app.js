@@ -20,9 +20,36 @@ async function initDB() {
     await connectToDB();
     await Movie.deleteMany({});
     await Movie.insertMany([
-        { name: 'harry potter' },
-        { name: 'hannibal' },
-        { name: 'pretty woman' }
+        {
+            name: 'harry potter',
+            categories: ['fantasy'],
+            description: 'movie description',
+            publishingYear: 2001,
+            pictureUrl:
+                'https://www.949powerfm.com.au/images/harry_potter-2.jpg',
+            cast: ['Richard Harris', 'Maggie Smith'],
+            duration: '152 minutes'
+        },
+        {
+            name: 'hannibal',
+            categories: ['drama'],
+            description: 'movie description',
+            publishingYear: 2001,
+            pictureUrl:
+                'https://images-na.ssl-images-amazon.com/images/I/51J%2BfT8ILiL.jpg',
+            cast: ['Antony Hopkins'],
+            duration: '131 minutes'
+        },
+        {
+            name: 'pretty woman',
+            categories: ['romance'],
+            description: 'movie description',
+            publishingYear: 1990,
+            pictureUrl:
+                'https://visitbristol.co.uk/imageresizer/?image=%2Fdmsimgs%2Fpretty_woman_1778730490.jpg&action=ProductDetail',
+            cast: ['Julia Roberts'],
+            duration: '119 minutes'
+        }
     ]);
     const rates = { funnyRate: { avg: 3, count: 10 } };
     const newMovie = new Movie({ name: 'starTreck', reviews: [], tags: rates });
