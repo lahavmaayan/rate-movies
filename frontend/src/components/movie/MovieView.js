@@ -4,6 +4,8 @@ import Modal from 'react-responsive-modal';
 import RateMovie from '../rateMovie/RateMovie';
 import { connect } from 'react-redux';
 import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
+import ObjectiveMovieView from './ObjectiveMovieView';
+import Loader from '../../common/components/Loader';
 
 class MovieView extends Component {
     constructor(props) {
@@ -29,10 +31,16 @@ class MovieView extends Component {
     }
 
     render() {
+        const movie = this.props.movie;
+        if (!movie) {
+            return <Loader />;
+        }
+
         const { show } = this.state;
         return (
             <div>
-                <div className="title">{this.props.movie.name}</div>
+                <ObjectiveMovieView movie={this.props.movie} />
+                {/* <div className="title">{this.props.movie.name}</div> */}
                 <RatingsGrid ratings={this.props.movie.ratings} />
                 <button onClick={this.openModal}>clickkkk</button>
                 <Modal open={show} onClose={this.closeModal}>
@@ -83,4 +91,5 @@ class MovieView extends Component {
 const mapStateToProps = state => ({
     movie: state.currentMovie
 });
+
 export default connect(mapStateToProps)(MovieView);

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Loader from '../../common/components/Loader';
-import { get } from '../../services/restMethods';
 
 const MovieTitle = ({ movieName, movieYear }) => {
     return (
@@ -61,19 +59,8 @@ const MovieDuration = ({ movieDuration }) => {
     );
 };
 class ObjectiveMovieView extends Component {
-    componentDidMount() {
-        const { setMovie } = this.props;
-        const currentMovie = this.props.match.params.movieId;
-        get(`/api/movie/${currentMovie}`).then(movie => {
-            setMovie(movie);
-        });
-    }
-
     render() {
-        const { movie } = this.props;
-        if (!movie) {
-            return <Loader />;
-        }
+        const movie = this.props.movie;
 
         const {
             name,
