@@ -40,7 +40,8 @@ class MovieView extends Component {
         return (
             <div>
                 <ObjectiveMovieView movie={this.props.movie} />
-                {/* <div className="title">{this.props.movie.name}</div> */}
+                <hr />
+                <h2> Ratings </h2>
                 <RatingsGrid ratings={this.props.movie.ratings} />
                 <button onClick={this.openModal}>clickkkk</button>
                 <Modal open={show} onClose={this.closeModal}>
