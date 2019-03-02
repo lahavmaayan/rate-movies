@@ -1,4 +1,4 @@
-.movie-pic{
+.moviePic{
   float: left;
   margin-right:15px;
   width:300px
@@ -6,4 +6,13 @@
 
 .clearFloat{
   clear: both;
+}
+
+.capitalize{
+  text-transform: capitalize
+}
+
+.boldDetails{
+  font-weight: bold;
+  font-size: 1.1em;
 }

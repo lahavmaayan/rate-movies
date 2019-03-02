@@ -12,13 +12,13 @@ class MovieDetails extends Component {
         } = this.props.movie;
         return (
             <div>
-                <h1>{name}</h1>
-                <img src={pictureUrl} className="movie-pic" />
-                <p>
+                <h1 className="capitalize">{name}</h1>
+                <img src={pictureUrl} className="moviePic" />
+                <p className="boldDetails capitalize">
                     {categories} | {publishingYear} | {duration}
                 </p>
                 <p>{description}</p>
-                <p>Cast: {cast}</p>
+                <p className="capitalize">Cast: {cast.join(', ')}</p>
                 <div className="clearFloat" />
             </div>
         );
