@@ -49,9 +49,16 @@ async function initDB() {
                 'https://visitbristol.co.uk/imageresizer/?image=%2Fdmsimgs%2Fpretty_woman_1778730490.jpg&action=ProductDetail',
             cast: ['Julia Roberts'],
             duration: '119 minutes'
+        },
+        {
+            name: 'star Treck',
+            description: 'aaaaa',
+            categories: ['fff'],
+            duration: '119 minutes',
+            publishingYear: 1990,
+            pictureUrl:
+                'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',
+            tags: { funnyRate: { avg: 3, count: 10 } }
         }
     ]);
-    const rates = { funnyRate: { avg: 3, count: 10 } };
-    const newMovie = new Movie({ name: 'starTreck', reviews: [], tags: rates });
-    await newMovie.save();
 }
