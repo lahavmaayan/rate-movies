@@ -4,7 +4,7 @@ import Modal from 'react-responsive-modal';
 import RateMovie from '../rateMovie/RateMovie';
 import { connect } from 'react-redux';
 import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
-import ObjectiveMovieView from './ObjectiveMovieView';
+import MovieDetails from './MovieDetails';
 import Loader from '../../common/components/Loader';
 
 class MovieView extends Component {
@@ -39,7 +39,7 @@ class MovieView extends Component {
         const { show } = this.state;
         return (
             <div>
-                <ObjectiveMovieView movie={this.props.movie} />
+                <MovieDetails movie={this.props.movie} />
                 <hr />
                 <h2> Ratings </h2>
                 <RatingsGrid ratings={this.props.movie.ratings} />

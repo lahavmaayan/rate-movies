@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
             }
         },
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, 'aaaaaaaaaaaaaaaaaaaa'),
             filename: 'bundle.js'
         },
         module: {
@@ -80,7 +80,15 @@ module.exports = (env, argv) => {
             minimizer: [new UglifyJsPlugin()]
         },
         devServer: {
-            historyApiFallback: true,
+            historyApiFallback: {
+                rewrites: [
+                    {
+                        from: '/movie/bundle.js',
+                        to: 'http://localhost:9000/bundle.js'
+                    },
+                    { from: /^\/$/, to: 'index.html' }
+                ]
+            },
             port: 9000,
             proxy: {
                 '/api/*': 'http://localhost:3000'

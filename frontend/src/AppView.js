@@ -17,7 +17,7 @@ const Header = () => {
                     <Link to="/rate">Rate a Movie</Link>
                 </li>
                 <li>
-                    <Link to="/movie/5c76f5c52fa7201b7432ada0">Movie</Link>
+                    <Link to="/movie/5c76f5c52fa7201b7432ad9d">Movie</Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>
