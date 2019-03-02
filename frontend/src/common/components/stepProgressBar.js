@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
+
 const StepProgressBar = ({ stepsCount, currentStep, className }) => {
     const getClassName = step => {
-        className = 'step fa ';
+        className = 'step fa fa-2x ';
         className +=
             step < currentStep
                 ? 'fa-check-circle visited'

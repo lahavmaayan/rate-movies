@@ -1,92 +1,71 @@
-// .rate-movie {
-//   color: $black;
-//   .step-progress {
-//     width: 300px;
-//     .steps {
-//       display: flex;
-//       justify-content: space-evenly;
-//       position: relative;
-//       .step {
-//         color: white;
-//         flex: 1;
-//         position: relative;
+.styles_modal__gNwvD {
+  width: 800px;
+  height: 500px;
+  .rate-movie {
+    color: $black;
+    height: 100%;
 
-//         &:after {
-//           content: "";
-//           background: red;
-//           height: 5px;
-//           width: 100px;
-//           position: absolute;
+    .wizard-container {
+      padding: 30px;
+      height: inherit;
+      form {
+        height: inherit;
+      }
+    }
+    .form-step {
+      height: calc(100% - 130px);
+    }
+    .step-progress {
+      width: 100%;
 
-//           top: 5px;
-//           left: 12px;
-//           z-index: -1;
-//         }
-
-//         &:before {
-//           display: block;
-//         }
-//         &:last-child {
-//           &:after {
-//             content: none;
-//           }
-//         }
-
-//       }
-//     }
-//   }
-// }
-
-.rate-movie {
-  color: $black;
-  .step-progress {
-    width: 100%;
-    .steps {
-      display: flex;
-      justify-content: space-evenly;
-      position: relative;
-      .wrapper {
-        color: $light-color;
-        flex: 1;
+      .steps {
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
+        justify-content: space-evenly;
         position: relative;
-        margin-left: 7px;
+        width: 1070px;
 
-        .title {
-          margin-left: -20px;
-          margin-top: -10px;
+        .wrapper {
           color: $main-color;
-          font-size: 12px;
-          font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-        }
-        .step {
-          background-color: $black;
-        }
-        .active {
-          color: $main-color;
-        }
-        .visited {
-          color: $main-color;
-        }
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          position: relative;
+          margin-left: 7px;
 
-        &:after {
-          content: "";
-          background: $light-color;
-          height: 5px;
-          width: 100%;
-          position: absolute;
+          .title {
+            margin-left: -3px;
+            margin-top: 7px;
+            color: $main-color;
+            font-size: 12px;
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+          }
 
-          top: 4px;
-          left: 12px;
-          z-index: -1;
-        }
+          .active {
+            color: $main-color;
+            transform: scale(1.5);
+            transition: transform 1s;
+          }
 
-        &:last-child {
+          .visited {
+            color: $main-color;
+          }
+
           &:after {
-            content: none;
+            content: "";
+            background: $main-color;
+            height: 5px;
+            width: 336px;
+            position: absolute;
+            top: 11px;
+            left: 21px;
+          }
+
+          &:last-child {
+            &:after {
+              content: none;
+            }
           }
         }
       }

@@ -54,17 +54,17 @@ const Input = ({
     );
 };
 
-// Input.propTypes = {
-//     label: PropTypes.string,
-//     className: PropTypes.string,
-//     onChange: PropTypes.func,
-//     isRequired: PropTypes.bool,
-//     type: PropTypes.string,
-//     selectOptions: PropTypes.array,
-//     name: PropTypes.string,
-//     value: PropTypes.object,
-//     touched: PropTypes.bool,
-//     selectFirst: PropTypes.bool
-// };
+Input.propTypes = {
+    label: PropTypes.string,
+    className: PropTypes.string,
+    onChange: PropTypes.func,
+    isRequired: PropTypes.bool,
+    type: PropTypes.string,
+    selectOptions: PropTypes.array,
+    name: PropTypes.string,
+    value: PropTypes.object,
+    touched: PropTypes.bool,
+    selectFirst: PropTypes.bool
+};
 
 export default Input;
