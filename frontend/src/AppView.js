@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
-import SearchMovieView from './components/searchMovie/SearchMovieView';
+import SearchMovie from './components/searchMovie/SearchMovie';
 import MovieView from './components/movie/MovieView';
 import logo from 'resources/images/logo.png';
+import ObjectiveMovieView from './components/ObjectiveMovie/ObjectiveMovie';
+
 import 'resources/scss/style.scss';
 
 const Header = () => {
@@ -28,8 +30,13 @@ class AppView extends Component {
             <div className="app">
                 <Header />
                 <Switch>
-                    <Route path="/" exact component={SearchMovieView} />
+                    <Route path="/" exact component={SearchMovie} />
                     <Route path="/movie" exact component={MovieView} />
+                    {/* not working */}
+                    {/* <Route
+                        path="/movie/:movieId"
+                        component={ObjectiveMovieView}
+                    /> */}
                 </Switch>
             </div>
         );

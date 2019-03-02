@@ -1,0 +1,32 @@
+.objective-movie {
+  position: relative;
+  top: 250px;
+  font-family: sans-serif;
+
+  title {
+    display: block;
+
+    p:first-child {
+      font-size: 35px !important;
+    }
+  }
+
+  .container {
+    display: flex;
+    align-items: baseline;
+
+    p:first-child {
+      margin-right: 5px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  .element {
+    margin-right: 5px;
+  }
+
+  img {
+    max-height: 210px;
+  }
+}

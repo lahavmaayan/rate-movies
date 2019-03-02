@@ -53,7 +53,13 @@ const movieSchema = new mongoose.Schema({
         required: true
     },
     reviews: [reviewSchema],
-    tags: movieTagsSchema
+    tags: movieTagsSchema,
+    categories: [String],
+    description: String,
+    publishingYear: Number,
+    pictureUrl: String,
+    cast: [String],
+    duration: String
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
