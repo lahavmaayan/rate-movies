@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
 import SearchMovie from './components/searchMovie/SearchMovie';
-import RateMovie from './components/rateMovie/RateMovie';
 import MovieView from './components/movie/MovieView';
 import logo from 'resources/images/logo.png';
 import ObjectiveMovieView from './components/ObjectiveMovie/ObjectiveMovie';
@@ -14,9 +13,6 @@ const Header = () => {
         <nav className="nav-wrap">
             <ul className="nav">
                 <img className="logo" src={logo} />
-                <li>
-                    <Link to="/rate">Rate a Movie</Link>
-                </li>
                 <li>
                     <Link to="/movie">Movie</Link>
                 </li>
@@ -35,7 +31,6 @@ class AppView extends Component {
                 <Header />
                 <Switch>
                     <Route path="/" exact component={SearchMovie} />
-                    <Route path="/rate" exact component={RateMovie} />
                     <Route path="/movie" exact component={MovieView} />
                     {/* not working */}
                     {/* <Route

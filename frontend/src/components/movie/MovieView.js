@@ -34,8 +34,13 @@ class MovieView extends Component {
             <div>
                 <div className="title">{this.props.movie.name}</div>
                 <RatingsGrid ratings={this.props.movie.ratings} />
-                <button onClick={this.openModal}>clickkkk</button>
-                <Modal open={show} onClose={this.closeModal}>
+                <button onClick={this.openModal}>Rate me</button>
+                <Modal
+                    classNames="rate-modal"
+                    center
+                    open={show}
+                    onClose={this.closeModal}
+                >
                     <RateMovie />
                 </Modal>
             </div>

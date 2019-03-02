@@ -1,7 +1,7 @@
 import { SET_QUERY, SET_MOVIES } from './searchMovieConstants';
 
 const initialState = {
-    query: "",
+    query: '',
     movies: []
 };
 
