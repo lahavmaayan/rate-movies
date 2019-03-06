@@ -13,40 +13,6 @@ class MovieView extends Component {
         };
     }
 
-    componentDidMount() {
-        this.props.dispatch({ type: LOAD_START });
-        const movieId = '5c4c39eb7555a317d4f816bf'; //tmp until recieved from outside
-        this.loadMovieData(movieId)
-            .then(movieData =>
-                this.props.dispatch({
-                    type: LOAD_SUCCESS,
-                    payload: { movieData: movieData }
-                })
-            )
-            .catch(exception => {
-                console.error(exception);
-            });
-    }
-
-    render() {
-        const { show } = this.state;
-        return (
-            <div>
-                <div className="title">{this.props.movie.name}</div>
-                <RatingsGrid ratings={this.props.movie.ratings} />
-                <button onClick={this.openModal}>Rate me</button>
-                <Modal
-                    classNames="rate-modal"
-                    center
-                    open={show}
-                    onClose={this.closeModal}
-                >
-                    <RateMovie />
-                </Modal>
-            </div>
-        );
-    }
-
     openModal = () => {
         this.setState({ show: true });
     };
@@ -74,7 +40,7 @@ class MovieView extends Component {
     convertObjToDictionary(obj) {
         let dict = [];
         for (var prop in obj) {
-            if (prop == '_id') continue;
+            if (prop === '_id') continue;
             dict.push({
                 feature: prop,
                 rating: obj[prop].avg,
@@ -83,6 +49,36 @@ class MovieView extends Component {
         }
         return dict;
     }
+
+    componentDidMount() {
+        this.props.dispatch({ type: LOAD_START });
+        const movieId = '5c7f91049360135e57bcf6eb'; //tmp until recieved from outside
+        this.loadMovieData(movieId)
+            .then(movieData =>
+                this.props.dispatch({
+                    type: LOAD_SUCCESS,
+                    payload: { movieData: movieData }
+                })
+            )
+            .catch(exception => {
+                console.error(exception);
+            });
+    }
+
+    render() {
+        const { show } = this.state;
+        return (
+            <div>
+                <div className="title">{this.props.movie.name}</div>
+                <RatingsGrid ratings={this.props.movie.ratings} />
+                <button onClick={this.openModal}>Rate me</button>
+                <Modal center open={show} onClose={this.closeModal}>
+                    <RateMovie />
+                </Modal>
+            </div>
+        );
+    }
+
 }
 
 const mapStateToProps = state => ({

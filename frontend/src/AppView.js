@@ -4,7 +4,6 @@ import { Route, Link, Switch } from 'react-router-dom';
 import SearchMovie from './components/searchMovie/SearchMovie';
 import MovieView from './components/movie/MovieView';
 import logo from 'resources/images/logo.png';
-import ObjectiveMovieView from './components/ObjectiveMovie/ObjectiveMovie';
 
 import 'resources/scss/style.scss';
 
@@ -32,11 +31,6 @@ class AppView extends Component {
                 <Switch>
                     <Route path="/" exact component={SearchMovie} />
                     <Route path="/movie" exact component={MovieView} />
-                    {/* not working */}
-                    {/* <Route
-                        path="/movie/:movieId"
-                        component={ObjectiveMovieView}
-                    /> */}
                 </Switch>
             </div>
         );

@@ -26,6 +26,7 @@ async function deleteMovie(movieId) {
 }
 
 async function postReview(data, movieId) {
+    console.log(movieId);
     const newReview = new MovieReview({
         ...data
     });
