@@ -15,19 +15,18 @@ class MovieView extends Component {
         };
     }
 
-    componentDidMount() {
-        this.props.dispatch({ type: LOAD_START });
-        const movieId = this.props.match.params.movieId;
-        this.loadMovieData(movieId)
-            .then(movieData =>
-                this.props.dispatch({
-                    type: LOAD_SUCCESS,
-                    payload: { movieData: movieData }
-                })
-            )
-            .catch(exception => {
-                console.error(exception);
+    async componentDidMount() {
+        try {
+            this.props.dispatch({ type: LOAD_START });
+            const movieId = this.props.match.params.movieId;
+            const movieData = await this.loadMovieData(movieId);
+            this.props.dispatch({
+                type: LOAD_SUCCESS,
+                payload: { movieData: movieData }
             });
+        } catch (exception) {
+            console.error(exception);
+        }
     }
 
     render() {
