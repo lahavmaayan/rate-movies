@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
 import SearchMovie from './components/searchMovie/SearchMovie';
-import RateMovie from './components/rateMovie/RateMovie';
 import MovieView from './components/movie/MovieView';
 import logo from 'resources/images/logo.png';
 

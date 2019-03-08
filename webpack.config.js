@@ -2,7 +2,7 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, argv) => {
     let srcPath = [path.resolve(__dirname, 'frontend/src')];
@@ -18,7 +18,8 @@ module.exports = (env, argv) => {
             alias: {
                 common: path.resolve(__dirname, 'frontend/src/common'),
                 resources: path.resolve(__dirname, 'frontend/resources'),
-                services: path.resolve(__dirname, 'frontend/src/services')
+                services: path.resolve(__dirname, 'frontend/src/services'),
+                components: path.resolve(__dirname, 'frontend/src/components')
             }
         },
         output: {
@@ -76,9 +77,6 @@ module.exports = (env, argv) => {
                 template: path.resolve(__dirname, 'frontend/index.html')
             })
         ],
-        optimization: {
-            minimizer: [new UglifyJsPlugin()]
-        },
         devServer: {
             historyApiFallback: true,
             port: 9000,
@@ -87,6 +85,8 @@ module.exports = (env, argv) => {
             }
         }
     };
-
+    if (argv.mode === 'production') {
+        webpackConfig.plugins.push(new TerserPlugin());
+    }
     return webpackConfig;
 };

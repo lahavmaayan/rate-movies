@@ -26,7 +26,7 @@ export function get(url) {
             return response.json();
         })
         .then(jsonObj => {
-            console.log('Success:', JSON.stringify(jsonObj))
+            console.log('Success:', JSON.stringify(jsonObj));
             return jsonObj;
         })
         .catch(error => console.error('Error:', error));

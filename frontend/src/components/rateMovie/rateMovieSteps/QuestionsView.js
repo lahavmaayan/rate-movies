@@ -7,7 +7,7 @@ class QuestionsView extends Component {
     render() {
         const { reviewerQuestions, handleChange } = this.props;
         return (
-            <div>
+            <div className="form-step">
                 <label>
                     For how long did you watched the movie?
                     <RadioGroup

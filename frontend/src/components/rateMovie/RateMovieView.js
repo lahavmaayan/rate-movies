@@ -5,7 +5,7 @@ import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
 import WizardForm from 'common/components/WizardForm';
-import { post } from '../../services/restMethods';
+import { post } from 'services/restMethods';
 
 class RateMovieView extends Component {
     handleUserInfoChange = ({ target }) => {
@@ -30,14 +30,13 @@ class RateMovieView extends Component {
         setReviewerQuestions(questions);
     };
 
-    handleSubmit = async event => {
-        event.preventDefault();
+    handleSubmit = async () => {
         const {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
         } = this.props;
-        await post('api/movie/5c48796d2e03c420f6a22736/rate', {
+        await post('api/movie/5c7f91049360135e57bcf6eb/rate', {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions

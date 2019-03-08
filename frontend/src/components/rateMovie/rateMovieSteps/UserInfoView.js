@@ -6,9 +6,9 @@ class UserInfoView extends Component {
     render() {
         const { reviewerDetails, handleChange } = this.props;
         return (
-            <div>
+            <div className="form-step">
                 <label>
-                    age:
+                    Age
                     <Input
                         label="age"
                         isRequired={true}
@@ -21,7 +21,7 @@ class UserInfoView extends Component {
                     />
                 </label>
                 <label>
-                    gender:
+                    Gender
                     <Input
                         isRequired={true}
                         type="select"

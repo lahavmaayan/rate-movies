@@ -6,12 +6,12 @@ class RatingsView extends Component {
     render() {
         const { reviewerRating, handleChange } = this.props;
         return (
-            <div>
+            <div className="form-step">
                 <label>
                     From 1-5 would you rate this movie as:
                     <br />
                     <label>
-                        Funny:
+                        Funny
                         <Rate
                             defaultValue={2.5}
                             onChange={e => handleChange(e, 'funnyRate')}
@@ -23,7 +23,7 @@ class RatingsView extends Component {
                     </label>
                     <br />
                     <label>
-                        Feminist:
+                        Feminist
                         <Rate
                             defaultValue={2.5}
                             onChange={e => handleChange(e, 'feminismRate')}
@@ -35,7 +35,7 @@ class RatingsView extends Component {
                     </label>
                     <br />
                     <label>
-                        Violence:
+                        Violence
                         <Rate
                             defaultValue={2.5}
                             onChange={e => handleChange(e, 'violenceRate')}
@@ -47,7 +47,7 @@ class RatingsView extends Component {
                     </label>
                     <br />
                     <label>
-                        Sexual:
+                        Sexual
                         <Rate
                             defaultValue={2.5}
                             onChange={e => handleChange(e, 'sexualityRate')}
@@ -59,7 +59,7 @@ class RatingsView extends Component {
                     </label>
                     <br />
                     <label>
-                        Fascinating:
+                        Fascinating
                         <Rate
                             defaultValue={2.5}
                             onChange={e => handleChange(e, 'fascinateRate')}
