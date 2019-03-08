@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import RatingsGrid from './RatingsGrid';
-import Modal from 'react-responsive-modal';
-import RateMovie from '../rateMovie/RateMovie';
 import { connect } from 'react-redux';
+import Modal from 'react-responsive-modal';
+import RatingsGrid from './RatingsGrid';
+import RateMovie from '../rateMovie/RateMovie';
 import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
 import MovieDetails from './MovieDetails';
-import Loader from '../../common/components/Loader';
+import Loader from 'common/components/Loader';
 
 class MovieView extends Component {
     constructor(props) {

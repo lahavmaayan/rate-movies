@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
             }
         },
         output: {
-            path: path.resolve(__dirname, 'aaaaaaaaaaaaaaaaaaaa'),
+            path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js'
         },
         module: {
@@ -60,7 +60,7 @@ module.exports = (env, argv) => {
                     ]
                 },
                 {
-                    test: /\.(jpg|png|gif|svg|ico|ttf|woff|woff2|eot|ico)(\?.*)?$/,
+                    test: /\.(jpg|png|gif|svg|ico|ttf|woff|woff2)(\?.*)?$/,
                     use: [
                         {
                             loader: 'file-loader',
@@ -80,15 +80,7 @@ module.exports = (env, argv) => {
             minimizer: [new UglifyJsPlugin()]
         },
         devServer: {
-            historyApiFallback: {
-                rewrites: [
-                    {
-                        from: '/movie/bundle.js',
-                        to: 'http://localhost:9000/bundle.js'
-                    },
-                    { from: /^\/$/, to: 'index.html' }
-                ]
-            },
+            historyApiFallback: true,
             port: 9000,
             proxy: {
                 '/api/*': 'http://localhost:3000'

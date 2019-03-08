@@ -9,5 +9,4 @@ export default combineReducers({
     movieRate: movieRateReducer,
     currentMovie: movieReducer,
     movieSearch: movieSearchReducer
-    //objectiveMovie: objectiveMovieReducer
 });
