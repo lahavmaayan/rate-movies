@@ -17,13 +17,11 @@ class MovieView extends Component {
 
     async componentDidMount() {
         try {
-            this.props.dispatch({ type: LOAD_START });
+            const { loadStart, loadSucseed } = this.props;
+            loadStart();
             const movieId = this.props.match.params.movieId;
             const movieData = await this.loadMovieData(movieId);
-            this.props.dispatch({
-                type: LOAD_SUCCESS,
-                payload: { movieData: movieData }
-            });
+            loadSucseed(movieData);
         } catch (exception) {
             console.error(exception);
         }
@@ -88,8 +86,19 @@ class MovieView extends Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        loadStart: () => dispatch({ type: LOAD_START }),
+        loadSucseed: movieData =>
+            dispatch({ type: LOAD_SUCCESS, payload: { movieData: movieData } })
+    };
+}
+
 const mapStateToProps = state => ({
     movie: state.currentMovie
 });
 
-export default connect(mapStateToProps)(MovieView);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MovieView);
