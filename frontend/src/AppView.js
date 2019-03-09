@@ -13,7 +13,7 @@ const Header = () => {
             <ul className="nav">
                 <img className="logo" src={logo} />
                 <li>
-                    <Link to="/movie">Movie</Link>
+                    <Link to="/movie/5c7a455a7c16122730915b85">Movie</Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>
@@ -30,7 +30,7 @@ class AppView extends Component {
                 <Header />
                 <Switch>
                     <Route path="/" exact component={SearchMovie} />
-                    <Route path="/movie" exact component={MovieView} />
+                    <Route path="/movie/:movieId" exact component={MovieView} />
                 </Switch>
             </div>
         );

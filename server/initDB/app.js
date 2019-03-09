@@ -55,6 +55,17 @@ async function initDB() {
             duration: '119 minutes',
             reviews: [],
             tags: {}
+        },
+        {
+            name: 'star Treck',
+            description: 'aaaaa',
+            categories: ['fff'],
+            duration: '119 minutes',
+            publishingYear: 1990,
+            pictureUrl:
+                'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',
+            tags: { funnyRate: { avg: 3, count: 10 } },
+            reviews: []
         }
     ]);
 }
