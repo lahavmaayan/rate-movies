@@ -36,12 +36,12 @@ class MovieView extends Component {
         const { show } = this.state;
         return (
             <div>
-                <MovieDetails movie={this.props.movie} />
+                <MovieDetails movie={movie} />
                 <hr />
                 <h2> Ratings </h2>
-                <RatingsGrid ratings={this.props.movie.ratings} />
-                <button onClick={this.openModal}>clickkkk</button>
-                <Modal open={show} onClose={this.closeModal}>
+                <RatingsGrid ratings={movie.ratings} />
+                <button onClick={this.openModal}>Rate me</button>
+                <Modal center open={show} onClose={this.closeModal}>
                     <RateMovie />
                 </Modal>
             </div>
@@ -83,35 +83,6 @@ class MovieView extends Component {
             });
         }
         return dict;
-    }
-
-    componentDidMount() {
-        this.props.dispatch({ type: LOAD_START });
-        const movieId = '5c7f91049360135e57bcf6eb'; //tmp until recieved from outside
-        this.loadMovieData(movieId)
-            .then(movieData =>
-                this.props.dispatch({
-                    type: LOAD_SUCCESS,
-                    payload: { movieData: movieData }
-                })
-            )
-            .catch(exception => {
-                console.error(exception);
-            });
-    }
-
-    render() {
-        const { show } = this.state;
-        return (
-            <div>
-                <div className="title">{this.props.movie.name}</div>
-                <RatingsGrid ratings={this.props.movie.ratings} />
-                <button onClick={this.openModal}>Rate me</button>
-                <Modal center open={show} onClose={this.closeModal}>
-                    <RateMovie />
-                </Modal>
-            </div>
-        );
     }
 }
 
