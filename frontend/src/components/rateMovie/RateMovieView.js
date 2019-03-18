@@ -30,13 +30,14 @@ class RateMovieView extends Component {
         setReviewerQuestions(questions);
     };
 
-    handleSubmit = async () => {
+    handleSubmit = async e => {
+        e.preventDefault();
         const {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
         } = this.props;
-        await post('api/movie/5c7f91049360135e57bcf6eb/rate', {
+        await post('/api/movie/5c8f8c1e63fd20361a158c81/rate', {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions

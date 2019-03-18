@@ -24,6 +24,7 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
+            publicPath: '/',
             filename: 'bundle.js'
         },
         module: {
@@ -65,7 +66,9 @@ module.exports = (env, argv) => {
                     use: [
                         {
                             loader: 'file-loader',
-                            options: {}
+                            options: {
+                                output: { path: path.join(__dirname, 'dist') }
+                            }
                         }
                     ]
                 }
@@ -78,7 +81,15 @@ module.exports = (env, argv) => {
             })
         ],
         devServer: {
-            historyApiFallback: true,
+            historyApiFallback: {
+                rewrites: [
+                    {
+                        from: '/movie/bundle.js',
+                        to: 'http://localhost:9000/bundle.js'
+                    },
+                    { from: /.png/, to: '/movie' }
+                ]
+            },
             port: 9000,
             proxy: {
                 '/api/*': 'http://localhost:3000'
