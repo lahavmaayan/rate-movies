@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RadioGroup from 'common/components/RadioGroup';
-import Input from 'common/components/Input';
 import PropTypes from 'prop-types';
 
 class QuestionsView extends Component {
@@ -37,32 +36,19 @@ class QuestionsView extends Component {
                     />
                 </label>
                 <label>
-                    Did the movie contained a women as role lead?
+                    Bechdel test - did the movie contained a scene of at least
+                    two women who talk to each other about something other than
+                    a man ?
                     <RadioGroup
                         options={[
                             { label: 'Yes', value: 'true' },
                             { label: 'No', value: 'false' }
                         ]}
-                        currentPick={reviewerQuestions.womenLeadRole.isTrue}
+                        currentPick={reviewerQuestions.bechdelTest}
                         handlePick={handleChange}
-                        name="womenLeadRole.isTrue"
+                        name="bechdelTest"
                     />
                 </label>
-                {reviewerQuestions.womenLeadRole.isTrue === 'true' && (
-                    <label>
-                        What is the Character Name?
-                        <Input
-                            label="CharacterName"
-                            type="text"
-                            name="womenLeadRole.ifTrueCharacterName"
-                            value={
-                                reviewerQuestions.womenLeadRole
-                                    .ifTrueCharacterName
-                            }
-                            onChange={handleChange}
-                        />
-                    </label>
-                )}
             </div>
         );
     }

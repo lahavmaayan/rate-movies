@@ -6,6 +6,7 @@ import RateMovie from '../rateMovie/RateMovie';
 import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
 import MovieDetails from './MovieDetails';
 import Loader from 'common/components/Loader';
+import { get } from 'services/restMethods';
 
 class MovieView extends Component {
     constructor(props) {
@@ -27,6 +28,37 @@ class MovieView extends Component {
         }
     }
 
+    openModal = () => {
+        this.setState({ show: true });
+    };
+
+    closeModal = () => {
+        this.setState({ show: false });
+    };
+
+    async loadMovieData(movieId) {
+        const movieDataServer = await get(`/api/movie/${movieId}`);
+        let movieData = movieDataServer;
+        //RatingsGrid assume input is Dictionary
+        movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
+        return movieData;
+    }
+
+    convertObjToDictionary(obj) {
+        console.log(obj);
+        let dict = [];
+        for (let prop in obj) {
+            if (prop === '_id') continue;
+            dict.push({
+                feature: prop,
+                rating: obj[prop].avg,
+                maxRating: 5
+            });
+        }
+        console.log(dict);
+        return dict;
+    }
+
     render() {
         const movie = this.props.movie;
         if (!movie) {
@@ -46,43 +78,6 @@ class MovieView extends Component {
                 </Modal>
             </div>
         );
-    }
-
-    openModal = () => {
-        this.setState({ show: true });
-    };
-
-    closeModal = () => {
-        this.setState({ show: false });
-    };
-
-    async loadMovieData(movieId) {
-        const movieDataServer = await this.load(`/api/movie/${movieId}`);
-        let movieData = movieDataServer;
-        //RatingsGrid assume input is Dictionary
-        movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
-        return movieData;
-    }
-
-    async load(url) {
-        const resp = await fetch(url);
-        if (!resp.ok) {
-            throw Error(resp.statusText);
-        }
-        return await resp.json();
-    }
-
-    convertObjToDictionary(obj) {
-        let dict = [];
-        for (var prop in obj) {
-            if (prop === '_id') continue;
-            dict.push({
-                feature: prop,
-                rating: obj[prop].avg,
-                maxRating: 5
-            });
-        }
-        return dict;
     }
 }
 
