@@ -9,6 +9,7 @@ const reviewSchema = new mongoose.Schema({
         movieLong: { type: String },
         bechdelTest: { type: String }
     },
+    fmScore: { type: String },
     reviewerRating: {
         femaleLead: { type: Number },
         LGBTQ: { type: Number },

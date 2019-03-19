@@ -34,13 +34,13 @@ async function postReview(data, movieId) {
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
     await updateTags(data, movieId);
+    await updateFmScore(data, movieId);
     return currentMovie;
 }
 
 async function updateTags(data, movieId) {
     const currentMovie = await getMovieById(movieId);
     const newReview = data.reviewerRating;
-    console.log(currentMovie);
     Object.keys(newReview).map(key => {
         const oldAvg = currentMovie.tags[key].avg;
         const count = currentMovie.tags[key].count;
@@ -51,14 +51,24 @@ async function updateTags(data, movieId) {
     currentMovie.save();
 }
 
+async function updateFmScore(data, movieId) {
+    const currentMovie = await getMovieById(movieId);
+    const tags = currentMovie.tags;
+    const { bechdelTest } = currentMovie.reviewerQuestions;
+    //best case all tags are fullfiled, need to adjust when the tags are empty
+    currentMovie.fmScore =
+        (2 * tags.femaleLead.avg +
+            2 * (bechdelTest ? 5 : 0) +
+            currentMovie.tags.LGBTQ +
+            tags.minorityRepresentation -
+            tags.sexualityRate) /
+        5;
+    currentMovie.save();
+}
+
 async function getMovieTags(movieId) {
     const currentMovie = await getMovieById(movieId);
     return currentMovie.tags;
-}
-
-async function getMovieReviews(movieId) {
-    const currentMovie = await getMovieById(movieId);
-    return currentMovie.reviews;
 }
 
 module.exports = {
@@ -68,6 +78,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieReviews,
     getMovieTags
 };
