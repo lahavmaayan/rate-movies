@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-responsive-modal';
 import RatingsGrid from './RatingsGrid';
+import TagsView from './TagsView';
 import RateMovie from '../rateMovie/RateMovie';
 import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
 import MovieDetails from './MovieDetails';
@@ -68,6 +69,8 @@ class MovieView extends Component {
         const { show } = this.state;
         return (
             <div>
+                {/* <TagsView value={movie.tags} /> */}
+                <TagsView tags={['funny', 'violent']} />
                 <MovieDetails movie={movie} />
                 <hr />
                 <h2> Ratings </h2>
