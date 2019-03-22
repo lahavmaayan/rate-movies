@@ -1,6 +1,7 @@
 .styles_modal__gNwvD {
-  width: 800px;
-  height: 500px;
+  width: 420px;
+  height: 350px;
+  border-radius: 6px 6px 6px 6px;
   .rate-movie {
     color: $black;
     height: 100%;
@@ -14,15 +15,22 @@
     }
     .form-step {
       height: calc(100% - 130px);
+      .rate-lable {
+        margin-bottom: -30px;
+      }
+      .step {
+        z-index: 1;
+      }
     }
     .step-progress {
       width: 100%;
+      margin-bottom: 20px;
 
       .steps {
         display: flex;
         justify-content: space-evenly;
         position: relative;
-        width: 1070px;
+        width: 400px;
 
         .wrapper {
           color: $main-color;
@@ -56,7 +64,7 @@
             content: "";
             background: $main-color;
             height: 5px;
-            width: 336px;
+            width: 135px;
             position: absolute;
             top: 11px;
             left: 21px;
