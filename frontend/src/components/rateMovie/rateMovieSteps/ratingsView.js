@@ -11,43 +11,45 @@ class RatingsView extends Component {
                     From 1-5 would you rate this movie as:
                     <br />
                     <label>
-                        Funny
+                        Strong Female Lead
                         <Rate
                             defaultValue={2.5}
-                            onChange={e => handleChange(e, 'funnyRate')}
+                            onChange={e => handleChange(e, 'femaleLead')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
-                            value={reviewerRating.funnyRate}
+                            value={reviewerRating.femaleLead}
                         />
                     </label>
                     <br />
                     <label>
-                        Feminist
+                        LGBTQ
                         <Rate
                             defaultValue={2.5}
-                            onChange={e => handleChange(e, 'feminismRate')}
+                            onChange={e => handleChange(e, 'LGBTQ')}
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
-                            value={reviewerRating.feminismRate}
+                            value={reviewerRating.LGBTQ}
                         />
                     </label>
                     <br />
                     <label>
-                        Violence
+                        Minority Group Representation
                         <Rate
                             defaultValue={2.5}
-                            onChange={e => handleChange(e, 'violenceRate')}
+                            onChange={e =>
+                                handleChange(e, 'minorityRepresentation')
+                            }
                             style={{ fontSize: 40 }}
                             allowHalf
                             allowClear={false}
-                            value={reviewerRating.violenceRate}
+                            value={reviewerRating.minorityRepresentation}
                         />
                     </label>
                     <br />
                     <label>
-                        Sexual
+                        Sexual Violante
                         <Rate
                             defaultValue={2.5}
                             onChange={e => handleChange(e, 'sexualityRate')}
@@ -55,18 +57,6 @@ class RatingsView extends Component {
                             allowHalf
                             allowClear={false}
                             value={reviewerRating.sexualityRate}
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Fascinating
-                        <Rate
-                            defaultValue={2.5}
-                            onChange={e => handleChange(e, 'fascinateRate')}
-                            style={{ fontSize: 40 }}
-                            allowHalf
-                            allowClear={false}
-                            value={reviewerRating.fascinateRate}
                         />
                     </label>
                     <br />

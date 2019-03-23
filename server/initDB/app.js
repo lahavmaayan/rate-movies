@@ -64,7 +64,7 @@ async function initDB() {
             publishingYear: 1990,
             pictureUrl:
                 'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',
-            tags: { funnyRate: { avg: 3, count: 10 } },
+            tags: { femaleLead: { avg: 3, count: 10 } },
             reviews: []
         }
     ]);

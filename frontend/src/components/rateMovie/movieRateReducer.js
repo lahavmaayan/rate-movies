@@ -4,14 +4,13 @@ const initialState = {
         reviewerDetails: { age: 18, gender: 'FEMALE' },
         reviewerQuestions: {
             movieLong: 'allMovie',
-            womenLeadRole: { isTrue: 'false', ifTrueCharacterName: '' }
+            bechdelTest: 'false'
         },
         reviewerRating: {
-            funnyRate: 0,
-            feminismRate: 0,
-            violenceRate: 0,
-            sexualityRate: 0,
-            fascinateRate: 0
+            femaleLead: 0,
+            LGBTQ: 0,
+            minorityRepresentation: 0,
+            sexualityRate: 0
         }
     }
 };
