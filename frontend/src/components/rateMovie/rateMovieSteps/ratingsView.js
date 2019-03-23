@@ -10,48 +10,44 @@ class RatingsView extends Component {
         <label>
           From 1-5 would you rate this movie as:
           <br />
-          <label className="rate-lable">
+          <label className="answer-lable-rating">
             Strong Female Lead
             <Rate
               defaultValue={2.5}
               onChange={e => handleChange(e, "femaleLead")}
-              style={{ fontSize: 30 }}
               allowHalf
               allowClear={false}
               value={reviewerRating.femaleLead}
             />
           </label>
           <br />
-          <label className="rate-lable">
+          <label className="answer-lable-rating">
             LGBTQ
             <Rate
               defaultValue={2.5}
               onChange={e => handleChange(e, "LGBTQ")}
-              style={{ fontSize: 30 }}
               allowHalf
               allowClear={false}
               value={reviewerRating.LGBTQ}
             />
           </label>
           <br />
-          <label className="rate-lable">
+          <label className="answer-lable-rating">
             Minority Group Representation
             <Rate
               defaultValue={2.5}
               onChange={e => handleChange(e, "minorityRepresentation")}
-              style={{ fontSize: 30 }}
               allowHalf
               allowClear={false}
               value={reviewerRating.minorityRepresentation}
             />
           </label>
           <br />
-          <label className="rate-lable">
+          <label className="answer-lable-rating">
             Sexual Violante
             <Rate
               defaultValue={2.5}
               onChange={e => handleChange(e, "sexualityRate")}
-              style={{ fontSize: 30 }}
               allowHalf
               allowClear={false}
               value={reviewerRating.sexualityRate}

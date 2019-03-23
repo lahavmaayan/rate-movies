@@ -15,8 +15,20 @@
     }
     .form-step {
       height: calc(100% - 130px);
-      .rate-lable {
-        margin-bottom: -30px;
+      .answer-lable {
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+      .answer-lable-rating {
+        margin: 0px 6px -30px 0px;
+        font-size: 11px;
+      }
+      .rc-rate {
+        margin-left: 5px;
+        font-size: 25px;
+      }
+      .question-label {
+        margin-bottom: 5px;
       }
       .step {
         z-index: 1;
