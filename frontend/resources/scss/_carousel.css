@@ -1,0 +1,34 @@
+.main-carousel{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.carousel-container{
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 55px;
+    padding-top: 55px
+}
+    
+.slide-container{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+} 
+
+.slide-button{
+    width: 40px;
+}
+
+.hovered-tile-carousel{
+    transform: scale(1.5, 1.5);
+    padding-right: 40px;
+    padding-left: 40px
+}
+
+.tile-carousel{
+    transform: scale(1, 1)
+}
