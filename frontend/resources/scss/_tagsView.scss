@@ -1,6 +1,7 @@
+$padding: 1em;
 .movieTag{
-  background-color: purple;  
+  background-color: $main-color;  
   margin-right: 1em;
-  padding: 2px 1em 2px 1em;
-  border-radius: 6px;
+  padding-right: $padding;
+  padding-left: $padding;  
 }

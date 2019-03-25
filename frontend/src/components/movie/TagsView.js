@@ -5,9 +5,12 @@ class TagsView extends Component {
         return (
             <div>
                 {this.props.tags.map((tag, index) => (
-                    <span key={index} className="movieTag">
+                    <a
+                        href="#"
+                        className="badge badge-primary badge-pill capitalize movieTag"
+                    >
                         {tag}
-                    </span>
+                    </a>
                 ))}
             </div>
         );
