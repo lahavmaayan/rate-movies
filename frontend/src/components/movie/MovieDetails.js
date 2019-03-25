@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import TagsView from './TagsView';
+
 class MovieDetails extends Component {
     render() {
         const {
@@ -12,7 +14,10 @@ class MovieDetails extends Component {
         } = this.props.movie;
         return (
             <div>
-                <h1 className="capitalize">{name}</h1>
+                <div className="flex-container">
+                    <h1 className="capitalize movieTitle">{name}</h1>
+                    <TagsView tags={['female lead', 'LGBTQ']} />
+                </div>
                 <img src={pictureUrl} className="moviePic" />
                 <p className="boldDetails capitalize">
                     {categories} | {publishingYear} | {duration}

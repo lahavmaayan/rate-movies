@@ -1,7 +1,9 @@
+$imageSize : 300px;
+$imageMargin: 15px;
 .moviePic{
   float: left;
-  margin-right:15px;
-  width:300px
+  margin-right:$imageMargin;
+  width:$imageSize
 }
 
 .clearFloat{
@@ -15,4 +17,15 @@
 .boldDetails{
   font-weight: bold;
   font-size: 1.1em;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;  
+}
+
+.movieTitle{
+  min-width: $imageSize+$imageMargin;
+  padding-right: 1em;
+
 }

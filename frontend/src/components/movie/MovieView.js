@@ -69,8 +69,6 @@ class MovieView extends Component {
         const { show } = this.state;
         return (
             <div>
-                {/* <TagsView value={movie.tags} /> */}
-                <TagsView tags={['funny', 'violent']} />
                 <MovieDetails movie={movie} />
                 <hr />
                 <h2> Ratings </h2>
