@@ -37,7 +37,7 @@ class RateMovieView extends Component {
             reviewerRating,
             reviewerQuestions
         } = this.props;
-        await post('/api/movie/5c8f8c1e63fd20361a158c81/rate', {
+        await post('/api/movie/5c9f4dfb43fc28498048a01c/rate', {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
