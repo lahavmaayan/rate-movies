@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-responsive-modal';
 import RatingsGrid from './RatingsGrid';
+import TagsView from './TagsView';
 import RateMovie from '../rateMovie/RateMovie';
 import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
 import MovieDetails from './MovieDetails';
@@ -40,7 +41,9 @@ class MovieView extends Component {
         const movieDataServer = await get(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
         //RatingsGrid assume input is Dictionary
-        movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
+        movieData.ratings = this.convertObjToDictionary(
+            movieDataServer.ratings
+        );
         return movieData;
     }
 
