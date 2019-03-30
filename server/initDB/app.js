@@ -36,7 +36,8 @@ async function initDB() {
             cast: ['Richard Harris', 'Maggie Smith'],
             duration: '152 minutes',
             reviews: [],
-            ratings: {}
+            ratings: {},
+            tags: ['Bechdel Test']
         },
         {
             name: 'hannibal',

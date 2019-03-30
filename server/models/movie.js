@@ -56,8 +56,8 @@ const movieSchema = new mongoose.Schema({
     pictureUrl: String,
     cast: [String],
     duration: String,
-    fmScore: { type: Number, default: 0 }
-    //tags: [String]
+    fmScore: { type: Number, default: 0 },
+    tags: [String]
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
