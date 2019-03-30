@@ -11,7 +11,10 @@ async function main() {
 
 async function connectToDB() {
     mongoose
-        .connect('mongodb://localhost/rate-movies')
+        .connect('mongodb://localhost/rate-movies', {
+            useNewUrlParser: true,
+            useCreateIndex: true
+        })
         .then(() => console.log('connected to mongo db'))
         .catch(err => console.error('could not connect to mongo db', err));
 }
@@ -64,7 +67,7 @@ async function initDB() {
             publishingYear: 1990,
             pictureUrl:
                 'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',
-            tags: { femaleLead: { avg: 3, count: 10 } },
+            tags: {},
             reviews: []
         }
     ]);

@@ -26,7 +26,6 @@ async function deleteMovie(movieId) {
 }
 
 async function postReview(data, movieId) {
-    console.log(movieId);
     const newReview = new MovieReview({
         ...data
     });
@@ -35,40 +34,41 @@ async function postReview(data, movieId) {
     await currentMovie.save();
     await updateTags(data, movieId);
     await updateFmScore(data, movieId);
-    return currentMovie;
+    return await currentMovie;
 }
 
 async function updateTags(data, movieId) {
     const currentMovie = await getMovieById(movieId);
-    const newReview = data.reviewerRating;
+    const { bechdelTest } = data.reviewerQuestions;
+    const bechdel = bechdelTest ? 5 : 0;
+    const newReview = { ...data.reviewerRating, bechdelTest: bechdel };
     Object.keys(newReview).map(key => {
-        const oldAvg = currentMovie.tags[key].avg;
+        const oldAvg = parseFloat(currentMovie.tags[key].avg);
         const count = currentMovie.tags[key].count;
         currentMovie.tags[key].avg =
             (oldAvg * count + parseFloat(newReview[key])) / (count + 1);
         currentMovie.tags[key].count++;
     });
-    currentMovie.save();
+    await currentMovie.save();
 }
 
 async function updateFmScore(data, movieId) {
     const currentMovie = await getMovieById(movieId);
     const tags = currentMovie.tags;
-    const { bechdelTest } = currentMovie.reviewerQuestions;
-    //best case all tags are fullfiled, need to adjust when the tags are empty
+    //best case all tags are fulfilled, need to adjust when the tags are empty
     currentMovie.fmScore =
         (2 * tags.femaleLead.avg +
-            2 * (bechdelTest ? 5 : 0) +
-            currentMovie.tags.LGBTQ +
-            tags.minorityRepresentation -
-            tags.sexualityRate) /
+            2 * tags.bechdelTest.avg +
+            currentMovie.tags.LGBTQ.avg +
+            tags.minorityRepresentation.avg -
+            tags.sexualityRate.avg) /
         5;
-    currentMovie.save();
+    await currentMovie.save();
 }
 
 async function getMovieTags(movieId) {
     const currentMovie = await getMovieById(movieId);
-    return currentMovie.tags;
+    return await currentMovie.tags;
 }
 
 module.exports = {
