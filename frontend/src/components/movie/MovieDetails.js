@@ -10,13 +10,14 @@ class MovieDetails extends Component {
             publishingYear,
             pictureUrl,
             cast,
-            duration
+            duration,
+            tags
         } = this.props.movie;
         return (
             <div>
                 <div className="flex-container">
                     <h1 className="capitalize movieTitle">{name}</h1>
-                    <TagsView tags={['female lead', 'LGBTQ']} />
+                    <TagsView tags={tags} />
                 </div>
                 <img src={pictureUrl} className="moviePic" />
                 <p className="boldDetails capitalize">
