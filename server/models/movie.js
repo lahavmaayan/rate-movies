@@ -7,7 +7,7 @@ const reviewSchema = new mongoose.Schema({
     },
     reviewerQuestions: {
         movieLong: { type: String },
-        bechdelTest: { type: String }
+        bechdelTest: { type: Boolean }
     },
     reviewerRating: {
         femaleLead: { type: Number },
@@ -33,6 +33,10 @@ const movieTagsSchema = new mongoose.Schema({
     sexualityRate: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
+    },
+    bechdelTest: {
+        avg: { type: Number, default: 0 },
+        count: { type: Number, default: 0 }
     }
 });
 
@@ -51,7 +55,8 @@ const movieSchema = new mongoose.Schema({
     publishingYear: Number,
     pictureUrl: String,
     cast: [String],
-    duration: String
+    duration: String,
+    fmScore: { type: Number, default: 0 }
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
