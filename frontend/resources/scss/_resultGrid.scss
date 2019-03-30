@@ -1,0 +1,19 @@
+.result-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 500;
+  height: 450;
+}
+.tile-bar {
+  background: rgba(0, 0, 0, 0.5);
+  height: 25px;
+  .tile-title {
+    margin-left: 5px;
+  }
+  .tile-data {
+    margin-left: 5px;
+    color: #73648a;
+    font-size: 11px;
+  }
+}
