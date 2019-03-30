@@ -34,7 +34,19 @@ async function postReview(data, movieId) {
     await currentMovie.save();
     await updateRatings(data, movieId);
     await updateFmScore(data, movieId);
+    await updateTags(movieId);
     return await currentMovie;
+}
+
+async function updateTags(movieId) {
+    const currentMovie = await getMovieById(movieId);
+    const ratings = currentMovie.ratings.toObject();
+    const ratingNames = Object.keys(ratings);
+    const tagThreshold = 3;
+    currentMovie.tags = ratingNames.filter(
+        ratingName => ratings[ratingName].avg > tagThreshold
+    );
+    currentMovie.save();
 }
 
 async function updateRatings(data, movieId) {
