@@ -11,10 +11,13 @@ async function main() {
 
 async function connectToDB() {
     mongoose
-        .connect('mongodb://localhost/rate-movies', {
-            useNewUrlParser: true,
-            useCreateIndex: true
-        })
+        .connect(
+            'mongodb://localhost/rate-movies',
+            {
+                useNewUrlParser: true,
+                useCreateIndex: true
+            }
+        )
         .then(() => console.log('connected to mongo db'))
         .catch(err => console.error('could not connect to mongo db', err));
 }
@@ -33,7 +36,7 @@ async function initDB() {
             cast: ['Richard Harris', 'Maggie Smith'],
             duration: '152 minutes',
             reviews: [],
-            tags: {}
+            ratings: {}
         },
         {
             name: 'hannibal',
@@ -45,7 +48,7 @@ async function initDB() {
             cast: ['Antony Hopkins'],
             duration: '131 minutes',
             reviews: [],
-            tags: {}
+            ratings: {}
         },
         {
             name: 'pretty woman',
@@ -57,7 +60,7 @@ async function initDB() {
             cast: ['Julia Roberts'],
             duration: '119 minutes',
             reviews: [],
-            tags: {}
+            ratings: {}
         },
         {
             name: 'star Treck',
@@ -67,7 +70,7 @@ async function initDB() {
             publishingYear: 1990,
             pictureUrl:
                 'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',
-            tags: {},
+            ratings: {},
             reviews: []
         }
     ]);

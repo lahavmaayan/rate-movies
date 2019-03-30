@@ -12,7 +12,7 @@ async function getAllMovies() {
 }
 
 async function createNewMovie(movie) {
-    const newMovie = new Movie({ ...movie, tags: {} });
+    const newMovie = new Movie({ ...movie, ratings: {} });
     await newMovie.save();
     return newMovie;
 }
@@ -32,43 +32,44 @@ async function postReview(data, movieId) {
     const currentMovie = await getMovieById(movieId);
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
-    await updateTags(data, movieId);
+    await updateRatings(data, movieId);
     await updateFmScore(data, movieId);
     return await currentMovie;
 }
 
-async function updateTags(data, movieId) {
+async function updateRatings(data, movieId) {
     const currentMovie = await getMovieById(movieId);
     const { bechdelTest } = data.reviewerQuestions;
     const bechdel = bechdelTest ? 5 : 0;
     const newReview = { ...data.reviewerRating, bechdelTest: bechdel };
     Object.keys(newReview).map(key => {
-        const oldAvg = parseFloat(currentMovie.tags[key].avg);
-        const count = currentMovie.tags[key].count;
-        currentMovie.tags[key].avg =
+        const currentRating = currentMovie.ratings[key];
+        const oldAvg = parseFloat(currentRating.avg);
+        const count = currentRating.count;
+        currentMovie.ratings[key].avg =
             (oldAvg * count + parseFloat(newReview[key])) / (count + 1);
-        currentMovie.tags[key].count++;
+        currentMovie.ratings[key].count++;
     });
     await currentMovie.save();
 }
 
 async function updateFmScore(data, movieId) {
     const currentMovie = await getMovieById(movieId);
-    const tags = currentMovie.tags;
-    //best case all tags are fulfilled, need to adjust when the tags are empty
+    const ratings = currentMovie.ratings;
+    //best case all ratings are fulfilled, need to adjust when the ratings are empty
     currentMovie.fmScore =
-        (2 * tags.femaleLead.avg +
-            2 * tags.bechdelTest.avg +
-            currentMovie.tags.LGBTQ.avg +
-            tags.minorityRepresentation.avg -
-            tags.sexualityRate.avg) /
+        (2 * ratings.femaleLead.avg +
+            2 * ratings.bechdelTest.avg +
+            currentMovie.ratings.LGBTQ.avg +
+            ratings.minorityRepresentation.avg -
+            ratings.sexualityRate.avg) /
         5;
     await currentMovie.save();
 }
 
-async function getMovieTags(movieId) {
+async function getMovieRating(movieId) {
     const currentMovie = await getMovieById(movieId);
-    return await currentMovie.tags;
+    return await currentMovie.ratings;
 }
 
 module.exports = {
@@ -78,5 +79,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieTags
+    getMovieRating
 };

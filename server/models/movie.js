@@ -17,7 +17,7 @@ const reviewSchema = new mongoose.Schema({
     }
 });
 
-const movieTagsSchema = new mongoose.Schema({
+const movieRatingsSchema = new mongoose.Schema({
     femaleLead: {
         avg: { type: Number, default: 0 },
         count: { type: Number, default: 0 }
@@ -49,7 +49,7 @@ const movieSchema = new mongoose.Schema({
         required: true
     },
     reviews: [reviewSchema],
-    tags: movieTagsSchema,
+    ratings: movieRatingsSchema,
     categories: [String],
     description: String,
     publishingYear: Number,
@@ -57,6 +57,7 @@ const movieSchema = new mongoose.Schema({
     cast: [String],
     duration: String,
     fmScore: { type: Number, default: 0 }
+    //tags: [String]
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

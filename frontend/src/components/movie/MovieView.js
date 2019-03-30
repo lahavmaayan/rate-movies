@@ -41,7 +41,9 @@ class MovieView extends Component {
         const movieDataServer = await get(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
         //RatingsGrid assume input is Dictionary
-        movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
+        movieData.ratings = this.convertObjToDictionary(
+            movieDataServer.ratings
+        );
         return movieData;
     }
 
