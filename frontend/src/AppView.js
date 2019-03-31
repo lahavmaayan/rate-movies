@@ -13,7 +13,7 @@ const Header = () => {
             <ul className="nav">
                 <img className="logo" src={logo} />
                 <li>
-                    <Link to="/movie/5c9f5dd2323b0b3120197697">Movie</Link>
+                    <Link to="/movie/5ca06eebb175653a40364485">Movie</Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>

@@ -85,8 +85,8 @@ router.post('/:movieId/rate', async (req, res, next) => {
 
 router.get('/:movieId/rate', async (req, res, next) => {
     try {
-        const movieTags = await movieRepo.getMovieTags(req.params.movieId);
-        res.status(200).send(movieTags);
+        const ratings = await movieRepo.getMovieRatings(req.params.movieId);
+        res.status(200).send(ratings);
     } catch (err) {
         next(err);
     }

@@ -30,6 +30,78 @@ app.get('/api/search', (req, res) => {
                 rating: 5,
                 imageUrl:
                     'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 2,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 3,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 4,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 5,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 6,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 7,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 8,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 9,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
+            },
+            {
+                id: 10,
+                name: 'Shalom',
+                director: 'Another Name',
+                rating: 5,
+                imageUrl:
+                    'https://m.media-amazon.com/images/M/MV5BMTc5Nzc1OTk3OV5BMl5BanBnXkFtZTgwNDM1NTQ3NjM@._V1_UX182_CR0,0,182,268_AL_.jpg'
             }
         ]
     });

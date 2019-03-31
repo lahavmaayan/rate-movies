@@ -39,7 +39,9 @@ export default class MovieView extends Component {
         const movieDataServer = await get(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
         //RatingsGrid assume input is Dictionary
-        movieData.ratings = this.convertObjToDictionary(movieDataServer.tags);
+        movieData.ratings = this.convertObjToDictionary(
+            movieDataServer.ratings
+        );
         return movieData;
     }
 
@@ -65,7 +67,7 @@ export default class MovieView extends Component {
             reviewerRating,
             reviewerQuestions
         } = this.props;
-        await post('/api/movie/5c9f5dd2323b0b3120197697/rate', {
+        await post('/api/movie/5ca06eebb175653a40364485/rate', {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
@@ -81,7 +83,7 @@ export default class MovieView extends Component {
 
         const { show } = this.state;
         return (
-            <div>
+            <div className="move-container">
                 <MovieDetails movie={movie} />
                 <hr />
                 <h2> Ratings </h2>

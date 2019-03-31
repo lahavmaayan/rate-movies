@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import GridTileBar from './../../common/components/GridTileBar';
 class MovieTile extends Component {
     constructor(props) {
         super(props);
@@ -7,9 +7,9 @@ class MovieTile extends Component {
     }
 
     render() {
-        const { imageClass, imageHoveredClass } = this.props;
+        const { imageClass, imageHoveredClass, title, rating } = this.props;
         return (
-            <div>
+            <div className="movie-tile">
                 <a href={this.props.movieUrl}>
                     <img
                         width={140}
@@ -23,6 +23,7 @@ class MovieTile extends Component {
                         }
                     />
                 </a>
+                <GridTileBar title={title} data={'rating: ' + rating} />
             </div>
         );
     }

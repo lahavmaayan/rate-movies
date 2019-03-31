@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { get } from 'services/restMethods';
 import MovieTile from '../movieTile/movieTile';
 import Carousel from '../carousel/carousel';
+import ResultsGrid from '../../common/components/ResultsGrid';
 
 class SearchMovieView extends Component {
     constructor(props) {
         super(props);
-        this.state = { carouselItems: [] };
+        this.state = { carouselItems: [], resultCount: -1 };
     }
 
     handleClick = () => {
@@ -14,13 +15,23 @@ class SearchMovieView extends Component {
         const { setQuery, setMovies } = this.props;
         setQuery(searchQuery);
         get(`/api/search?search_text=${searchQuery}`)
-            .then(data => setMovies(data.movies))
+            .then(data => {
+                setMovies(data.movies);
+                this.setState({ resultCount: data.movies.length });
+            })
             .catch(e => console.log(e));
     };
 
     getItemContent = item => {
         const url = `http://localhost:9000/movie/${item.id}`;
-        return <MovieTile movieUrl={url} imageUrl={item.imageUrl} />;
+        return (
+            <MovieTile
+                movieUrl={url}
+                title={item.name}
+                rating={item.rating}
+                imageUrl={item.imageUrl}
+            />
+        );
     };
 
     getItmes = () => {
@@ -51,13 +62,20 @@ class SearchMovieView extends Component {
                     <button
                         type="button"
                         onClick={this.handleClick}
-                        style={{ fontSize: '13.3px', padding: '2px' }}
+                        style={{ 'font-size': '13.3px', padding: '2px' }}
                     >
                         Search
                     </button>
                 </div>
                 <Carousel carouselMovies={carouselItems} />
-                <div>{this.getItmes()}</div>
+                {/* <div>{this.getItmes()}</div> */}
+                {this.state.resultCount >= 0 && (
+                    <div>
+                        Found {this.state.resultCount} results for
+                        {this.search ? ' ' + this.search.value : ''} :
+                    </div>
+                )}
+                <ResultsGrid results={this.getItmes()} />
             </div>
         );
     }

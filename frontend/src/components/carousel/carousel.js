@@ -28,6 +28,8 @@ class Carousel extends Component {
             <MovieTile
                 movieUrl={url}
                 imageUrl={item.imageUrl}
+                title={item.name}
+                rating={item.rating}
                 imageClass="tile-carousel"
                 imageHoveredClass="hovered-tile-carousel"
             />
