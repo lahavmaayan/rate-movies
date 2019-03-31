@@ -71,6 +71,11 @@ async function getMovieTags(movieId) {
     return await currentMovie.tags;
 }
 
+async function getTopN(n) {
+    var x = Number(n)
+    return Movie.find().sort({fmScore:-1}).limit(x);
+}
+
 module.exports = {
     getMovieById,
     getAllMovies,
@@ -78,5 +83,6 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieTags
+    getMovieTags,
+    getTopN
 };

@@ -21,7 +21,7 @@ class SearchMovieView extends Component {
     getItemContent = item => {
         const url = `http://localhost:9000/movie/${item.id}`;
         return (
-            <MovieTile movieUrl={url} imageUrl={item.imageUrl}/>
+            <MovieTile movieUrl={url} pictureUrl={item.pictureUrl}/>
         );
     };
 
@@ -31,8 +31,8 @@ class SearchMovieView extends Component {
     };
 
     topRatings = () => {
-        get(`/api/getTopRatings`)
-            .then(data => this.setState({carouselItems: data.movies}))
+        get(`/api/movie/top_n/:n`)
+            .then(data => this.setState({carouselItems: data}))
             .catch(e => console.log(e));
     }
     

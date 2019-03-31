@@ -23,9 +23,9 @@ class Carousel extends Component {
     }
     
     creatMovieTile = item => {
-        const url = `http://localhost:9000/movie/${item.id}`;
+        const url = `http://localhost:9000/movie/${item._id}`;
         return (
-            <MovieTile movieUrl={url} imageUrl={item.imageUrl} imageClass='tile-carousel' imageHoveredClass='hovered-tile-carousel'/>
+            <MovieTile movieUrl={url} pictureUrl={item.pictureUrl} imageClass='tile-carousel' imageHoveredClass='hovered-tile-carousel'/>
         );
     };
     
