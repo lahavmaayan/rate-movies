@@ -9,11 +9,12 @@ import {
 
 const mapStateToProps = state => {
     return {
-        reviewerDetails: state.movieRate.ratings.reviewerDetails,
-        reviewerRating: state.movieRate.ratings.reviewerRating,
-        reviewerQuestions: state.movieRate.ratings.reviewerQuestions,
-        currentStep: state.movieRate.currentStep,
-        overallRating: state.movieRate
+        reviewerDetails: state.currentMovie.currentRate.ratings.reviewerDetails,
+        reviewerRating: state.currentMovie.currentRate.ratings.reviewerRating,
+        reviewerQuestions:
+            state.currentMovie.currentRate.ratings.reviewerQuestions,
+        currentStep: state.currentMovie.currentRate.currentStep,
+        overallRating: state.currentMovie.currentRate
     };
 };
 

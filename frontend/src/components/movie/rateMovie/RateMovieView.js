@@ -30,27 +30,14 @@ class RateMovieView extends Component {
         setReviewerQuestions(questions);
     };
 
-    handleSubmit = async e => {
-        e.preventDefault();
-        const {
-            reviewerDetails,
-            reviewerRating,
-            reviewerQuestions
-        } = this.props;
-        await post('/api/movie/5c9f4dfb43fc28498048a01c/rate', {
-            reviewerDetails,
-            reviewerRating,
-            reviewerQuestions
-        });
-    };
-
     render() {
         const {
             currentStep,
             reviewerDetails,
             reviewerRating,
             reviewerQuestions,
-            setCurrentStep
+            setCurrentStep,
+            handleSubmit
         } = this.props;
         const steps = [
             {
@@ -87,7 +74,7 @@ class RateMovieView extends Component {
                 <WizardForm
                     currentStep={currentStep}
                     steps={steps}
-                    onSubmit={this.handleSubmit}
+                    onSubmit={handleSubmit}
                     onStepChanged={setCurrentStep}
                 />
             </div>

@@ -11,13 +11,10 @@ async function main() {
 
 async function connectToDB() {
     mongoose
-        .connect(
-            'mongodb://localhost/rate-movies',
-            {
-                useNewUrlParser: true,
-                useCreateIndex: true
-            }
-        )
+        .connect('mongodb://localhost/rate-movies', {
+            useNewUrlParser: true,
+            useCreateIndex: true
+        })
         .then(() => console.log('connected to mongo db'))
         .catch(err => console.error('could not connect to mongo db', err));
 }

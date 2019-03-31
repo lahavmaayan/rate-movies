@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
 import SearchMovie from './components/searchMovie/SearchMovie';
-import MovieView from './components/movie/MovieView';
+import Movie from './components/movie/Movie';
 import logo from 'resources/images/logo.png';
 
 import 'resources/scss/style.scss';
@@ -13,7 +13,7 @@ const Header = () => {
             <ul className="nav">
                 <img className="logo" src={logo} />
                 <li>
-                    <Link to="/movie/5c9f4dfb43fc28498048a01c">Movie</Link>
+                    <Link to="/movie/5ca06eebb175653a40364485">Movie</Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>
@@ -30,7 +30,7 @@ class AppView extends Component {
                 <Header />
                 <Switch>
                     <Route path="/" exact component={SearchMovie} />
-                    <Route path="/movie/:movieId" exact component={MovieView} />
+                    <Route path="/movie/:movieId" exact component={Movie} />
                 </Switch>
             </div>
         );
