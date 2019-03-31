@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Modal from 'react-responsive-modal';
-import RatingsGrid from './RatingsGrid';
-import RateMovie from '../rateMovie/RateMovie';
-import { LOAD_SUCCESS, LOAD_START } from './MovieReducer';
-import MovieDetails from './MovieDetails';
-import Loader from 'common/components/Loader';
-import { get } from 'services/restMethods';
 
-class MovieView extends Component {
+import Modal from 'react-responsive-modal';
+import RatingsGrid from './views/RatingsGrid';
+import RateMovie from './rateMovie/RateMovie';
+import MovieDetails from './views/MovieDetails';
+import Loader from 'common/components/Loader';
+import { get, post } from 'services/restMethods';
+
+export default class MovieView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,19 +44,34 @@ class MovieView extends Component {
     }
 
     convertObjToDictionary(obj) {
-        console.log(obj);
         let dict = [];
         for (let prop in obj) {
-            if (prop === '_id') continue;
-            dict.push({
-                feature: prop,
-                rating: obj[prop].avg,
-                maxRating: 5
-            });
+            if (obj.hasOwnProperty(prop)) {
+                if (prop === '_id') continue;
+                dict.push({
+                    feature: prop,
+                    rating: obj[prop].avg,
+                    maxRating: 5
+                });
+            }
         }
-        console.log(dict);
         return dict;
     }
+
+    handleSubmit = async e => {
+        e.preventDefault();
+        const {
+            reviewerDetails,
+            reviewerRating,
+            reviewerQuestions
+        } = this.props;
+        await post('/api/movie/5c9f5dd2323b0b3120197697/rate', {
+            reviewerDetails,
+            reviewerRating,
+            reviewerQuestions
+        });
+        await this.closeModal();
+    };
 
     render() {
         const movie = this.props.movie;
@@ -74,26 +88,9 @@ class MovieView extends Component {
                 <RatingsGrid ratings={movie.ratings} />
                 <button onClick={this.openModal}>Rate me</button>
                 <Modal center open={show} onClose={this.closeModal}>
-                    <RateMovie />
+                    <RateMovie handleSubmit={this.handleSubmit} />
                 </Modal>
             </div>
         );
     }
 }
-
-function mapDispatchToProps(dispatch) {
-    return {
-        loadStart: () => dispatch({ type: LOAD_START }),
-        loadSucseed: movieData =>
-            dispatch({ type: LOAD_SUCCESS, payload: { movieData: movieData } })
-    };
-}
-
-const mapStateToProps = state => ({
-    movie: state.currentMovie
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MovieView);

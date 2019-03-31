@@ -6,7 +6,7 @@ import Carousel from '../carousel/carousel';
 class SearchMovieView extends Component {
     constructor(props) {
         super(props);
-        this.state = {carouselItems: []};
+        this.state = { carouselItems: [] };
     }
 
     handleClick = () => {
@@ -20,9 +20,7 @@ class SearchMovieView extends Component {
 
     getItemContent = item => {
         const url = `http://localhost:9000/movie/${item.id}`;
-        return (
-            <MovieTile movieUrl={url} imageUrl={item.imageUrl}/>
-        );
+        return <MovieTile movieUrl={url} imageUrl={item.imageUrl} />;
     };
 
     getItmes = () => {
@@ -32,29 +30,33 @@ class SearchMovieView extends Component {
 
     topRatings = () => {
         get(`/api/getTopRatings`)
-            .then(data => this.setState({carouselItems: data.movies}))
+            .then(data => this.setState({ carouselItems: data.movies }))
             .catch(e => console.log(e));
-    }
-    
+    };
+
     render() {
         const { resultMovies } = this.props;
         const carouselItems = this.state.carouselItems;
-        if (carouselItems.length==0){
-            this.topRatings()
-        };
+        if (carouselItems.length == 0) {
+            this.topRatings();
+        }
 
         return (
             <div>
-                <div style={{display: 'flex'}}>
-                <input
-                    placeholder="Search for..."
-                    ref={input => (this.search = input)}
-                />
-                <button type="button" onClick={this.handleClick} style={{'font-size': '13.3px', padding: '2px'}}>
-                    Search
-                </button>
+                <div style={{ display: 'flex' }}>
+                    <input
+                        placeholder="Search for..."
+                        ref={input => (this.search = input)}
+                    />
+                    <button
+                        type="button"
+                        onClick={this.handleClick}
+                        style={{ fontSize: '13.3px', padding: '2px' }}
+                    >
+                        Search
+                    </button>
                 </div>
-                <Carousel carouselMovies={carouselItems}/>
+                <Carousel carouselMovies={carouselItems} />
                 <div>{this.getItmes()}</div>
             </div>
         );

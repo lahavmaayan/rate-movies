@@ -62,7 +62,7 @@ async function updateFmScore(data, movieId) {
             currentMovie.tags.LGBTQ.avg +
             tags.minorityRepresentation.avg -
             tags.sexualityRate.avg) /
-        5;
+        6;
     await currentMovie.save();
 }
 
