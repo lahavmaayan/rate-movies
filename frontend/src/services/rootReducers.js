@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import movieRateReducer from 'components/rateMovie/movieRateReducer';
-import movieReducer from 'components/movie/MovieReducer';
+import movieRateReducer from 'components/movie/rateMovie/movieRateReducer';
+import movieReducer from 'components/movie/movieReducer';
 import movieSearchReducer from 'components/searchMovie/movieSearchReducer';
 
 export default combineReducers({
-    movieRate: movieRateReducer,
-    currentMovie: movieReducer,
+    currentMovie: combineReducers({
+        data: movieReducer,
+        currentRate: movieRateReducer
+    }),
     movieSearch: movieSearchReducer
 });
