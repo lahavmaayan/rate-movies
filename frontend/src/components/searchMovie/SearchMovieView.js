@@ -14,10 +14,14 @@ class SearchMovieView extends Component {
         const searchQuery = this.search.value;
         const { setQuery, setMovies } = this.props;
         setQuery(searchQuery);
-        get(`/api/search?search_text=${searchQuery}`)
-            .then(data => {
-                setMovies(data.movies);
-                this.setState({ resultCount: data.movies.length });
+        // get(`/api/search?search_text=${searchQuery}`)
+        //     .then(data => {
+        //         setMovies(data.movies);
+        //         this.setState({ resultCount: data.movies.length });
+        get(`/api/movie?name=${searchQuery}`)
+        .then(data => {
+            setMovies(data);
+            this.setState({ resultCount: data.length });
             })
             .catch(e => console.log(e));
     };

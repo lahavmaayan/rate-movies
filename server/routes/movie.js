@@ -3,6 +3,7 @@ const validationSchema = require('../validationSchema');
 const express = require('express');
 const router = express.Router();
 const movieRepo = require('../repos/movieRepo');
+const tmdbRepo = require('../repos/tmdbRepo');
 
 router.get('/:movieId', async (req, res, next) => {
     try {
@@ -19,7 +20,20 @@ router.get('/:movieId', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
     try {
-        const movies = await movieRepo.getAllMovies();
+        //const movies = await movieRepo.getAllMovies();
+        var movies = [];
+
+        if(req.query.femaleLeadTag == 1 ||
+            req.query.LGBTQTag == 1 ||
+            req.query.minorityRepresentationTag == 1 ||
+            req.query.sexualityRateTag == 1 ||
+            req.query.bechdelTestTag == 1){
+                movies = await movieRepo.searchMovies(req.query);
+            }
+
+        else {
+            movies = await tmdbRepo.searchMovies(req.query);
+        }
         res.status(200).send(movies);
     } catch (err) {
         next(err);
