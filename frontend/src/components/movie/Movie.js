@@ -1,7 +1,7 @@
 import { LOAD_START, LOAD_SUCCESS } from './movieReducer';
 import { connect } from 'react-redux';
 
-import MovieView from './MovieView';
+import MoviePage from './MoviePage';
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -21,4 +21,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MovieView);
+)(MoviePage);

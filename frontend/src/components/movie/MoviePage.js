@@ -7,7 +7,7 @@ import MovieDetails from './views/MovieDetails';
 import Loader from 'common/components/Loader';
 import { get, post } from 'services/restMethods';
 
-export default class MovieView extends Component {
+export default class MoviePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,15 +75,10 @@ export default class MovieView extends Component {
         await this.closeModal();
     };
 
-    render() {
-        const movie = this.props.movie;
-        if (!movie) {
-            return <Loader />;
-        }
-
+    movieView(movie) {
         const { show } = this.state;
         return (
-            <div className="center-container">
+            <div>
                 <MovieDetails movie={movie} />
                 <hr />
                 <RatingsGrid ratings={movie.ratings} />
@@ -91,6 +86,18 @@ export default class MovieView extends Component {
                 <Modal center open={show} onClose={this.closeModal}>
                     <RateMovie handleSubmit={this.handleSubmit} />
                 </Modal>
+            </div>
+        );
+    }
+
+    render() {
+        const movie = this.props.movie;
+        if (!movie) {
+            return <Loader />;
+        }
+        return (
+            <div className="horizontal-centered top-spaced">
+                {this.movieView(movie)}
             </div>
         );
     }
