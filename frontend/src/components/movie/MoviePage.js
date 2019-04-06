@@ -4,10 +4,9 @@ import Modal from 'react-responsive-modal';
 import RatingsGrid from './views/RatingsGrid';
 import RateMovie from './rateMovie/RateMovie';
 import MovieDetails from './views/MovieDetails';
-import Loader from 'common/components/Loader';
 import { get, post } from 'services/restMethods';
 
-export default class MovieView extends Component {
+export default class MoviePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,7 +41,39 @@ export default class MovieView extends Component {
         movieData.ratings = this.convertObjToDictionary(
             movieDataServer.ratings
         );
+        this.convertRatingsNames(movieData.ratings);
+        movieData.tags = this.convertTagsNames(movieData.tags);
         return movieData;
+    }
+
+    convertRatingsNames(ratings) {
+        for (let index in ratings) {
+            const rating = ratings[index];
+            rating.feature = this.displayName(rating.feature);
+        }
+    }
+
+    convertTagsNames(tags) {
+        return tags.map(tag => this.displayName(tag));
+    }
+
+    displayName(ratingPropName) {
+        let res = ratingPropName;
+        switch (ratingPropName.toLowerCase()) {
+            case 'femaleLead'.toLowerCase():
+                res = 'Strong Female Lead';
+                break;
+            case 'minorityRepresentation'.toLowerCase():
+                res = 'Minority Group Representation';
+                break;
+            case 'sexualityRate'.toLowerCase():
+                res = 'Sexual Violante';
+                break;
+            case 'BechdelTest'.toLowerCase():
+                res = 'Bechdel Test';
+                break;
+        }
+        return res;
     }
 
     convertObjToDictionary(obj) {
@@ -63,11 +94,13 @@ export default class MovieView extends Component {
     handleSubmit = async e => {
         e.preventDefault();
         const {
+            movie,
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
         } = this.props;
-        await post('/api/movie/5ca06eebb175653a40364485/rate', {
+        const rateEndpoint = `/api/movie/${movie._id}/rate`;
+        await post(rateEndpoint, {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
@@ -75,23 +108,38 @@ export default class MovieView extends Component {
         await this.closeModal();
     };
 
-    render() {
-        const movie = this.props.movie;
-        if (!movie) {
-            return <Loader />;
-        }
-
+    movieView(movie) {
         const { show } = this.state;
         return (
-            <div className="move-container">
+            <div>
                 <MovieDetails movie={movie} />
                 <hr />
-                <h2> Ratings </h2>
                 <RatingsGrid ratings={movie.ratings} />
                 <button onClick={this.openModal}>Rate me</button>
                 <Modal center open={show} onClose={this.closeModal}>
                     <RateMovie handleSubmit={this.handleSubmit} />
                 </Modal>
+            </div>
+        );
+    }
+
+    movieNotFound() {
+        return (
+            <div>
+                <h1>Sorry :-( </h1>
+                <p>
+                    It seems we are having some problem. the movie cannot be
+                    found. please try again.
+                </p>
+            </div>
+        );
+    }
+
+    render() {
+        const movie = this.props.movie;
+        return (
+            <div className="horizontal-centered top-spaced">
+                {movie ? this.movieView(movie) : this.movieNotFound()}
             </div>
         );
     }

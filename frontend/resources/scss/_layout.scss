@@ -1,5 +1,5 @@
 body {
-  color: $white;
+  color: $text-color;
   background-color: $black;
   font-size: $body-font-1;
   .required, .error-message {
@@ -36,5 +36,10 @@ body {
   label {
     margin-bottom: 10px;
     display: block;
+  }
+
+  hr{
+    border-color: $text-color;
+    opacity: 0.5;
   }
 }
