@@ -4,8 +4,8 @@ const ResultsGrid = props => {
     const { results } = props;
     return (
         <div className="result-grid">
-            {results.map(result => (
-                <div>{result}</div>
+            {results.map((result, index) => (
+                <div key={`grid ${index}`}>{result}</div>
             ))}
         </div>
     );

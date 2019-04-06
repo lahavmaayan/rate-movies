@@ -11,16 +11,35 @@ async function getAllMovies() {
     return Movie.find({}).select('-__v');
 }
 
-async function searchMovies(data) {
+async function getMovieBySearchNameParam(key) {
+    return Movie.find({ title: { $regex: '.*' + key + '.*' } });
+}
 
+async function searchMovies(data) {
     return Movie.find({
-        $and : [
-            { "ratings.femaleLead.avg" : { $gte: (data.femaleLeadTag == 1 ? 4 : 0) } },
-            { "ratings.LGBTQ.avg" : { $gte: (data.LGBTQTag == 1 ? 4 : 0) } },
-            { "ratings.minorityRepresentation.avg" : { $gte: (data.minorityRepresentationTag == 1 ? 4 : 0) } },
-            { "ratings.sexualityRate.avg" : { $gte: (data.sexualityRateTag == 1 ? 4 : 0) } },
-            { "ratings.bechdelTest.avg" : { $gte: (data.bechdelTestTag == 1 ? 4 : 0) } },
-            { name: { $regex: '.*' + data.name + '.*' } } 
+        $and: [
+            {
+                'ratings.femaleLead.avg': {
+                    $gte: data.femaleLeadTag === 1 ? 4 : 0
+                }
+            },
+            { 'ratings.LGBTQ.avg': { $gte: data.LGBTQTag === 1 ? 4 : 0 } },
+            {
+                'ratings.minorityRepresentation.avg': {
+                    $gte: data.minorityRepresentationTag === 1 ? 4 : 0
+                }
+            },
+            {
+                'ratings.sexualityRate.avg': {
+                    $gte: data.sexualityRateTag === 1 ? 4 : 0
+                }
+            },
+            {
+                'ratings.bechdelTest.avg': {
+                    $gte: data.bechdelTestTag === 1 ? 4 : 0
+                }
+            },
+            { title: { $regex: '.*' + data.title + '.*' } }
         ]
     });
 }
@@ -31,8 +50,8 @@ async function createNewMovie(movie) {
     return newMovie;
 }
 
-async function updateMovie({ movieId, name }) {
-    return await Movie.findByIdAndUpdate(movieId, { name });
+async function updateMovie({ movieId, title }) {
+    return await Movie.findByIdAndUpdate(movieId, { title });
 }
 
 async function deleteMovie(movieId) {
@@ -43,7 +62,9 @@ async function postReview(data, movieId) {
     const newReview = new MovieReview({
         ...data
     });
+    console.log(movieId);
     const currentMovie = await getMovieById(movieId);
+    console.log(currentMovie);
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
     await updateRatings(data, movieId);
@@ -106,5 +127,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieRating
+    getMovieBySearchNameParam
 };

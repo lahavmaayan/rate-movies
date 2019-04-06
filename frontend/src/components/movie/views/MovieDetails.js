@@ -8,7 +8,7 @@ class MovieDetails extends Component {
             categories,
             description,
             publishingYear,
-            pictureUrl,
+            imageUrl,
             cast,
             duration,
             tags
@@ -19,7 +19,7 @@ class MovieDetails extends Component {
                     <h1 className="capitalize movieTitle">{name}</h1>
                     <TagsView tags={tags} />
                 </div>
-                <img src={pictureUrl} className="moviePic" />
+                <img src={imageUrl} className="moviePic" />
                 <p className="boldDetails capitalize">
                     {categories} | {publishingYear} | {duration}
                 </p>
