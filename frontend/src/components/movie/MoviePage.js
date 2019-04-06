@@ -42,7 +42,7 @@ export default class MoviePage extends Component {
             movieDataServer.ratings
         );
         this.convertRatingsNames(movieData.ratings);
-        //movieData.tags = convertRatingsNames(movieData.tags);
+        movieData.tags = this.convertTagsNames(movieData.tags);
         return movieData;
     }
 
@@ -51,6 +51,10 @@ export default class MoviePage extends Component {
             const rating = ratings[index];
             rating.feature = this.displayName(rating.feature);
         }
+    }
+
+    convertTagsNames(tags) {
+        return tags.map(tag => this.displayName(tag));
     }
 
     displayName(ratingPropName) {
