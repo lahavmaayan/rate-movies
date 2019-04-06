@@ -11,16 +11,35 @@ async function getAllMovies() {
     return Movie.find({}).select('-__v');
 }
 
-async function searchMovies(data) {
+async function getMovieBySearchNameParam(key) {
+    return Movie.find({ name: { $regex: '.*' + key + '.*' } });
+}
 
+async function searchMovies(data) {
     return Movie.find({
-        $and : [
-            { "ratings.femaleLead.avg" : { $gte: (data.femaleLeadTag == 1 ? 4 : 0) } },
-            { "ratings.LGBTQ.avg" : { $gte: (data.LGBTQTag == 1 ? 4 : 0) } },
-            { "ratings.minorityRepresentation.avg" : { $gte: (data.minorityRepresentationTag == 1 ? 4 : 0) } },
-            { "ratings.sexualityRate.avg" : { $gte: (data.sexualityRateTag == 1 ? 4 : 0) } },
-            { "ratings.bechdelTest.avg" : { $gte: (data.bechdelTestTag == 1 ? 4 : 0) } },
-            { name: { $regex: '.*' + data.name + '.*' } } 
+        $and: [
+            {
+                'ratings.femaleLead.avg': {
+                    $gte: data.femaleLeadTag === 1 ? 4 : 0
+                }
+            },
+            { 'ratings.LGBTQ.avg': { $gte: data.LGBTQTag === 1 ? 4 : 0 } },
+            {
+                'ratings.minorityRepresentation.avg': {
+                    $gte: data.minorityRepresentationTag === 1 ? 4 : 0
+                }
+            },
+            {
+                'ratings.sexualityRate.avg': {
+                    $gte: data.sexualityRateTag === 1 ? 4 : 0
+                }
+            },
+            {
+                'ratings.bechdelTest.avg': {
+                    $gte: data.bechdelTestTag === 1 ? 4 : 0
+                }
+            },
+            { name: { $regex: '.*' + data.name + '.*' } }
         ]
     });
 }
@@ -106,5 +125,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieRating
+    getMovieBySearchNameParam
 };

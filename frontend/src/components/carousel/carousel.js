@@ -38,7 +38,9 @@ class Carousel extends Component {
 
     getItmes = () => {
         const { carouselMovies } = this.props;
-        return carouselMovies.map(item => <li>{this.creatMovieTile(item)}</li>);
+        return carouselMovies.map((item, index) => (
+            <li key={`movie ${index}`}>{this.creatMovieTile(item)}</li>
+        ));
     };
 
     render() {
