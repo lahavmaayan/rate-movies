@@ -6,7 +6,8 @@ class TagsView extends Component {
             <div>
                 {this.props.tags.map((tag, index) => (
                     <a
-                        href="#"
+                        key={tag}
+                        href="#" //TBD: link to search of this tag
                         className="badge badge-primary badge-pill capitalize movieTag"
                     >
                         {tag}
