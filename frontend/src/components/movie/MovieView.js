@@ -86,7 +86,6 @@ export default class MovieView extends Component {
             <div className="move-container">
                 <MovieDetails movie={movie} />
                 <hr />
-                <h2> Ratings </h2>
                 <RatingsGrid ratings={movie.ratings} />
                 <button onClick={this.openModal}>Rate me</button>
                 <Modal center open={show} onClose={this.closeModal}>
