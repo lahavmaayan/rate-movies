@@ -83,7 +83,7 @@ export default class MovieView extends Component {
 
         const { show } = this.state;
         return (
-            <div className="move-container">
+            <div className="center-container">
                 <MovieDetails movie={movie} />
                 <hr />
                 <RatingsGrid ratings={movie.ratings} />
