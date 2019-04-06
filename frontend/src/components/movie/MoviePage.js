@@ -4,7 +4,6 @@ import Modal from 'react-responsive-modal';
 import RatingsGrid from './views/RatingsGrid';
 import RateMovie from './rateMovie/RateMovie';
 import MovieDetails from './views/MovieDetails';
-import Loader from 'common/components/Loader';
 import { get, post } from 'services/restMethods';
 
 export default class MoviePage extends Component {
