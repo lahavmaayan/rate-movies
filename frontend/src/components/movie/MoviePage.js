@@ -41,7 +41,35 @@ export default class MoviePage extends Component {
         movieData.ratings = this.convertObjToDictionary(
             movieDataServer.ratings
         );
+        this.convertRatingsNames(movieData.ratings);
+        //movieData.tags = convertRatingsNames(movieData.tags);
         return movieData;
+    }
+
+    convertRatingsNames(ratings) {
+        for (let index in ratings) {
+            const rating = ratings[index];
+            rating.feature = this.displayName(rating.feature);
+        }
+    }
+
+    displayName(ratingPropName) {
+        let res = ratingPropName;
+        switch (ratingPropName.toLowerCase()) {
+            case 'femaleLead'.toLowerCase():
+                res = 'Strong Female Lead';
+                break;
+            case 'minorityRepresentation'.toLowerCase():
+                res = 'Minority Group Representation';
+                break;
+            case 'sexualityRate'.toLowerCase():
+                res = 'Sexual Violante';
+                break;
+            case 'BechdelTest'.toLowerCase():
+                res = 'Bechdel Test';
+                break;
+        }
+        return res;
     }
 
     convertObjToDictionary(obj) {
