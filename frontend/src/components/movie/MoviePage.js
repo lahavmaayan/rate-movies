@@ -90,14 +90,23 @@ export default class MoviePage extends Component {
         );
     }
 
+    movieNotFound() {
+        return (
+            <div>
+                <h1>Sorry :-( </h1>
+                <p>
+                    It seems we are having some problem. the movie cannot be
+                    found. please try again.
+                </p>
+            </div>
+        );
+    }
+
     render() {
         const movie = this.props.movie;
-        if (!movie) {
-            return <Loader />;
-        }
         return (
             <div className="horizontal-centered top-spaced">
-                {this.movieView(movie)}
+                {movie ? this.movieView(movie) : this.movieNotFound()}
             </div>
         );
     }
