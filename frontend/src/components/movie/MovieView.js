@@ -65,9 +65,11 @@ export default class MovieView extends Component {
         const {
             reviewerDetails,
             reviewerRating,
-            reviewerQuestions
+            reviewerQuestions,
+            location
         } = this.props;
-        await post('/api/movie/5ca06eebb175653a40364485/rate', {
+        const movieId = location.pathname.split('/')[2];
+        await post(`/api/movie/${movieId}/rate`, {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions

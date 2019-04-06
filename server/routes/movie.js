@@ -70,7 +70,7 @@ router.put('/:movieId', async (req, res, next) => {
     try {
         await movieRepo.updateMovie({
             movieId: req.params.movieId,
-            name: req.body.name
+            title: req.body.name
         });
         res.status(200).send(req.params.movieId);
     } catch (err) {

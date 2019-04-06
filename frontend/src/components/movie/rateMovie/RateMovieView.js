@@ -5,7 +5,6 @@ import UserInfoView from './rateMovieSteps/UserInfoView';
 import QuestionsView from './rateMovieSteps/QuestionsView';
 import RatingsView from './rateMovieSteps/ratingsView';
 import WizardForm from 'common/components/WizardForm';
-import { post } from 'services/restMethods';
 
 class RateMovieView extends Component {
     handleUserInfoChange = ({ target }) => {

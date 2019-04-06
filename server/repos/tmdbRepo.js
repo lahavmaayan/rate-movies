@@ -12,11 +12,9 @@ async function getMovieById(movieId) {
 }
 
 async function searchMovies(data) {
-    console.log(data);
     let promise = new Promise((resolve, reject) => {
         tmdb.search.movie(data, 1, (err, res) => {
             resolve(
-                // console.log(res)
                 res.results.map(function(tmdb) {
                     return {
                         id: tmdb.id,

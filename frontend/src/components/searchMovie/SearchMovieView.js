@@ -3,6 +3,7 @@ import { get } from 'services/restMethods';
 import MovieTile from 'components/movieTile/movieTile';
 import Carousel from 'components/carousel/carousel';
 import ResultsGrid from 'common/components/ResultsGrid';
+import _ from 'lodash';
 
 class SearchMovieView extends Component {
     constructor(props) {
@@ -23,22 +24,32 @@ class SearchMovieView extends Component {
     };
 
     getItemContent = item => {
-        const url = `http://localhost:9000/movie/${item.id}`;
         return (
             <MovieTile
-                movieUrl={url}
-                title={item.name}
-                rating={item.rating}
+                onClick={this.goToMoviePage.bind(this, item._id)}
+                id={item._id}
+                title={item.title}
+                fmScore={item.fmScore || ''}
                 imageUrl={item.imageUrl}
             />
         );
     };
 
-    getItmes = () => {
-        const { resultMovies } = this.props;
-        return resultMovies.map(item => this.getItemContent(item));
+    goToMoviePage = id => {
+        this.props.history.push(`/movie/${id}`);
     };
 
+    getItems = () => {
+        const { resultMovies } = this.props;
+        const tiles = [];
+        if (_.isEmpty(resultMovies)) return [];
+        for (let key in resultMovies) {
+            if (resultMovies.hasOwnProperty(key)) {
+                tiles.push(this.getItemContent(resultMovies[key]));
+            }
+        }
+        return tiles;
+    };
     topRatings = () => {
         get(`/api/getTopRatings`)
             .then(data => this.setState({ carouselItems: data.movies }))
@@ -74,7 +85,7 @@ class SearchMovieView extends Component {
                         Search
                     </button>
                 </div>
-                <ResultsGrid results={this.getItmes()} />
+                <ResultsGrid results={this.getItems()} />
             </div>
         );
     }

@@ -7,10 +7,16 @@ class MovieTile extends Component {
     }
 
     render() {
-        const { imageClass, imageHoveredClass, title, rating } = this.props;
+        const {
+            imageClass,
+            imageHoveredClass,
+            title,
+            fmScore,
+            onClick
+        } = this.props;
         return (
-            <div className="movie-tile">
-                <a href={this.props.movieUrl}>
+            <div className="movie-tile" onClick={onClick}>
+                <a>
                     <img
                         width={140}
                         height={209}
@@ -23,7 +29,7 @@ class MovieTile extends Component {
                         }
                     />
                 </a>
-                <GridTileBar title={title} data={'rating: ' + rating} />
+                <GridTileBar title={title} data={fmScore} />
             </div>
         );
     }

@@ -12,7 +12,7 @@ async function getAllMovies() {
 }
 
 async function getMovieBySearchNameParam(key) {
-    return Movie.find({ name: { $regex: '.*' + key + '.*' } });
+    return Movie.find({ title: { $regex: '.*' + key + '.*' } });
 }
 
 async function searchMovies(data) {
@@ -39,7 +39,7 @@ async function searchMovies(data) {
                     $gte: data.bechdelTestTag === 1 ? 4 : 0
                 }
             },
-            { name: { $regex: '.*' + data.name + '.*' } }
+            { title: { $regex: '.*' + data.title + '.*' } }
         ]
     });
 }
@@ -50,8 +50,8 @@ async function createNewMovie(movie) {
     return newMovie;
 }
 
-async function updateMovie({ movieId, name }) {
-    return await Movie.findByIdAndUpdate(movieId, { name });
+async function updateMovie({ movieId, title }) {
+    return await Movie.findByIdAndUpdate(movieId, { title });
 }
 
 async function deleteMovie(movieId) {
@@ -62,7 +62,9 @@ async function postReview(data, movieId) {
     const newReview = new MovieReview({
         ...data
     });
+    console.log(movieId);
     const currentMovie = await getMovieById(movieId);
+    console.log(currentMovie);
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
     await updateRatings(data, movieId);
