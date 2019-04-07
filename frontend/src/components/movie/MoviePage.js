@@ -94,13 +94,13 @@ export default class MoviePage extends Component {
     handleSubmit = async e => {
         e.preventDefault();
         const {
-            movie,
             reviewerDetails,
             reviewerRating,
-            reviewerQuestions
+            reviewerQuestions,
+            location
         } = this.props;
-        const rateEndpoint = `/api/movie/${movie._id}/rate`;
-        await post(rateEndpoint, {
+        const movieId = location.pathname.split('/')[2];
+        await post(`/api/movie/${movieId}/rate`, {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions
