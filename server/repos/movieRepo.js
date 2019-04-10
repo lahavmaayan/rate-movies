@@ -16,32 +16,20 @@ async function getMovieBySearchNameParam(key) {
 }
 
 async function searchMovies(data) {
-    return Movie.find({
-        $and: [
-            {
-                'ratings.femaleLead.avg': {
-                    $gte: data.femaleLeadTag === 1 ? 4 : 0
-                }
-            },
-            { 'ratings.LGBTQ.avg': { $gte: data.LGBTQTag === 1 ? 4 : 0 } },
-            {
-                'ratings.minorityRepresentation.avg': {
-                    $gte: data.minorityRepresentationTag === 1 ? 4 : 0
-                }
-            },
-            {
-                'ratings.sexualityRate.avg': {
-                    $gte: data.sexualityRateTag === 1 ? 4 : 0
-                }
-            },
-            {
-                'ratings.bechdelTest.avg': {
-                    $gte: data.bechdelTestTag === 1 ? 4 : 0
-                }
-            },
-            { title: { $regex: '.*' + data.title + '.*' } }
-        ]
-    });
+
+    return Movie.aggregate([
+        { $match : { title: { $regex: '.*' + data.title + '.*' } }},
+        { $addFields: {
+            calcScore: {
+                $add: [
+                    ( data.femaleLeadTag == 1 ? '$ratings.femaleLead.avg' : 0 ),
+                    ( data.LGBTQTag == 1 ? '$ratings.LGBTQ.avg' : 0 ),
+                    ( data.minorityRepresentationTag == 1 ? '$ratings.minorityRepresentation.avg' : 0 ),
+                    ( data.sexualityRateTag == 1 ? '$ratings.sexualityRate.avg' : 0 ),
+                    ( data.bechdelTestTag == 1 ? '$ratings.bechdelTest.avg' : 0 )  
+        ]}}},
+        { $sort: { calcScore: -1 }}
+    ]);
 }
 
 async function createNewMovie(movie) {
