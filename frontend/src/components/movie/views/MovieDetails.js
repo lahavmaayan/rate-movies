@@ -4,7 +4,7 @@ import TagsView from './TagsView';
 class MovieDetails extends Component {
     render() {
         const {
-            name,
+            title,
             categories,
             description,
             publishingYear,
@@ -16,7 +16,7 @@ class MovieDetails extends Component {
         return (
             <div>
                 <div className="flex-container">
-                    <h1 className="capitalize movieTitle">{name}</h1>
+                    <h1 className="capitalize movieTitle">{title}</h1>
                     <TagsView tags={tags} />
                 </div>
                 <img src={imageUrl} className="moviePic" />
