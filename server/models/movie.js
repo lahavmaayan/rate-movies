@@ -54,8 +54,6 @@ const movieSchema = new mongoose.Schema({
     description: String,
     publishingYear: Number,
     imageUrl: String,
-    cast: [String],
-    duration: String,
     fmScore: { type: Number, default: 0 },
     tags: [String]
 });

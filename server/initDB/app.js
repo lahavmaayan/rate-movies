@@ -11,10 +11,13 @@ async function main() {
 
 async function connectToDB() {
     mongoose
-        .connect('mongodb://localhost/rate-movies', {
-            useNewUrlParser: true,
-            useCreateIndex: true
-        })
+        .connect(
+            'mongodb://localhost/rate-movies',
+            {
+                useNewUrlParser: true,
+                useCreateIndex: true
+            }
+        )
         .then(() => console.log('connected to mongo db'))
         .catch(err => console.error('could not connect to mongo db', err));
 }
@@ -41,8 +44,6 @@ async function initDB() {
             description: 'movie description',
             publishingYear: 2001,
             imageUrl: 'https://www.949powerfm.com.au/images/harry_potter-2.jpg',
-            cast: ['Richard Harris', 'Maggie Smith'],
-            duration: '152 minutes',
             reviews: [],
             ratings: {},
             tags: ['Bechdel Test']
@@ -65,8 +66,6 @@ async function initDB() {
             publishingYear: 2001,
             imageUrl:
                 'https://images-na.ssl-images-amazon.com/images/I/51J%2BfT8ILiL.jpg',
-            cast: ['Antony Hopkins'],
-            duration: '131 minutes',
             reviews: [],
             ratings: {}
         },
@@ -77,8 +76,6 @@ async function initDB() {
             publishingYear: 1990,
             imageUrl:
                 'https://visitbristol.co.uk/imageresizer/?image=%2Fdmsimgs%2Fpretty_woman_1778730490.jpg&action=ProductDetail',
-            cast: ['Julia Roberts'],
-            duration: '119 minutes',
             reviews: [],
             ratings: {}
         },
@@ -86,7 +83,6 @@ async function initDB() {
             title: 'star Treck',
             description: 'aaaaa',
             categories: ['fff'],
-            duration: '119 minutes',
             publishingYear: 1990,
             imageUrl:
                 'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',

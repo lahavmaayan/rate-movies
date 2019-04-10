@@ -4,27 +4,24 @@ import TagsView from './TagsView';
 class MovieDetails extends Component {
     render() {
         const {
-            name,
+            title,
             categories,
             description,
             publishingYear,
             imageUrl,
-            cast,
-            duration,
             tags
         } = this.props.movie;
         return (
             <div>
                 <div className="flex-container">
-                    <h1 className="capitalize movieTitle">{name}</h1>
+                    <h1 className="capitalize movieTitle">{title}</h1>
                     <TagsView tags={tags} />
                 </div>
                 <img src={imageUrl} className="moviePic" />
                 <p className="boldDetails capitalize">
-                    {categories} | {publishingYear} | {duration}
+                    {categories} | {publishingYear}
                 </p>
                 <p>{description}</p>
-                <p className="capitalize">Cast: {cast.join(', ')}</p>
                 <div className="clearFloat" />
             </div>
         );
