@@ -26,8 +26,8 @@
 
 .hovered-tile-carousel{
     transform: scale(1.5, 1.5);
-    padding-right: 40px;
-    padding-left: 40px
+    margin-right: 40px;
+    margin-left: 40px
 }
 
 .tile-carousel{
