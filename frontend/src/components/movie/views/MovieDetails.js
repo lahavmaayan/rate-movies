@@ -9,8 +9,6 @@ class MovieDetails extends Component {
             description,
             publishingYear,
             imageUrl,
-            cast,
-            duration,
             tags
         } = this.props.movie;
         return (
@@ -21,10 +19,9 @@ class MovieDetails extends Component {
                 </div>
                 <img src={imageUrl} className="moviePic" />
                 <p className="boldDetails capitalize">
-                    {categories} | {publishingYear} | {duration}
+                    {categories} | {publishingYear}
                 </p>
                 <p>{description}</p>
-                <p className="capitalize">Cast: {cast.join(', ')}</p>
                 <div className="clearFloat" />
             </div>
         );
