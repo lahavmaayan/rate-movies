@@ -1,0 +1,8 @@
+.hide-checkbox {
+  position: absolute;
+  left: -9999px;
+}
+
+input:checked + label {
+  background-color: #ab576c;
+}
