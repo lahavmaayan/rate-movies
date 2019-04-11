@@ -86,11 +86,16 @@ class SearchMovieView extends Component {
                         Search
                     </button>
                     {/* <MultiSelectTags selected={[]} onSelect={onTagsSelection}/> */}
-                    <MultiSelectTags />
+                    <MultiSelectTags OnSelect={this.onTagsSelection} />
                 </div>
                 <ResultsGrid results={this.getItems()} />
             </div>
         );
+    }
+
+    onTagsSelection(tag, value) {
+        console.log(tag);
+        console.log(value);
     }
 }
 
