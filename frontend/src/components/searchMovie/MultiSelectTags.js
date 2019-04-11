@@ -7,7 +7,7 @@ class MultiSelectTags extends Component {
                 <input id="toggle" type="checkbox" className="hide-checkbox" />
                 <label
                     htmlFor="toggle"
-                    className="badge badge-primary badge-pill capitalize movieTag"
+                    className="badge badge-primary badge-pill capitalize movieTag faded"
                 >
                     aaa
                 </label>

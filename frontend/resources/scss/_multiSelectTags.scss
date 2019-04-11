@@ -3,6 +3,10 @@
   left: -9999px;
 }
 
+.faded{
+  opacity: 0.5;
+}
+
 input:checked + label {
-  background-color: #ab576c;
+  opacity: 1;
 }
