@@ -3,6 +3,7 @@ import { get } from 'services/restMethods';
 import MovieTile from 'components/movieTile/movieTile';
 import Carousel from 'components/carousel/carousel';
 import ResultsGrid from 'common/components/ResultsGrid';
+import MultiSelectTags from './MultiSelectTags';
 import _ from 'lodash';
 
 class SearchMovieView extends Component {
@@ -84,6 +85,8 @@ class SearchMovieView extends Component {
                     >
                         Search
                     </button>
+                    {/* <MultiSelectTags selected={[]} onSelect={onTagsSelection}/> */}
+                    <MultiSelectTags />
                 </div>
                 <ResultsGrid results={this.getItems()} />
             </div>
