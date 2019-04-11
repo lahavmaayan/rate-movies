@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 
 class MultiSelectTags extends Component {
     render() {
+        const tags = ['bachdel test', ' minor represenation'];
         return (
             <div>
-                <input id="toggle" type="checkbox" className="hide-checkbox" />
-                <label
-                    htmlFor="toggle"
-                    className="badge badge-primary badge-pill capitalize movieTag faded"
-                >
-                    aaa
-                </label>
+                {tags.map((tag, index) => (
+                    <span key={'span' + index}>
+                        <input
+                            key={index}
+                            id={'input' + index}
+                            type="checkbox"
+                            className="hide-checkbox"
+                        />
+                        <label
+                            key={'label' + index}
+                            htmlFor={'input' + index}
+                            className="badge badge-primary badge-pill capitalize movieTag faded"
+                        >
+                            {tag}
+                        </label>
+                    </span>
+                ))}
             </div>
         );
     }
