@@ -26,8 +26,8 @@ class SearchMovieView extends Component {
     getItemContent = item => {
         return (
             <MovieTile
-                onClick={this.goToMoviePage.bind(this, item._id)}
-                id={item._id}
+                onClick={this.goToMoviePage.bind(this, item.id)}
+                id={item.id}
                 title={item.title}
                 fmScore={item.fmScore || ''}
                 imageUrl={item.imageUrl}

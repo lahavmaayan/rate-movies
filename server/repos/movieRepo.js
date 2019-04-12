@@ -7,29 +7,42 @@ async function getMovieById(movieId) {
     }
 }
 
+async function getMovieByExternalId(externalId) {
+    return Movie.find({ id: externalId });
+}
+
 async function getAllMovies() {
     return Movie.find({}).select('-__v');
 }
 
-async function getMovieBySearchNameParam(key) {
-    return Movie.find({ title: { $regex: '.*' + key + '.*' } });
-}
-
 async function searchMovies(data) {
-
-    return Movie.aggregate([
-        { $match : { title: { $regex: '.*' + data.title + '.*' } }},
-        { $addFields: {
-            calcScore: {
-                $add: [
-                    ( data.femaleLeadTag == 1 ? '$ratings.femaleLead.avg' : 0 ),
-                    ( data.LGBTQTag == 1 ? '$ratings.LGBTQ.avg' : 0 ),
-                    ( data.minorityRepresentationTag == 1 ? '$ratings.minorityRepresentation.avg' : 0 ),
-                    ( data.sexualityRateTag == 1 ? '$ratings.sexualityRate.avg' : 0 ),
-                    ( data.bechdelTestTag == 1 ? '$ratings.bechdelTest.avg' : 0 )  
-        ]}}},
-        { $sort: { calcScore: -1 }}
+    const res = Movie.aggregate([
+        { $match: { title: { $regex: '.*' + data.title + '.*' } } },
+        {
+            $addFields: {
+                calcScore: {
+                    $add: [
+                        data.femaleLeadTag === 1
+                            ? '$ratings.femaleLead.avg'
+                            : 0,
+                        data.LGBTQTag === 1 ? '$ratings.LGBTQ.avg' : 0,
+                        data.minorityRepresentationTag === 1
+                            ? '$ratings.minorityRepresentation.avg'
+                            : 0,
+                        data.sexualityRateTag === 1
+                            ? '$ratings.sexualityRate.avg'
+                            : 0,
+                        data.bechdelTestTag === 1
+                            ? '$ratings.bechdelTest.avg'
+                            : 0
+                    ]
+                }
+            }
+        },
+        { $sort: { calcScore: -1 } }
     ]);
+    console.log(res);
+    return res;
 }
 
 async function createNewMovie(movie) {
@@ -115,5 +128,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieBySearchNameParam
+    getMovieByExternalId
 };

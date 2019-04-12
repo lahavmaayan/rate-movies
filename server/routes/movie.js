@@ -10,9 +10,7 @@ router.get('/search/', async (req, res, next) => {
     try {
         let movies = [];
         if (!_.isEmpty(req.query)) {
-            let internalMovies = await movieRepo.searchMovies(
-                req.query
-            );
+            let internalMovies = await movieRepo.searchMovies(req.query);
             let externalMovies = await tmdbRepo.searchMovies(req.query.title);
             movies = { ...externalMovies, ...internalMovies };
         }
@@ -48,12 +46,18 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:movieId', async (req, res, next) => {
     try {
-        const movie = await movieRepo.getMovieById(req.params.movieId);
-        if (movie) {
-            res.status(200).send(movie);
-        } else {
+        let movie;
+        let internalMovie = await movieRepo.getMovieByExternalId(
+            req.params.movieId
+        );
+        movie = internalMovie[0];
+        if (!movie) {
+            movie = await tmdbRepo.getMovieDetails(req.params.movieId);
+        }
+        if (!movie) {
             res.status(404).send(validationSchema.movieNotFound);
         }
+        res.status(200).send(movie);
     } catch (err) {
         next(err);
     }
