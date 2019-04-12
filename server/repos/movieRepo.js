@@ -15,6 +15,10 @@ async function getMovieBySearchNameParam(key) {
     return Movie.find({ title: { $regex: '.*' + key + '.*' } });
 }
 
+async function getMoviesByTags(tags) {
+    return Movie.find({ tags: { $all: tags } });
+}
+
 async function searchMovies(data) {
     return Movie.find({
         $and: [
@@ -127,5 +131,6 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieBySearchNameParam
+    getMovieBySearchNameParam,
+    getMoviesByTags
 };

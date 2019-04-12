@@ -11,11 +11,17 @@ router.get('/search/', async (req, res, next) => {
         let movies = [];
         if (!_.isEmpty(req.query)) {
             const movieName = req.query.movieName;
-            let internalMovies = await movieRepo.getMovieBySearchNameParam(
-                movieName
-            );
-            let externalMovies = await tmdbRepo.searchMovies(movieName);
-            movies = { ...externalMovies, ...internalMovies };
+            if (!req.query.tags) {
+                let internalMovies = await movieRepo.getMovieBySearchNameParam(
+                    movieName
+                );
+                let externalMovies = await tmdbRepo.searchMovies(movieName);
+                movies = { ...externalMovies, ...internalMovies };
+            } else {
+                const tags = JSON.parse(req.query.tags);
+                //TODO: by name and by tag
+                movies = await movieRepo.getMoviesByTags(tags);
+            }
         }
         await res.status(200).send(movies);
     } catch (err) {
