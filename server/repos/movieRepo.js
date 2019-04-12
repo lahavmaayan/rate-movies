@@ -10,17 +10,19 @@ async function getMovieById(movieId) {
 async function getAllMovies() {
     return Movie.find({}).select('-__v');
 }
-function nameQuery(name) {
+function titleQuery(name) {
     return { title: { $regex: '.*' + name + '.*' } };
 }
 
 async function getMovieBySearchNameParam(name) {
-    return Movie.find(nameQuery(name));
+    return Movie.find(titleQuery(name));
 }
 
 async function getMoviesBy(tags, name) {
     const tagsQuery = { tags: { $all: tags } };
-    return Movie.find(tagsQuery);
+    const nameQuery = titleQuery(name);
+    const query = { $and: [tagsQuery, nameQuery] };
+    return Movie.find(query);
 }
 
 async function searchMovies(data) {
