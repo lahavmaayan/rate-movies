@@ -16,7 +16,7 @@ router.get('/search/', async (req, res, next) => {
                 movies = await searchByName(movieName);
             } else {
                 //TODO: by name and by tag
-                movies = await movieRepo.getMoviesByTags(tags);
+                movies = await movieRepo.getMoviesByTags(tags, movieName);
             }
         }
         await res.status(200).send(movies);

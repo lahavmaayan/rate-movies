@@ -10,13 +10,17 @@ async function getMovieById(movieId) {
 async function getAllMovies() {
     return Movie.find({}).select('-__v');
 }
-
-async function getMovieBySearchNameParam(key) {
-    return Movie.find({ title: { $regex: '.*' + key + '.*' } });
+function nameQuery(name) {
+    return { title: { $regex: '.*' + name + '.*' } };
 }
 
-async function getMoviesByTags(tags) {
-    return Movie.find({ tags: { $all: tags } });
+async function getMovieBySearchNameParam(name) {
+    return Movie.find(nameQuery(name));
+}
+
+async function getMoviesBy(tags, name) {
+    const tagsQuery = { tags: { $all: tags } };
+    return Movie.find(tagsQuery);
 }
 
 async function searchMovies(data) {
@@ -132,5 +136,5 @@ module.exports = {
     deleteMovie,
     postReview,
     getMovieBySearchNameParam,
-    getMoviesByTags
+    getMoviesByTags: getMoviesBy
 };
