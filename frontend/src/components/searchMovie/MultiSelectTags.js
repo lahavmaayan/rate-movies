@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 
 class MultiSelectTags extends Component {
     handleChange(event) {
-        this.props.OnSelect({
-            tag: event.target.name,
-            value: event.target.checked
-        });
+        this.props.OnSelect(event.target.name, event.target.checked);
     }
 
     render() {
-        const tags = ['bachdel test', ' minor represenation'];
+        const tags = ['bechdelTest', 'minorityRepresentation'];
         return (
             <div>
                 {tags.map((tag, index) => (

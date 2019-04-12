@@ -9,14 +9,21 @@ import _ from 'lodash';
 class SearchMovieView extends Component {
     constructor(props) {
         super(props);
-        this.state = { carouselItems: [], resultCount: -1 };
+        this.state = {
+            carouselItems: [],
+            resultCount: -1,
+            filters: new Set([])
+        };
+        this.onTagsSelection = this.onTagsSelection.bind(this);
     }
 
     handleClick = () => {
-        const searchQuery = this.search.value;
+        const movieName = this.search.value;
         const { setQuery, setMovies } = this.props;
-        setQuery(searchQuery);
-        get(`/api/movie/search?movieName=${searchQuery}`)
+        setQuery(movieName);
+        const tags = Array.from(this.state.filters);
+        const searchApiURL = `/api/movie/search?movieName=${movieName}&tags=${JSON.stringify(tags)}`;
+        get(searchApiURL)
             .then(data => {
                 setMovies(data);
                 this.setState({ resultCount: data.length });
@@ -85,7 +92,6 @@ class SearchMovieView extends Component {
                     >
                         Search
                     </button>
-                    {/* <MultiSelectTags selected={[]} onSelect={onTagsSelection}/> */}
                     <MultiSelectTags OnSelect={this.onTagsSelection} />
                 </div>
                 <ResultsGrid results={this.getItems()} />
@@ -93,9 +99,12 @@ class SearchMovieView extends Component {
         );
     }
 
-    onTagsSelection(tag, value) {
-        console.log(tag);
-        console.log(value);
+    onTagsSelection(tag, filterIsOn) {
+        const newFilters = this.state.filters;
+        if (filterIsOn) newFilters.add(tag);
+        else newFilters.delete(tag);
+
+        this.setState({ ...this.state, filters: newFilters });
     }
 }
 

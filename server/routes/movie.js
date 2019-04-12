@@ -11,14 +11,10 @@ router.get('/search/', async (req, res, next) => {
         let movies = [];
         if (!_.isEmpty(req.query)) {
             const movieName = req.query.movieName;
-            if (!req.query.tags) {
-                let internalMovies = await movieRepo.getMovieBySearchNameParam(
-                    movieName
-                );
-                let externalMovies = await tmdbRepo.searchMovies(movieName);
-                movies = { ...externalMovies, ...internalMovies };
+            const tags = JSON.parse(req.query.tags);
+            if (tags.length == 0) {
+                movies = await searchByName(movieName);
             } else {
-                const tags = JSON.parse(req.query.tags);
                 //TODO: by name and by tag
                 movies = await movieRepo.getMoviesByTags(tags);
             }
@@ -116,6 +112,13 @@ router.get('/:movieId/rate', async (req, res, next) => {
         next(err);
     }
 });
+
+async function searchByName(movieName) {
+    const internalMovies = await movieRepo.getMovieBySearchNameParam(movieName);
+    const externalMovies = await tmdbRepo.searchMovies(movieName);
+    const all = { ...externalMovies, ...internalMovies };
+    return all;
+}
 
 function validateMovieName(name) {
     return Joi.validate(name, validationSchema.movieName);
