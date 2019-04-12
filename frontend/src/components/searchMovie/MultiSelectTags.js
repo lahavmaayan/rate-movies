@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { tagDisplayName } from 'common/utils/tagDisplayName';
 
 class MultiSelectTags extends Component {
     handleChange(event) {
@@ -6,10 +7,9 @@ class MultiSelectTags extends Component {
     }
 
     render() {
-        const tags = ['bechdelTest', 'minorityRepresentation'];
         return (
             <div>
-                {tags.map((tag, index) => (
+                {this.props.tags.map((tag, index) => (
                     <span key={'span' + index}>
                         <input
                             key={index}
@@ -24,7 +24,7 @@ class MultiSelectTags extends Component {
                             htmlFor={'input' + index}
                             className="badge badge-primary badge-pill capitalize movieTag faded"
                         >
-                            {tag}
+                            {tagDisplayName(tag)}
                         </label>
                     </span>
                 ))}

@@ -12,7 +12,8 @@ class SearchMovieView extends Component {
         this.state = {
             carouselItems: [],
             resultCount: -1,
-            filters: new Set([])
+            filters: new Set([]),
+            tags: ['bechdelTest', 'minorityRepresentation']
         };
         this.onTagsSelection = this.onTagsSelection.bind(this);
     }
@@ -59,7 +60,9 @@ class SearchMovieView extends Component {
         const { setQuery, setMovies } = this.props;
         setQuery(movieName);
         const tags = Array.from(this.state.filters);
-        const searchApiURL = `/api/movie/search?movieName=${movieName}&tags=${JSON.stringify(tags)}`;
+        const searchApiURL = `/api/movie/search?movieName=${movieName}&tags=${JSON.stringify(
+            tags
+        )}`;
         get(searchApiURL)
             .then(data => {
                 setMovies(data);
@@ -96,7 +99,10 @@ class SearchMovieView extends Component {
                     >
                         Search
                     </button>
-                    <MultiSelectTags OnSelect={this.onTagsSelection} />
+                    <MultiSelectTags
+                        tags={this.state.tags}
+                        OnSelect={this.onTagsSelection}
+                    />
                 </div>
                 <ResultsGrid results={this.getItems()} />
             </div>
