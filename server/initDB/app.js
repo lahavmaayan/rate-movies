@@ -26,11 +26,7 @@ async function initDB() {
         {
             id: 25941,
             imageUrl:
-                'https://image.tmdb.org/t/p/w500/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV2:
-                'https://image.tmdb.org/t/p/w92/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV3:
-                'https://image.tmdb.org/t/p/w780/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
+                'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
             title: 'Harry Brown',
             reviews: [],
             ratings: {}
@@ -50,11 +46,7 @@ async function initDB() {
             id: 671,
             title: "Harry Potter and the Philosopher's Stone",
             imageUrl:
-                'https://image.tmdb.org/t/p/w500/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV2:
-                'https://image.tmdb.org/t/p/w92/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV3:
-                'https://image.tmdb.org/t/p/w780/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
+                'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
             reviews: [],
             ratings: {}
         },

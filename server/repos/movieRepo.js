@@ -59,10 +59,19 @@ async function deleteMovie(movieId) {
 
 async function postReview(data, movieId) {
     const newReview = new MovieReview({
-        ...data
+        reviewerDetails: data.reviewerDetails,
+        reviewerQuestions: data.reviewerQuestions,
+        reviewerRating: data.reviewerRating
     });
-    const currentMovie = await getMovieById(movieId);
-    console.log(currentMovie.reviews);
+    let currentMovie = await getMovieById(movieId);
+    if (!currentMovie) {
+        currentMovie = await createNewMovie({
+            id: movieId,
+            title: data.movie.title,
+            description: data.movie.description,
+            imageUrl: data.movie.imageUrl
+        });
+    }
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
     await updateRatings(data, movieId);
@@ -102,13 +111,14 @@ async function updateFmScore(data, movieId) {
     const currentMovie = await getMovieById(movieId);
     const ratings = currentMovie.ratings;
     //best case all ratings are fulfilled, need to adjust when the ratings are empty
-    currentMovie.fmScore =
+    currentMovie.fmScore = parseFloat(
         (2 * ratings.femaleLead.avg +
             2 * ratings.bechdelTest.avg +
             currentMovie.ratings.LGBTQ.avg +
             ratings.minorityRepresentation.avg -
             ratings.sexualityRate.avg) /
-        6;
+            6
+    ).toFixed(2);
     await currentMovie.save();
 }
 async function getMovieRatings(movieId) {
