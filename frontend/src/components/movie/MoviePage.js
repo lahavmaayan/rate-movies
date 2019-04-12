@@ -15,6 +15,10 @@ export default class MoviePage extends Component {
     }
 
     async componentDidMount() {
+        await this.loadData();
+    }
+
+    async loadData() {
         try {
             const { loadStart, loadSucseed } = this.props;
             loadStart();
@@ -37,12 +41,17 @@ export default class MoviePage extends Component {
     async loadMovieData(movieId) {
         const movieDataServer = await get(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
-        //RatingsGrid assume input is Dictionary
-        movieData.ratings = this.convertObjToDictionary(
-            movieDataServer.ratings
-        );
-        this.convertRatingsNames(movieData.ratings);
-        movieData.tags = this.convertTagsNames(movieData.tags);
+        if (movieData.fmScore) {
+            //RatingsGrid assume input is Dictionary
+            movieData.ratings = this.convertObjToDictionary(
+                movieDataServer.ratings
+            );
+            this.convertRatingsNames(movieData.ratings);
+            movieData.tags = this.convertTagsNames(movieData.tags);
+        } else {
+            movieData.ratings = {};
+            movieData.tags = {};
+        }
         return movieData;
     }
 
@@ -97,14 +106,17 @@ export default class MoviePage extends Component {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions,
+            movie,
             location
         } = this.props;
         const movieId = location.pathname.split('/')[2];
         await post(`/api/movie/${movieId}/rate`, {
             reviewerDetails,
             reviewerRating,
-            reviewerQuestions
+            reviewerQuestions,
+            movie
         });
+        await this.loadData();
         await this.closeModal();
     };
 
