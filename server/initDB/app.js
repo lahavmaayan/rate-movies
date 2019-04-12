@@ -39,7 +39,8 @@ async function initDB() {
             ratings: {}
         },
         {
-            title: 'harry potter',
+            id: 672,
+            title: 'Harry Potter and the Chamber of Secrets',
             categories: ['fantasy'],
             description: 'movie description',
             publishingYear: 2001,
@@ -49,7 +50,8 @@ async function initDB() {
             tags: ['Bechdel Test']
         },
         {
-            title: 'harry potter 222222',
+            id: 671,
+            title: 'Harry Potter and the Philosopher\'s Stone',
             imageUrl:
                 'https://image.tmdb.org/t/p/w500/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
             imageUrlV2:
@@ -60,7 +62,8 @@ async function initDB() {
             ratings: {}
         },
         {
-            title: 'hannibal',
+            id: 9740,
+            title: 'Hannibal',
             categories: ['drama'],
             description: 'movie description',
             publishingYear: 2001,
@@ -70,7 +73,8 @@ async function initDB() {
             ratings: {}
         },
         {
-            title: 'pretty woman',
+            id: 114,
+            title: 'Pretty Woman',
             categories: ['romance'],
             description: 'movie description',
             publishingYear: 1990,
@@ -80,7 +84,8 @@ async function initDB() {
             ratings: {}
         },
         {
-            title: 'star Treck',
+            id: 13475,
+            title: 'Star Trek',
             description: 'aaaaa',
             categories: ['fff'],
             publishingYear: 1990,
