@@ -18,17 +18,7 @@ class SearchMovieView extends Component {
     }
 
     handleClick = () => {
-        const movieName = this.search.value;
-        const { setQuery, setMovies } = this.props;
-        setQuery(movieName);
-        const tags = Array.from(this.state.filters);
-        const searchApiURL = `/api/movie/search?movieName=${movieName}&tags=${JSON.stringify(tags)}`;
-        get(searchApiURL)
-            .then(data => {
-                setMovies(data);
-                this.setState({ resultCount: data.length });
-            })
-            .catch(e => console.log(e));
+        this.searchMovies();
     };
 
     getItemContent = item => {
@@ -63,6 +53,20 @@ class SearchMovieView extends Component {
             .then(data => this.setState({ carouselItems: data.movies }))
             .catch(e => console.log(e));
     };
+
+    searchMovies() {
+        const movieName = this.search.value;
+        const { setQuery, setMovies } = this.props;
+        setQuery(movieName);
+        const tags = Array.from(this.state.filters);
+        const searchApiURL = `/api/movie/search?movieName=${movieName}&tags=${JSON.stringify(tags)}`;
+        get(searchApiURL)
+            .then(data => {
+                setMovies(data);
+                this.setState({ resultCount: data.length });
+            })
+            .catch(e => console.log(e));
+    }
 
     render() {
         const carouselItems = this.state.carouselItems;
@@ -105,6 +109,7 @@ class SearchMovieView extends Component {
         else newFilters.delete(tag);
 
         this.setState({ ...this.state, filters: newFilters });
+        this.searchMovies();
     }
 }
 
