@@ -7,6 +7,10 @@ import RatingsView from './rateMovieSteps/ratingsView';
 import WizardForm from 'common/components/WizardForm';
 
 class RateMovieView extends Component {
+    componentDidMount() {
+        this.props.initializeRate();
+    }
+
     handleUserInfoChange = ({ target }) => {
         const { setReviewerDetails, reviewerDetails } = this.props;
         const details = { ...reviewerDetails };

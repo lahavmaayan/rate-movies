@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const { Movie, MovieReview } = require('../models/movie');
 
-async function getMovieById(movieId) {
+async function getMovieByInternalId(movieId) {
     if (mongoose.Types.ObjectId.isValid(movieId)) {
         return await Movie.findById(movieId);
     }
 }
 
-async function getMovieByExternalId(externalId) {
-    return Movie.find({ id: externalId });
+async function getMovieById(externalId) {
+    return Movie.findOne({ id: externalId });
 }
 
 async function getAllMovies() {
@@ -61,8 +61,8 @@ async function postReview(data, movieId) {
     const newReview = new MovieReview({
         ...data
     });
-    const currentMovie = await getMovieByExternalId(movieId);
-    console.log(currentMovie);
+    const currentMovie = await getMovieById(movieId);
+    console.log(currentMovie.reviews);
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
     await updateRatings(data, movieId);
@@ -111,8 +111,7 @@ async function updateFmScore(data, movieId) {
         6;
     await currentMovie.save();
 }
-
-async function getMovieRating(movieId) {
+async function getMovieRatings(movieId) {
     const currentMovie = await getMovieById(movieId);
     return await currentMovie.ratings;
 }
@@ -125,5 +124,6 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieByExternalId
+    getMovieByInternalId,
+    getMovieRatings
 };

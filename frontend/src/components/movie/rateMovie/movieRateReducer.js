@@ -1,3 +1,4 @@
+import { INIT_RATE } from './rateMovieConstants';
 const initialState = {
     currentStep: 1,
     ratings: {
@@ -17,6 +18,10 @@ const initialState = {
 
 function movieRateReducer(state = initialState, action) {
     switch (action.type) {
+        case INIT_RATE:
+            return {
+                ...initialState
+            };
         case 'rateMovie/SET_REVIEWER_DETAILS':
             return {
                 ...state,

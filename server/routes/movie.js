@@ -46,11 +46,7 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:movieId', async (req, res, next) => {
     try {
-        let movie;
-        let internalMovie = await movieRepo.getMovieByExternalId(
-            req.params.movieId
-        );
-        movie = internalMovie[0];
+        let movie = await movieRepo.getMovieById(req.params.movieId);
         if (!movie) {
             movie = await tmdbRepo.getMovieDetails(req.params.movieId);
         }
