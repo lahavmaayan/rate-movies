@@ -10,10 +10,11 @@ router.get('/search/', async (req, res, next) => {
     try {
         let movies = [];
         if (!_.isEmpty(req.query)) {
+            const movieName = req.query.movieName;
             let internalMovies = await movieRepo.getMovieBySearchNameParam(
-                req.query.name
+                movieName
             );
-            let externalMovies = await tmdbRepo.searchMovies(req.query.name);
+            let externalMovies = await tmdbRepo.searchMovies(movieName);
             movies = { ...externalMovies, ...internalMovies };
         }
         await res.status(200).send(movies);
