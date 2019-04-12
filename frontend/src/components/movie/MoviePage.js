@@ -37,7 +37,6 @@ export default class MoviePage extends Component {
     async loadMovieData(movieId) {
         const movieDataServer = await get(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
-        console.log(movieData);
         if (movieData.fmScore) {
             //RatingsGrid assume input is Dictionary
             movieData.ratings = this.convertObjToDictionary(

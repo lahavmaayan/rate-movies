@@ -16,7 +16,7 @@ async function getAllMovies() {
 }
 
 async function searchMovies(data) {
-    const res = Movie.aggregate([
+    return Movie.aggregate([
         { $match: { title: { $regex: '.*' + data.title + '.*' } } },
         {
             $addFields: {
@@ -41,8 +41,6 @@ async function searchMovies(data) {
         },
         { $sort: { calcScore: -1 } }
     ]);
-    console.log(res);
-    return res;
 }
 
 async function createNewMovie(movie) {
@@ -63,8 +61,7 @@ async function postReview(data, movieId) {
     const newReview = new MovieReview({
         ...data
     });
-    console.log(movieId);
-    const currentMovie = await getMovieById(movieId);
+    const currentMovie = await getMovieByExternalId(movieId);
     console.log(currentMovie);
     currentMovie.reviews.push(newReview);
     await currentMovie.save();
