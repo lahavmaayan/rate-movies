@@ -9,9 +9,13 @@ const _ = require('lodash');
 router.get('/search/', async (req, res, next) => {
     try {
         let movies = [];
+        let externalMovies = [];
+        
         if (!_.isEmpty(req.query)) {
             let internalMovies = await movieRepo.searchMovies(req.query);
-            let externalMovies = await tmdbRepo.searchMovies(req.query.title);
+            if (!_.isEmpty(req.query.title)) {
+                externalMovies = await tmdbRepo.searchMovies(req.query.title);
+            }
             movies = { ...externalMovies, ...internalMovies };
         }
         await res.status(200).send(movies);

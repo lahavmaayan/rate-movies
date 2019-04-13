@@ -26,15 +26,21 @@ async function searchMovies(data) {
             $addFields: {
                 calcScore: {
                     $add: [
-                        data.femaleLead === 1 ? '$ratings.femaleLead.avg' : 0,
-                        data.LGBTQ === 1 ? '$ratings.LGBTQ.avg' : 0,
-                        data.minorityRepresentation === 1
+                        data.femaleLead === '1' 
+                            ? '$ratings.femaleLead.avg' 
+                            : 0,
+                        data.LGBTQ === '1' 
+                            ? '$ratings.LGBTQ.avg' 
+                            : 0,
+                        data.minorityRepresentation === '1'
                             ? '$ratings.minorityRepresentation.avg'
                             : 0,
-                        data.sexualityRate === 1
+                        data.sexualityRate === '1'
                             ? '$ratings.sexualityRate.avg'
                             : 0,
-                        data.bechdelTest === 1 ? '$ratings.bechdelTest.avg' : 0
+                        data.bechdelTest === '1'
+                            ? '$ratings.bechdelTest.avg'
+                            : 0
                     ]
                 }
             }

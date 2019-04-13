@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        initializeRate: () => dispatch({ type: INIT_RATE}),
+        initializeRate: () => dispatch({ type: INIT_RATE }),
         setReviewerDetails: payload =>
             dispatch({ type: SET_REVIEWER_DETAILS, payload }),
         setReviewerRating: payload =>
