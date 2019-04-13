@@ -126,6 +126,11 @@ async function getMovieRatings(movieId) {
     return await currentMovie.ratings;
 }
 
+async function getTopN(n) {
+    var x = Number(n)
+    return Movie.find().sort({fmScore:-1}).limit(x);
+}
+
 module.exports = {
     getMovieById,
     getAllMovies,
@@ -135,5 +140,6 @@ module.exports = {
     deleteMovie,
     postReview,
     getMovieByInternalId,
-    getMovieRatings
+    getMovieRatings,
+    getTopN
 };
