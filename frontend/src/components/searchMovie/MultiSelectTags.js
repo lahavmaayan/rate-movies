@@ -12,7 +12,6 @@ class MultiSelectTags extends Component {
                 {this.props.tags.map((tag, index) => (
                     <span key={'span' + index}>
                         <input
-                            key={index}
                             id={'input' + index}
                             type="checkbox"
                             className="hide-checkbox"
@@ -20,7 +19,6 @@ class MultiSelectTags extends Component {
                             name={tag}
                         />
                         <label
-                            key={'label' + index}
                             htmlFor={'input' + index}
                             className="badge badge-primary badge-pill capitalize movieTag faded"
                         >
