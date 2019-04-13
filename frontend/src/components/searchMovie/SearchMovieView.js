@@ -66,15 +66,23 @@ class SearchMovieView extends Component {
         const { setQuery, setMovies } = this.props;
         setQuery(movieName);
         const tags = Array.from(this.state.filters);
-        const searchApiURL = `/api/movie/search?movieName=${movieName}&tags=${JSON.stringify(
-            tags
-        )}`;
+        const searchApiURL = this.generateSearchAPIURL(movieName, tags);
         get(searchApiURL)
             .then(data => {
                 setMovies(data);
                 this.setState({ resultCount: data.length });
             })
             .catch(e => console.log(e));
+    }
+
+    generateSearchAPIURL(movieName, tags) {
+        const endpoint = '/api/movie/search?';
+        const searchByName = endpoint + `title=${movieName}`;
+        let searchApiURL = searchByName;
+        tags.forEach(tag => {
+            searchApiURL += `&${tag}=1`;
+        });
+        return searchApiURL;
     }
 
     render() {

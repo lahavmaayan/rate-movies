@@ -10,20 +10,6 @@ async function getMovieByInternalId(movieId) {
 async function getMovieById(externalId) {
     return Movie.findOne({ id: externalId });
 }
-function titleQuery(name) {
-    return { title: { $regex: '.*' + name + '.*' } };
-}
-
-async function getMovieBySearchNameParam(name) {
-    return Movie.find(titleQuery(name));
-}
-
-async function getMoviesBy(tags, name) {
-    const tagsQuery = { tags: { $all: tags } };
-    const nameQuery = titleQuery(name);
-    const query = { $and: [tagsQuery, nameQuery] };
-    return Movie.find(query);
-}
 
 async function getAllMovies() {
     return Movie.find({}).select('-__v');
@@ -36,19 +22,15 @@ async function searchMovies(data) {
             $addFields: {
                 calcScore: {
                     $add: [
-                        data.femaleLeadTag === 1
-                            ? '$ratings.femaleLead.avg'
-                            : 0,
-                        data.LGBTQTag === 1 ? '$ratings.LGBTQ.avg' : 0,
-                        data.minorityRepresentationTag === 1
+                        data.femaleLead === 1 ? '$ratings.femaleLead.avg' : 0,
+                        data.LGBTQ === 1 ? '$ratings.LGBTQ.avg' : 0,
+                        data.minorityRepresentation === 1
                             ? '$ratings.minorityRepresentation.avg'
                             : 0,
-                        data.sexualityRateTag === 1
+                        data.sexualityRate === 1
                             ? '$ratings.sexualityRate.avg'
                             : 0,
-                        data.bechdelTestTag === 1
-                            ? '$ratings.bechdelTest.avg'
-                            : 0
+                        data.bechdelTest === 1 ? '$ratings.bechdelTest.avg' : 0
                     ]
                 }
             }
@@ -148,8 +130,6 @@ module.exports = {
     updateMovie,
     deleteMovie,
     postReview,
-    getMovieBySearchNameParam,
-    getMoviesBy,
     getMovieByInternalId,
     getMovieRatings
 };
