@@ -24,49 +24,61 @@ async function initDB() {
     await Movie.deleteMany({});
     await Movie.insertMany([
         {
-            name: 'harry potter',
+            id: 25941,
+            imageUrl:
+                'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
+            title: 'Harry Brown',
+            reviews: [],
+            ratings: {}
+        },
+        {
+            id: 672,
+            title: 'Harry Potter and the Chamber of Secrets',
             categories: ['fantasy'],
             description: 'movie description',
             publishingYear: 2001,
-            pictureUrl:
-                'https://www.949powerfm.com.au/images/harry_potter-2.jpg',
-            cast: ['Richard Harris', 'Maggie Smith'],
-            duration: '152 minutes',
+            imageUrl: 'https://www.949powerfm.com.au/images/harry_potter-2.jpg',
             reviews: [],
             ratings: {},
             tags: ['Bechdel Test']
         },
         {
-            name: 'hannibal',
+            id: 671,
+            title: "Harry Potter and the Philosopher's Stone",
+            imageUrl:
+                'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
+            reviews: [],
+            ratings: {}
+        },
+        {
+            id: 9740,
+            title: 'Hannibal',
             categories: ['drama'],
             description: 'movie description',
             publishingYear: 2001,
-            pictureUrl:
+            imageUrl:
                 'https://images-na.ssl-images-amazon.com/images/I/51J%2BfT8ILiL.jpg',
-            cast: ['Antony Hopkins'],
-            duration: '131 minutes',
             reviews: [],
             ratings: {}
         },
         {
-            name: 'pretty woman',
+            id: 114,
+            title: 'Pretty Woman',
             categories: ['romance'],
             description: 'movie description',
             publishingYear: 1990,
-            pictureUrl:
+            imageUrl:
                 'https://visitbristol.co.uk/imageresizer/?image=%2Fdmsimgs%2Fpretty_woman_1778730490.jpg&action=ProductDetail',
-            cast: ['Julia Roberts'],
-            duration: '119 minutes',
             reviews: [],
             ratings: {}
         },
         {
-            name: 'star Treck',
+            id: 13475,
+            title: 'Star Trek',
             description: 'aaaaa',
             categories: ['fff'],
-            duration: '119 minutes',
             publishingYear: 1990,
-            pictureUrl:
+            imageUrl:
                 'https://cdn3.movieweb.com/i/article/wPohhTIbvoObR8bJ7k7hfLM29giXZd/798:50/Star-Trek-Movie-Quentin-Tarantino-Patrick-Stewart-Picard.jpg',
             ratings: {},
             reviews: []

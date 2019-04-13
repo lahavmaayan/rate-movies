@@ -5,7 +5,7 @@ const GridTileBar = ({ title, data }) => {
         <div className="tile-bar">
             <div className="tile-title">
                 {title}
-                <span className="tile-data">{data}</span>
+                {data && <span className="tile-data">{data}</span>}
             </div>
         </div>
     );

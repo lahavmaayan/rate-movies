@@ -11,13 +11,9 @@ const Header = () => {
     return (
         <nav className="nav-wrap">
             <ul className="nav">
-                <img className="logo" src={logo} />
-                <li>
-                    <Link to="/movie/5ca06eebb175653a40364485">Movie</Link>
-                </li>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
+                <Link to="/">
+                    <img className="logo" src={logo} />
+                </Link>
             </ul>
         </nav>
     );

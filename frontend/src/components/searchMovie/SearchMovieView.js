@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { get } from 'services/restMethods';
-import MovieTile from '../movieTile/movieTile';
-import Carousel from '../carousel/carousel';
-import ResultsGrid from '../../common/components/ResultsGrid';
+import MovieTile from 'components/movieTile/movieTile';
+import Carousel from 'components/carousel/carousel';
+import ResultsGrid from 'common/components/ResultsGrid';
+import _ from 'lodash';
 
 class SearchMovieView extends Component {
     constructor(props) {
@@ -14,31 +15,43 @@ class SearchMovieView extends Component {
         const searchQuery = this.search.value;
         const { setQuery, setMovies } = this.props;
         setQuery(searchQuery);
-        get(`/api/search?search_text=${searchQuery}`)
+        get(`/api/movie/search?title=${searchQuery}`)
             .then(data => {
-                setMovies(data.movies);
-                this.setState({ resultCount: data.movies.length });
+                setMovies(data);
+                this.setState({ resultCount: data.length });
             })
             .catch(e => console.log(e));
     };
 
     getItemContent = item => {
-        const url = `http://localhost:9000/movie/${item.id}`;
         return (
             <MovieTile
                 movieUrl={url}
-                title={item.name}
                 rating={item.rating}
                 pictureUrl={item.pictureUrl}
+                onClick={this.goToMoviePage.bind(this, item.id)}
+                id={item.id}
+                title={item.title}
+                fmScore={item.fmScore || ''}
             />
         );
     };
 
-    getItmes = () => {
-        const { resultMovies } = this.props;
-        return resultMovies.map(item => this.getItemContent(item));
+    goToMoviePage = id => {
+        this.props.history.push(`/movie/${id}`);
     };
 
+    getItems = () => {
+        const { resultMovies } = this.props;
+        const tiles = [];
+        if (_.isEmpty(resultMovies)) return [];
+        for (let key in resultMovies) {
+            if (resultMovies.hasOwnProperty(key)) {
+                tiles.push(this.getItemContent(resultMovies[key]));
+            }
+        }
+        return tiles;
+    };
     topRatings = () => {
         get(`/api/movie/top_n/:n`)
             .then(data => this.setState({carouselItems: data}))
@@ -46,14 +59,21 @@ class SearchMovieView extends Component {
     };
 
     render() {
-        const { resultMovies } = this.props;
         const carouselItems = this.state.carouselItems;
-        if (carouselItems.length == 0) {
+        if (!carouselItems.length) {
             this.topRatings();
         }
 
         return (
             <div>
+                <h3>Top FMmovies Score</h3>
+                <Carousel carouselMovies={carouselItems} />
+                {this.state.resultCount >= 0 && (
+                    <div>
+                        Found {this.state.resultCount} results for
+                        {this.search ? ' ' + this.search.value : ''} :
+                    </div>
+                )}
                 <div style={{ display: 'flex' }}>
                     <input
                         placeholder="Search for..."
@@ -62,20 +82,12 @@ class SearchMovieView extends Component {
                     <button
                         type="button"
                         onClick={this.handleClick}
-                        style={{ 'font-size': '13.3px', padding: '2px' }}
+                        style={{ fontSize: '13.3px', padding: '2px' }}
                     >
                         Search
                     </button>
                 </div>
-                <Carousel carouselMovies={carouselItems} />
-                {/* <div>{this.getItmes()}</div> */}
-                {this.state.resultCount >= 0 && (
-                    <div>
-                        Found {this.state.resultCount} results for
-                        {this.search ? ' ' + this.search.value : ''} :
-                    </div>
-                )}
-                <ResultsGrid results={this.getItmes()} />
+                <ResultsGrid results={this.getItems()} />
             </div>
         );
     }

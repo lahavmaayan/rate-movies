@@ -43,19 +43,18 @@ const movieRatingsSchema = new mongoose.Schema({
 const MovieReview = mongoose.model('MovieReview', reviewSchema);
 
 const movieSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         unique: true,
         required: true
     },
+    id: Number,
     reviews: [reviewSchema],
     ratings: movieRatingsSchema,
     categories: [String],
     description: String,
     publishingYear: Number,
-    pictureUrl: String,
-    cast: [String],
-    duration: String,
+    imageUrl: String,
     fmScore: { type: Number, default: 0 },
     tags: [String]
 });

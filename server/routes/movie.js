@@ -3,15 +3,18 @@ const validationSchema = require('../validationSchema');
 const express = require('express');
 const router = express.Router();
 const movieRepo = require('../repos/movieRepo');
+const tmdbRepo = require('../repos/tmdbRepo');
+const _ = require('lodash');
 
-router.get('/:movieId', async (req, res, next) => {
+router.get('/search/', async (req, res, next) => {
     try {
-        const movie = await movieRepo.getMovieById(req.params.movieId);
-        if (movie) {
-            res.status(200).send(movie);
-        } else {
-            res.status(404).send(validationSchema.movieNotFound);
+        let movies = [];
+        if (!_.isEmpty(req.query)) {
+            let internalMovies = await movieRepo.searchMovies(req.query);
+            let externalMovies = await tmdbRepo.searchMovies(req.query.title);
+            movies = { ...externalMovies, ...internalMovies };
         }
+        await res.status(200).send(movies);
     } catch (err) {
         next(err);
     }
@@ -19,8 +22,8 @@ router.get('/:movieId', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
     try {
-        const movies = await movieRepo.getAllMovies();
-        res.status(200).send(movies);
+        let movies = await movieRepo.getAllMovies();
+        await res.status(200).send(movies);
     } catch (err) {
         next(err);
     }
@@ -41,6 +44,21 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+router.get('/:movieId', async (req, res, next) => {
+    try {
+        let movie = await movieRepo.getMovieById(req.params.movieId);
+        if (!movie) {
+            movie = await tmdbRepo.getMovieDetails(req.params.movieId);
+        }
+        if (!movie) {
+            res.status(404).send(validationSchema.movieNotFound);
+        }
+        res.status(200).send(movie);
+    } catch (err) {
+        next(err);
+    }
+});
+
 router.put('/:movieId', async (req, res, next) => {
     const movie = await movieRepo.getMovieById(req.params.movieId);
     if (!movie) return res.status(404).send(validationSchema.movieNotFound);
@@ -52,7 +70,7 @@ router.put('/:movieId', async (req, res, next) => {
     try {
         await movieRepo.updateMovie({
             movieId: req.params.movieId,
-            name: req.body.name
+            title: req.body.name
         });
         res.status(200).send(req.params.movieId);
     } catch (err) {
