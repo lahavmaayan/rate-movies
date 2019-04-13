@@ -15,7 +15,7 @@ router.get('/search/', async (req, res, next) => {
             if (tags.length == 0) {
                 movies = await searchByName(movieName);
             } else {
-                movies = await movieRepo.getMoviesByTags(tags, movieName);
+                movies = await movieRepo.getMoviesBy(tags, movieName);
             }
         }
         await res.status(200).send(movies);
@@ -50,12 +50,14 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:movieId', async (req, res, next) => {
     try {
-        const movie = await movieRepo.getMovieById(req.params.movieId);
-        if (movie) {
-            res.status(200).send(movie);
-        } else {
+        let movie = await movieRepo.getMovieById(req.params.movieId);
+        if (!movie) {
+            movie = await tmdbRepo.getMovieDetails(req.params.movieId);
+        }
+        if (!movie) {
             res.status(404).send(validationSchema.movieNotFound);
         }
+        res.status(200).send(movie);
     } catch (err) {
         next(err);
     }

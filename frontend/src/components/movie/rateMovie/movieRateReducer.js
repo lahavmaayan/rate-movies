@@ -1,3 +1,10 @@
+import {
+    INIT_RATE,
+    SET_CURRENT_STEP,
+    SET_REVIEWER_DETAILS,
+    SET_REVIEWER_QUESTIONS,
+    SET_REVIEWER_RATINGS
+} from './rateMovieConstants';
 const initialState = {
     currentStep: 1,
     ratings: {
@@ -17,7 +24,11 @@ const initialState = {
 
 function movieRateReducer(state = initialState, action) {
     switch (action.type) {
-        case 'rateMovie/SET_REVIEWER_DETAILS':
+        case INIT_RATE:
+            return {
+                ...initialState
+            };
+        case SET_REVIEWER_DETAILS:
             return {
                 ...state,
                 ratings: {
@@ -25,7 +36,7 @@ function movieRateReducer(state = initialState, action) {
                     reviewerDetails: action.payload
                 }
             };
-        case 'rateMovie/SET_REVIEWER_RATINGS':
+        case SET_REVIEWER_RATINGS:
             return {
                 ...state,
                 ratings: {
@@ -33,7 +44,7 @@ function movieRateReducer(state = initialState, action) {
                     reviewerRating: action.payload
                 }
             };
-        case 'rateMovie/SET_REVIEWER_QUESTIONS':
+        case SET_REVIEWER_QUESTIONS:
             return {
                 ...state,
                 ratings: {
@@ -41,7 +52,7 @@ function movieRateReducer(state = initialState, action) {
                     reviewerQuestions: action.payload
                 }
             };
-        case 'rateMovie/SET_CURRENT_STEP':
+        case SET_CURRENT_STEP:
             return { ...state, currentStep: action.payload };
 
         default:

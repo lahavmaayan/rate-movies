@@ -11,13 +11,10 @@ async function main() {
 
 async function connectToDB() {
     mongoose
-        .connect(
-            'mongodb://localhost/rate-movies',
-            {
-                useNewUrlParser: true,
-                useCreateIndex: true
-            }
-        )
+        .connect('mongodb://localhost/rate-movies', {
+            useNewUrlParser: true,
+            useCreateIndex: true
+        })
         .then(() => console.log('connected to mongo db'))
         .catch(err => console.error('could not connect to mongo db', err));
 }
@@ -29,18 +26,15 @@ async function initDB() {
         {
             id: 25941,
             imageUrl:
-                'https://image.tmdb.org/t/p/w500/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV2:
-                'https://image.tmdb.org/t/p/w92/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV3:
-                'https://image.tmdb.org/t/p/w780/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
+                'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
             title: 'Harry Brown',
             reviews: [],
             ratings: {},
             tags: ['bechdelTest']
         },
         {
-            title: 'harry potter',
+            id: 672,
+            title: 'Harry Potter and the Chamber of Secrets',
             categories: ['fantasy'],
             description: 'movie description',
             publishingYear: 2001,
@@ -50,18 +44,16 @@ async function initDB() {
             tags: ['bechdelTest', 'minorityRepresentation']
         },
         {
-            title: 'harry potter 222222',
+            id: 671,
+            title: "Harry Potter and the Philosopher's Stone",
             imageUrl:
-                'https://image.tmdb.org/t/p/w500/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV2:
-                'https://image.tmdb.org/t/p/w92/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
-            imageUrlV3:
-                'https://image.tmdb.org/t/p/w780/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
+                'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
             reviews: [],
             ratings: {}
         },
         {
-            title: 'hannibal',
+            id: 9740,
+            title: 'Hannibal',
             categories: ['drama'],
             description: 'movie description',
             publishingYear: 2001,
@@ -72,7 +64,8 @@ async function initDB() {
             tags: ['minorityRepresentation']
         },
         {
-            title: 'pretty woman',
+            id: 114,
+            title: 'Pretty Woman',
             categories: ['romance'],
             description: 'movie description',
             publishingYear: 1990,
@@ -82,7 +75,8 @@ async function initDB() {
             ratings: {}
         },
         {
-            title: 'star Treck',
+            id: 13475,
+            title: 'Star Trek',
             description: 'aaaaa',
             categories: ['fff'],
             publishingYear: 1990,
