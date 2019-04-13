@@ -17,7 +17,11 @@ async function getAllMovies() {
 
 async function searchMovies(data) {
     return Movie.aggregate([
-        { $match: { title: { $regex: '.*' + data.title + '.*' } } },
+        {
+            $match: {
+                title: { $regex: '.*' + data.title + '.*', $options: '-i' }
+            }
+        },
         {
             $addFields: {
                 calcScore: {
