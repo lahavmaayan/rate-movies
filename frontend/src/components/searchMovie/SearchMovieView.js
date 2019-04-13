@@ -13,7 +13,13 @@ class SearchMovieView extends Component {
             carouselItems: [],
             resultCount: -1,
             filters: new Set([]),
-            tags: ['bechdelTest', 'minorityRepresentation']
+            tags: [
+                'femaleLead',
+                'LGBTQ',
+                'minorityRepresentation',
+                'sexualityRate',
+                'bechdelTest'
+            ]
         };
         this.onTagsSelection = this.onTagsSelection.bind(this);
     }
