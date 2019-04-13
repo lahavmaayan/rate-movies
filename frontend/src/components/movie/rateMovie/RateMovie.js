@@ -4,7 +4,8 @@ import {
     SET_REVIEWER_DETAILS,
     SET_REVIEWER_QUESTIONS,
     SET_REVIEWER_RATINGS,
-    SET_CURRENT_STEP
+    SET_CURRENT_STEP,
+    INIT_RATE
 } from './rateMovieConstants';
 
 const mapStateToProps = state => {
@@ -20,6 +21,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
     return {
+        initializeRate: () => dispatch({ type: INIT_RATE}),
         setReviewerDetails: payload =>
             dispatch({ type: SET_REVIEWER_DETAILS, payload }),
         setReviewerRating: payload =>

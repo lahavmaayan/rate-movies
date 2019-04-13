@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TagsView from './TagsView';
+import FMScore from './FMScore';
 
 class MovieDetails extends Component {
     render() {
@@ -9,12 +10,14 @@ class MovieDetails extends Component {
             description,
             publishingYear,
             imageUrl,
-            tags
+            tags,
+            fmScore
         } = this.props.movie;
         return (
             <div>
                 <div className="flex-container">
                     <h1 className="capitalize movieTitle">{title}</h1>
+                    <FMScore className="flex-item" value={fmScore} />
                     <TagsView tags={tags} />
                 </div>
                 <img src={imageUrl} className="moviePic" />

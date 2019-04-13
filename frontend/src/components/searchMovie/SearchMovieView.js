@@ -3,31 +3,36 @@ import { get } from 'services/restMethods';
 import MovieTile from 'components/movieTile/movieTile';
 import Carousel from 'components/carousel/carousel';
 import ResultsGrid from 'common/components/ResultsGrid';
+import MultiSelectTags from './MultiSelectTags';
 import _ from 'lodash';
 
 class SearchMovieView extends Component {
     constructor(props) {
         super(props);
-        this.state = { carouselItems: [], resultCount: -1 };
+        this.state = {
+            carouselItems: [],
+            resultCount: -1,
+            filters: new Set([]),
+            tags: [
+                'femaleLead',
+                'LGBTQ',
+                'minorityRepresentation',
+                'sexualityRate',
+                'bechdelTest'
+            ]
+        };
+        this.onTagsSelection = this.onTagsSelection.bind(this);
     }
 
     handleClick = () => {
-        const searchQuery = this.search.value;
-        const { setQuery, setMovies } = this.props;
-        setQuery(searchQuery);
-        get(`/api/movie/search?name=${searchQuery}`)
-            .then(data => {
-                setMovies(data);
-                this.setState({ resultCount: data.length });
-            })
-            .catch(e => console.log(e));
+        this.searchMovies();
     };
 
     getItemContent = item => {
         return (
             <MovieTile
-                onClick={this.goToMoviePage.bind(this, item._id)}
-                id={item._id}
+                onClick={this.goToMoviePage.bind(this, item.id)}
+                id={item.id}
                 title={item.title}
                 fmScore={item.fmScore || ''}
                 imageUrl={item.imageUrl}
@@ -55,6 +60,30 @@ class SearchMovieView extends Component {
             .then(data => this.setState({ carouselItems: data.movies }))
             .catch(e => console.log(e));
     };
+
+    searchMovies() {
+        const movieName = this.search.value;
+        const { setQuery, setMovies } = this.props;
+        setQuery(movieName);
+        const tags = Array.from(this.state.filters);
+        const searchApiURL = this.generateSearchAPIURL(movieName, tags);
+        get(searchApiURL)
+            .then(data => {
+                setMovies(data);
+                this.setState({ resultCount: data.length });
+            })
+            .catch(e => console.log(e));
+    }
+
+    generateSearchAPIURL(movieName, tags) {
+        const endpoint = '/api/movie/search?';
+        const searchByName = endpoint + `title=${movieName}`;
+        let searchApiURL = searchByName;
+        tags.forEach(tag => {
+            searchApiURL += `&${tag}=1`;
+        });
+        return searchApiURL;
+    }
 
     render() {
         const carouselItems = this.state.carouselItems;
@@ -84,10 +113,24 @@ class SearchMovieView extends Component {
                     >
                         Search
                     </button>
+                    <MultiSelectTags
+                        tags={this.state.tags}
+                        filters={this.state.filters}
+                        OnSelect={this.onTagsSelection}
+                    />
                 </div>
                 <ResultsGrid results={this.getItems()} />
             </div>
         );
+    }
+
+    onTagsSelection(tag, filterIsOn) {
+        const newFilters = this.state.filters;
+        if (filterIsOn) newFilters.add(tag);
+        else newFilters.delete(tag);
+
+        this.setState({ ...this.state, filters: newFilters });
+        this.searchMovies();
     }
 }
 

@@ -5,6 +5,7 @@ import RatingsGrid from './views/RatingsGrid';
 import RateMovie from './rateMovie/RateMovie';
 import MovieDetails from './views/MovieDetails';
 import { get, post } from 'services/restMethods';
+import { tagDisplayName } from 'common/utils/tagDisplayName';
 
 export default class MoviePage extends Component {
     constructor(props) {
@@ -15,6 +16,10 @@ export default class MoviePage extends Component {
     }
 
     async componentDidMount() {
+        await this.loadData();
+    }
+
+    async loadData() {
         try {
             const { loadStart, loadSucseed } = this.props;
             loadStart();
@@ -37,43 +42,25 @@ export default class MoviePage extends Component {
     async loadMovieData(movieId) {
         const movieDataServer = await get(`/api/movie/${movieId}`);
         let movieData = movieDataServer;
-        //RatingsGrid assume input is Dictionary
-        movieData.ratings = this.convertObjToDictionary(
-            movieDataServer.ratings
-        );
-        this.convertRatingsNames(movieData.ratings);
-        movieData.tags = this.convertTagsNames(movieData.tags);
+        if (movieData.fmScore) {
+            //RatingsGrid assume input is Dictionary
+            movieData.ratings = this.convertObjToDictionary(
+                movieDataServer.ratings
+            );
+            this.convertRatingsNames(movieData.ratings);
+            movieData.tags = movieData.tags.map(tag => tagDisplayName(tag));
+        } else {
+            movieData.ratings = {};
+            movieData.tags = {};
+        }
         return movieData;
     }
 
     convertRatingsNames(ratings) {
         for (let index in ratings) {
             const rating = ratings[index];
-            rating.feature = this.displayName(rating.feature);
+            rating.feature = tagDisplayName(rating.feature);
         }
-    }
-
-    convertTagsNames(tags) {
-        return tags.map(tag => this.displayName(tag));
-    }
-
-    displayName(ratingPropName) {
-        let res = ratingPropName;
-        switch (ratingPropName.toLowerCase()) {
-            case 'femaleLead'.toLowerCase():
-                res = 'Strong Female Lead';
-                break;
-            case 'minorityRepresentation'.toLowerCase():
-                res = 'Minority Group Representation';
-                break;
-            case 'sexualityRate'.toLowerCase():
-                res = 'Sexual Violante';
-                break;
-            case 'BechdelTest'.toLowerCase():
-                res = 'Bechdel Test';
-                break;
-        }
-        return res;
     }
 
     convertObjToDictionary(obj) {
@@ -97,14 +84,17 @@ export default class MoviePage extends Component {
             reviewerDetails,
             reviewerRating,
             reviewerQuestions,
+            movie,
             location
         } = this.props;
         const movieId = location.pathname.split('/')[2];
         await post(`/api/movie/${movieId}/rate`, {
             reviewerDetails,
             reviewerRating,
-            reviewerQuestions
+            reviewerQuestions,
+            movie
         });
+        await this.loadData();
         await this.closeModal();
     };
 
