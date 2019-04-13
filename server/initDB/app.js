@@ -29,7 +29,8 @@ async function initDB() {
                 'https://image.tmdb.org/t/p/w342/68V1ClrCT7ik7UDiAkIDliRaAXf.jpg',
             title: 'Harry Brown',
             reviews: [],
-            ratings: {}
+            ratings: {},
+            tags: ['bechdelTest']
         },
         {
             id: 672,
@@ -40,7 +41,7 @@ async function initDB() {
             imageUrl: 'https://www.949powerfm.com.au/images/harry_potter-2.jpg',
             reviews: [],
             ratings: {},
-            tags: ['Bechdel Test']
+            tags: ['bechdelTest', 'minorityRepresentation']
         },
         {
             id: 671,
@@ -59,7 +60,8 @@ async function initDB() {
             imageUrl:
                 'https://images-na.ssl-images-amazon.com/images/I/51J%2BfT8ILiL.jpg',
             reviews: [],
-            ratings: {}
+            ratings: {},
+            tags: ['minorityRepresentation']
         },
         {
             id: 114,

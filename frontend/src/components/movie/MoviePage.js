@@ -5,6 +5,7 @@ import RatingsGrid from './views/RatingsGrid';
 import RateMovie from './rateMovie/RateMovie';
 import MovieDetails from './views/MovieDetails';
 import { get, post } from 'services/restMethods';
+import { tagDisplayName } from 'common/utils/tagDisplayName';
 
 export default class MoviePage extends Component {
     constructor(props) {
@@ -47,7 +48,7 @@ export default class MoviePage extends Component {
                 movieDataServer.ratings
             );
             this.convertRatingsNames(movieData.ratings);
-            movieData.tags = this.convertTagsNames(movieData.tags);
+            movieData.tags = movieData.tags.map(tag => tagDisplayName(tag));
         } else {
             movieData.ratings = {};
             movieData.tags = {};
@@ -58,31 +59,8 @@ export default class MoviePage extends Component {
     convertRatingsNames(ratings) {
         for (let index in ratings) {
             const rating = ratings[index];
-            rating.feature = this.displayName(rating.feature);
+            rating.feature = tagDisplayName(rating.feature);
         }
-    }
-
-    convertTagsNames(tags) {
-        return tags.map(tag => this.displayName(tag));
-    }
-
-    displayName(ratingPropName) {
-        let res = ratingPropName;
-        switch (ratingPropName.toLowerCase()) {
-            case 'femaleLead'.toLowerCase():
-                res = 'Strong Female Lead';
-                break;
-            case 'minorityRepresentation'.toLowerCase():
-                res = 'Minority Group Representation';
-                break;
-            case 'sexualityRate'.toLowerCase():
-                res = 'Sexual Violante';
-                break;
-            case 'BechdelTest'.toLowerCase():
-                res = 'Bechdel Test';
-                break;
-        }
-        return res;
     }
 
     convertObjToDictionary(obj) {

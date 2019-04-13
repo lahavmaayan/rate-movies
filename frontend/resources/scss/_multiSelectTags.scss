@@ -1,0 +1,12 @@
+.hide-checkbox {
+  position: absolute;
+  left: -9999px;
+}
+
+.faded{
+  opacity: 0.5;
+}
+
+input:checked + label {
+  opacity: 1;
+}
