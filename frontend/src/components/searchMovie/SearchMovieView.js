@@ -107,6 +107,7 @@ class SearchMovieView extends Component {
                     </button>
                     <MultiSelectTags
                         tags={this.state.tags}
+                        filters={this.state.filters}
                         OnSelect={this.onTagsSelection}
                     />
                 </div>

@@ -7,6 +7,7 @@ class MultiSelectTags extends Component {
     }
 
     render() {
+        const filters = this.props.filters;
         return (
             <div>
                 {this.props.tags.map((tag, index) => (
@@ -17,6 +18,7 @@ class MultiSelectTags extends Component {
                             className="hide-checkbox"
                             onChange={this.handleChange.bind(this)}
                             name={tag}
+                            checked={filters.has(tag)}
                         />
                         <label
                             htmlFor={'input' + index}
