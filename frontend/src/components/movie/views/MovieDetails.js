@@ -13,6 +13,7 @@ class MovieDetails extends Component {
             tags,
             fmScore
         } = this.props.movie;
+        const categoriesArr = categories.map(item => item.name);
         return (
             <div>
                 <div className="flex-container">
@@ -22,7 +23,7 @@ class MovieDetails extends Component {
                 </div>
                 <img src={imageUrl} className="moviePic" />
                 <p className="boldDetails capitalize">
-                    {categories} | {publishingYear}
+                    {categoriesArr} | {publishingYear}
                 </p>
                 <p>{description}</p>
                 <div className="clearFloat" />

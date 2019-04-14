@@ -23,7 +23,9 @@ async function searchMovies(data) {
                         id: tmdb.id,
                         title: tmdb.title,
                         description: tmdb.overview,
-                        imageUrl: `${baseImageUrl}/${tmdb.poster_path}`
+                        imageUrl: `${baseImageUrl}/${tmdb.poster_path}`,
+                        categories: tmdb.genres,
+                        publishingYear: tmdb.release_date
                     };
                 })
             );
@@ -44,10 +46,13 @@ async function getMovieDetails(id) {
             });
             res.on('end', () => {
                 body = JSON.parse(body);
+                console.log(body);
                 const response = {
                     title: body.title,
                     description: body.overview,
                     imageUrl: `${baseImageUrl}/${body.poster_path}`,
+                    categories: body.genres,
+                    publishingYear: body.release_date,
                     ratings: {},
                     reviews: []
                 };

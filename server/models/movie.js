@@ -51,7 +51,7 @@ const movieSchema = new mongoose.Schema({
     id: Number,
     reviews: [reviewSchema],
     ratings: movieRatingsSchema,
-    categories: [String],
+    categories: [],
     description: String,
     publishingYear: Number,
     imageUrl: String,

@@ -61,7 +61,6 @@ class SearchMovieView extends Component {
             .then(data => this.setState({ carouselItems: data }))
             .catch(e => console.log(e));
     };
-    
 
     searchMovies() {
         const movieName = this.search.value;
@@ -95,8 +94,10 @@ class SearchMovieView extends Component {
 
         return (
             <div>
-                <h3>Top FRmovies Score</h3>
-                <Carousel carouselMovies={carouselItems} onClick={this.goToMoviePage}/>
+                <Carousel
+                    carouselMovies={carouselItems}
+                    onClick={this.goToMoviePage}
+                />
                 {this.state.resultCount >= 0 && (
                     <div>
                         Found {this.state.resultCount} results for
