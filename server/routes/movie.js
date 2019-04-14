@@ -118,4 +118,13 @@ function validateMovieName(name) {
     return Joi.validate(name, validationSchema.movieName);
 }
 
+router.get('/top_n/:n', async (req, res, next) => {
+    try {
+        const movies = await movieRepo.getTopN(req.params.n);
+        res.status(200).send(movies);
+    } catch (err) {
+        next(err);
+    }
+});
+
 module.exports = router;

@@ -31,7 +31,7 @@ class SearchMovieView extends Component {
     getItemContent = item => {
         return (
             <MovieTile
-                onClick={this.goToMoviePage.bind(this, item.id)}
+                onClick={this.goToMoviePage(item.id)}
                 id={item.id}
                 title={item.title}
                 fmScore={item.fmScore || ''}
@@ -41,7 +41,7 @@ class SearchMovieView extends Component {
     };
 
     goToMoviePage = id => {
-        this.props.history.push(`/movie/${id}`);
+        return () => this.props.history.push(`/movie/${id}`);
     };
 
     getItems = () => {
@@ -55,9 +55,10 @@ class SearchMovieView extends Component {
         }
         return tiles;
     };
+
     topRatings = () => {
-        get(`/api/getTopRatings`)
-            .then(data => this.setState({ carouselItems: data.movies }))
+        get(`/api/movie/top_n/10`)
+            .then(data => this.setState({ carouselItems: data }))
             .catch(e => console.log(e));
     };
 
@@ -93,8 +94,10 @@ class SearchMovieView extends Component {
 
         return (
             <div>
-                <h3>Top FMmovies Score</h3>
-                <Carousel carouselMovies={carouselItems} />
+                <Carousel
+                    carouselMovies={carouselItems}
+                    onClick={this.goToMoviePage}
+                />
                 {this.state.resultCount >= 0 && (
                     <div>
                         Found {this.state.resultCount} results for

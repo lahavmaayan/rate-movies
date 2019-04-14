@@ -24,8 +24,10 @@ class Carousel extends Component {
 
     creatMovieTile = item => {
         const url = `http://localhost:9000/movie/${item.id}`;
+        const { onClick } = this.props;
         return (
             <MovieTile
+                onClick={onClick(item.id)}
                 movieUrl={url}
                 imageUrl={item.imageUrl}
                 title={item.title}
