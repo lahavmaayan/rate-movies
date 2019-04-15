@@ -6,6 +6,7 @@ import RateMovie from './rateMovie/RateMovie';
 import MovieDetails from './views/MovieDetails';
 import { get, post } from 'services/restMethods';
 import { tagDisplayName } from 'common/utils/tagDisplayName';
+import Loader from 'common/components/Loader';
 
 export default class MoviePage extends Component {
     constructor(props) {
@@ -114,15 +115,7 @@ export default class MoviePage extends Component {
     }
 
     movieNotFound() {
-        return (
-            <div>
-                <h1>Sorry :-( </h1>
-                <p>
-                    It seems we are having some problem. the movie cannot be
-                    found. please try again.
-                </p>
-            </div>
-        );
+        return <Loader />;
     }
 
     render() {

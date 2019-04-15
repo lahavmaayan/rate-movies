@@ -46,7 +46,6 @@ async function getMovieDetails(id) {
             });
             res.on('end', () => {
                 body = JSON.parse(body);
-                console.log(body);
                 const response = {
                     title: body.title,
                     description: body.overview,
